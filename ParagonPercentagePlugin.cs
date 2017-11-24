@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Paragon Percentage Plugin for TurboHUD Version 13/10/2017 23:27
+// Paragon Percentage Plugin for TurboHUD Version 24/11/2017 21:12
 
 using System;
 using System.Globalization;
@@ -12,6 +12,7 @@ namespace Turbo.Plugins.Resu
     {
         public bool ShowGreaterRiftMaxLevel { get; set; }
 		public bool ParagonPercentageOnTheRight { get; set; }
+		public string ParagonPercentage { get; set; }
 
         public TopLabelDecorator ParagonPercentageDecorator { get; set; }
         public TopLabelDecorator HighestSoloRiftLevelDecorator { get; set; }
@@ -33,6 +34,7 @@ namespace Turbo.Plugins.Resu
 
             ShowGreaterRiftMaxLevel = true;
             ParagonPercentageOnTheRight = true;
+			ParagonPercentage = "0";
 			
             var experiencePlugin = Hud.GetPlugin<TopExperienceStatistics>();
 			
@@ -42,7 +44,7 @@ namespace Turbo.Plugins.Resu
                 BackgroundTextureOpacity1 = 0.8f,
                 TextFont = Hud.Render.CreateFont("Segoe UI Light", 7, 250, 255, 255, 255, false, false, true),
 
-                TextFunc = () => string.Format(CultureInfo.InvariantCulture, "{0:0.##}%", (Hud.Game.Me.CurrentLevelParagonFloat - Hud.Game.Me.CurrentLevelParagon) * 100),
+                TextFunc = () => ParagonPercentage,  
 
                 HintFunc = () => "Paragon level " + (Hud.Game.Me.CurrentLevelParagon + 1) + " in " + experiencePlugin.TimeToParagonLevel(Hud.Game.Me.CurrentLevelParagon + 1, false) +  Environment.NewLine + "EXP/h : " + ValueToString(Hud.Game.CurrentHeroToday.GainedExperiencePerHourPlay, ValueFormat.ShortNumber),
             };
@@ -88,6 +90,17 @@ namespace Turbo.Plugins.Resu
             if (clipState != ClipState.BeforeClip) return;
 
             var uiRect = Hud.Game.Me.PortraitUiElement.Rectangle;
+			
+			
+			if (Hud.Game.Me.CurrentLevelNormal == 70)
+				   {
+			         ParagonPercentage = string.Format(CultureInfo.InvariantCulture, "{0:0.##}%", (Hud.Game.Me.CurrentLevelParagonFloat - Hud.Game.Me.CurrentLevelParagon) * 100);
+				   }
+            else if (Hud.Game.Me.CurrentLevelNormal < 70)	
+			       {
+                     ParagonPercentage = string.Format(CultureInfo.InvariantCulture, "{0:0.##}%", Convert.ToSingle(Hud.Game.Me.CurrentLevelNormal)/70*100); 
+				   }
+			
 			
 			
             if (ParagonPercentageOnTheRight)
