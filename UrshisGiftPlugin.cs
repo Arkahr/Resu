@@ -1,4 +1,4 @@
-// http://www.ownedcore.com/forums/diablo-3/turbohud/turbohud-plugin-review-zone/636940-v7-3-international-resu-urshisgiftplugin.html 
+// https://github.com/User5981/Resu
 // Urshi's gift plugin for TurboHUD version 20/09/2017 11:34
  
 using System;

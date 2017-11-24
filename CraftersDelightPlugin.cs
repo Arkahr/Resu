@@ -1,4 +1,4 @@
-// http://www.ownedcore.com/forums/diablo-3/turbohud/turbohud-plugin-review-zone/634683-v7-3-international-resu-craftersdelightplugin.html
+// https://github.com/User5981/Resu
 // Crafter's Delight Plugin for TurboHUD Version 12/10/2017 08:04
  
 using System.Collections.Generic;

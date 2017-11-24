@@ -1,4 +1,4 @@
-// http://www.ownedcore.com/forums/diablo-3/turbohud/turbohud-plugin-review-zone/640855-v7-3-international-resu-customlifewarningplugin.html
+// https://github.com/User5981/Resu
 // Custom Life Warning Plugin for TurboHUD Version 06/10/2017 16:53
 
 using System;

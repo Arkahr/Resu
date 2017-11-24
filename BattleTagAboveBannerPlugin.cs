@@ -1,4 +1,4 @@
-// http://www.ownedcore.com/forums/diablo-3/turbohud/turbohud-plugin-review-zone/638642-v7-3-international-resu-battletagabovebannerplugin.html#post3782206
+// https://github.com/User5981/Resu
 // BattleTag Above Banner Plugin for TurboHUD Version 22/09/2017 12:05
 
 using System;

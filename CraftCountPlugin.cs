@@ -1,4 +1,4 @@
-// http://www.ownedcore.com/forums/diablo-3/turbohud/turbohud-plugin-review-zone/641194-v7-3-international-resu-craftcountplugin.html
+// https://github.com/User5981/Resu
 // Craft Count Plugin for TurboHUD Version 11/10/2017 21:49
 
 using System;

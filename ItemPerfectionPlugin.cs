@@ -1,4 +1,4 @@
-// http://www.ownedcore.com/forums/diablo-3/turbohud/turbohud-plugin-review-zone/639604-v7-3-international-resu-itemperfectionplugin.html
+// https://github.com/User5981/Resu
 // Item Perfection plugin for TurboHUD version 10/10/2017 12:21
  
 using System;

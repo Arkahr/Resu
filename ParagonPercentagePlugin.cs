@@ -1,4 +1,4 @@
-// http://www.ownedcore.com/forums/diablo-3/turbohud/turbohud-plugin-review-zone/634909-v7-3-international-resu-paragonpercentageplugin.html
+// https://github.com/User5981/Resu
 // Paragon Percentage Plugin for TurboHUD Version 13/10/2017 23:27
 
 using System;

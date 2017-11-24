@@ -1,4 +1,4 @@
-// http://www.ownedcore.com/forums/diablo-3/turbohud/turbohud-plugin-review-zone/640402-v7-3-international-resu-huntersvengeanceplugin.html
+// https://github.com/User5981/Resu
 // Hunter's Vengeance Plugin for TurboHUD Version 17/10/2017 07:26
 
 using System;

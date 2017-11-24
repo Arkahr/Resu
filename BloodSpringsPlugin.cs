@@ -1,3 +1,6 @@
+// https://github.com/User5981/Resu
+// Blood Springs Plugin for TurboHUD Version 24/11/2017 08:19
+
 using System.Linq;
 using Turbo.Plugins.Default;
 

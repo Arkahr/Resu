@@ -1,4 +1,4 @@
-// http://www.ownedcore.com/forums/diablo-3/turbohud/turbohud-plugin-review-zone/635355-v7-3-international-resu-timeeverywhereplugin.html
+// https://github.com/User5981/Resu
 // Time Everywhere plugin for TurboHUD version 26/09/2017 08:05
 using Turbo.Plugins.Default;
 using System.Collections.Generic;
