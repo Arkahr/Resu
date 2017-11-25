@@ -21,7 +21,7 @@ Turbo.Plugins.Resu
 - Hellfire crafts
 - Bounty crafts 
 
-near resource globe when total amount changes.
+...near resource globe when total amount changes.
 #### [CraftersDelightPlugin.cs](https://github.com/User5981/Resu/blob/master/CraftersDelightPlugin.cs) - Shows on mini map :	
 - Death's Breath 
 - Veiled Crystal 
