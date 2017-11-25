@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Urshi's gift plugin for TurboHUD version 20/09/2017 11:34
+// Urshi's gift plugin for TurboHUD version 25/11/2017 17:00
  
 using System;
 using System.Diagnostics;
@@ -170,58 +170,62 @@ namespace Turbo.Plugins.Resu
             if (item == null) return;
 			var jewelRank = item.JewelRank;	
 			if (item.ItemsInSocket == null)
-            {
-			if (!item.IsLegendary) return;
-			if (item.SnoItem.MainGroupCode != "gems_unique") return; 
-			LGemName = "";
-			}
+              {
+			   if (!item.IsLegendary) return;
+			   if (item.SnoItem.MainGroupCode != "gems_unique") return; 
+			   LGemName = "";
+			  }
 			else
-			{
-			var legendaryGem = item.ItemsInSocket.FirstOrDefault(x => x.Quality == ItemQuality.Legendary && x.JewelRank > -1);
-            if (legendaryGem == null) return;	 
-			jewelRank = legendaryGem.JewelRank; 
+			  {
+			   var legendaryGem = item.ItemsInSocket.FirstOrDefault(x => x.Quality == ItemQuality.Legendary && x.JewelRank > -1);
+               if (legendaryGem == null) return;	 
+			   jewelRank = legendaryGem.JewelRank; 
 			
-			if (item.SnoItem.MainGroupCode == "2h")
-				{
-				LGemName =  "GoE: ";
-			  }	
-			else if (item.AncientRank < 1 || item.SetSno != uint.MaxValue)
-			  {
-                 LGemName = legendaryGem.SnoItem.NameLocalized + ":" + Environment.NewLine;	
-			  } 
-            else
-			  {
-				LGemName = Environment.NewLine + legendaryGem.SnoItem.NameLocalized + ":" + Environment.NewLine;
-			  }				
-			}
+			   if (item.SnoItem.MainGroupCode == "2h")
+			      {
+				   LGemName =  "GoE: ";
+			      }	
+			   else if (item.AncientRank < 1 || item.SetSno != uint.MaxValue)
+			      {
+                   LGemName = legendaryGem.SnoItem.NameLocalized + ":" + Environment.NewLine;	
+			      } 
+               else
+			      {
+				   LGemName = Environment.NewLine + legendaryGem.SnoItem.NameLocalized + ":" + Environment.NewLine;
+			      }				
+			  
 					
             if (jewelRank == -1) jewelRank = 0;
-			bool Max = IsMaxedGem(item, jewelRank);
+			bool Max = IsMaxedGem(legendaryGem, jewelRank);
 			
             if (Max)
-            {
+               {
 				var textMax = string.Format(UpgradeTextMax, LGemName);
                 var layoutMax = UpgradeFont.GetTextLayout(textMax);
                 UpgradeFont.DrawText(layoutMax, LeftFunc(), TopFunc());
                
                 return;
-            }
-           
-            GRlevel = jewelRank + AddPerc + (NumberOfAttempts - 1);  
-			if (GRlevel < 1) {GRlevel = 1;}
-			if (NumberOfAttempts == 1)
-			 {	
-		    var textOne = string.Format(UpgradeTextOne, GRlevel, ChanceWantedPercentage, LGemName);
-            var layoutOne = UpgradeFont.GetTextLayout(textOne);
-            UpgradeFont.DrawText(layoutOne, LeftFunc(), TopFunc());
+               }
+            else
+			   {
+                GRlevel = jewelRank + AddPerc + (NumberOfAttempts - 1);  
+			    if (GRlevel < 1) {GRlevel = 1;}
+			    if (NumberOfAttempts == 1)
+			       {	
+		            var textOne = string.Format(UpgradeTextOne, GRlevel, ChanceWantedPercentage, LGemName);
+                    var layoutOne = UpgradeFont.GetTextLayout(textOne);
+                    UpgradeFont.DrawText(layoutOne, LeftFunc(), TopFunc());
 		 
-             }
-			 else
-			{ 	 
-            var text = string.Format(UpgradeText, GRlevel, NumberOfAttempts, ChanceWantedPercentage, LGemName);
-            var layout = UpgradeFont.GetTextLayout(text); 
-            UpgradeFont.DrawText(layout, LeftFunc(), TopFunc());
-			}
+                   }
+			    else
+			       { 	 
+                    var text = string.Format(UpgradeText, GRlevel, NumberOfAttempts, ChanceWantedPercentage, LGemName);
+                    var layout = UpgradeFont.GetTextLayout(text); 
+                    UpgradeFont.DrawText(layout, LeftFunc(), TopFunc());
+			       }
+			   }
+			   
+			}  
         }
 		
     }
