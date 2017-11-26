@@ -33,7 +33,7 @@ namespace Turbo.Plugins.Resu
                 },
                 new GroundCircleDecorator(Hud)
                 {
-                    Brush = Hud.Render.CreateBrush(100, 255, 255, 220, 5, SharpDX.Direct2D1.DashStyle.Dash),
+                    Brush = Hud.Render.CreateBrush(200, 82, 35, 42, 5, SharpDX.Direct2D1.DashStyle.Dash),
                     Radius = 7,
                 },
                 new GroundLabelDecorator(Hud)
@@ -59,7 +59,7 @@ namespace Turbo.Plugins.Resu
                 },
                 new GroundCircleDecorator(Hud)
                 {
-                    Brush = Hud.Render.CreateBrush(100, 255, 255, 220, 5, SharpDX.Direct2D1.DashStyle.Dash),
+                    Brush = Hud.Render.CreateBrush(200, 82, 35, 42, 5, SharpDX.Direct2D1.DashStyle.Dash),
                     Radius = 14,
                 },
                 new GroundLabelDecorator(Hud)
@@ -85,7 +85,7 @@ namespace Turbo.Plugins.Resu
                 },
                 new GroundCircleDecorator(Hud)
                 {
-                    Brush = Hud.Render.CreateBrush(100, 255, 255, 220, 5, SharpDX.Direct2D1.DashStyle.Dash),
+                    Brush = Hud.Render.CreateBrush(200, 82, 35, 42, 5, SharpDX.Direct2D1.DashStyle.Dash),
                     Radius = 20,
                 },
                 new GroundLabelDecorator(Hud)
