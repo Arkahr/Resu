@@ -40,7 +40,7 @@ Turbo.Plugins.Resu
 - Bounty crafts
 - Hellfire crafts
 - legendary gems
-- Ancient (A) and Primal (P) on legendary or set icons (minimap).
+- Ancient and Primal indicator on legendary or set icons (minimap).
 
 ...And adds transparent colored groundlabel names with quantity for all + Slain Farmers (discrete and ground label only) except Bovine Bardiche & Puzzle Ring (already in ItemsPlugin).
 
