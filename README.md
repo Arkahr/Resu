@@ -80,6 +80,7 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 ```
 #### [CustomLifeWarningPlugin.cs](https://github.com/User5981/Resu/blob/master/CustomLifeWarningPlugin.cs) - Turns the screen progressively to transparent orange when life percentage goes under the set limit. Default is 50%.
 ![alt text](READMEpics/life.png)
+
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
 ```C#
 // Settings for Custom Life Warning Plugin
@@ -93,6 +94,8 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 // End of Settings for Custom Life Warning Plugin
 ```
 #### [HuntersVengeancePlugin.cs](https://github.com/User5981/Resu/blob/master/HuntersVengeancePlugin.cs) - Shows 1 circle around your player when you have Zei's stone of vengeance equipped and are fighting, it also displays the percentage of damage increased by the legendary gem under each monster (calculated from gem level and distance from your player).
+![alt text](READMEpics/zei.png) ![alt text](READMEpics/zeiminimap.png)
+
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
 ```C#
 // Settings for Hunter's Vengeance Plugin
