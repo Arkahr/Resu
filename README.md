@@ -58,6 +58,7 @@ Turbo.Plugins.Resu
 - Boot :	% item adventure orientation
 #### [ParagonPercentagePlugin.cs](https://github.com/User5981/Resu/blob/master/ParagonPercentagePlugin.cs) - Shows EXP percentage with two decimal right to portrait paragon level (a bit more precise than the top stats 2 decimals paragon level) with EXP/h & time to next paragon level in the hint and replaces portrait level 70 (only if reached) by each player's highest Greater Rift level with Class, Sheet DPS, EHP and Nemesis Bracers indicator in the hint.
 ![alt text](Portrait.png)
+
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
 ```C#
 // Display % on the left for Paragon Percentage Plugin
