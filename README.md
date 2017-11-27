@@ -46,6 +46,37 @@ Turbo.Plugins.Resu
 ...And adds transparent colored groundlabel names with quantity for all + Slain Farmers (discrete and ground label only) except Bovine Bardiche & Puzzle Ring (already in ItemsPlugin).
 
 ![alt text](Craftfloor.png) ![alt text](Craftminimap.png) ![alt text](Craftancient.png)
+
+Advice: For better experience with this plugin, turn off "Always Show Items Labels On Drop" in the Diablo 3 Gameplay options.
+Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
+```C#
+// CraftersDelightPlugin Customization
+               Hud.RunOnPlugin<Resu.CraftersDelightPlugin>(plugin => 
+            { 
+               // set to false; the items you don't want to see 
+            plugin.ShowAncientRank = true; 
+            plugin.SlainFarmers = true;
+            plugin.DeathsBreath = true;
+            plugin.VeiledCrystal = true;
+            plugin.ArcaneDust = true;
+            plugin.Gems = true;
+            plugin.ForgottenSoul = true;
+            plugin.ReusableParts = true;
+            plugin.GreaterRiftKeystone = true;
+            plugin.BovineBardiche = true;
+            plugin.PuzzleRing = true;
+            plugin.BloodShards = true;
+            plugin.RamaladnisGift = true;
+            plugin.Potion = true;
+            plugin.InfernalMachine = true;
+            plugin.Bounty = true;
+            plugin.HellFire = true;
+            plugin.LegendaryGems = true;
+            plugin.HoradricCache = true;
+
+            });  
+             // End of CraftersDelightPlugin Customization
+```
 #### [CustomLifeWarningPlugin.cs](https://github.com/User5981/Resu/blob/master/CustomLifeWarningPlugin.cs) - Turns the screen progressively to transparent orange when life percentage goes under the set limit. Default is 50%.
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
 ```C#
