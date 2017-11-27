@@ -48,6 +48,7 @@ Turbo.Plugins.Resu
 ![alt text](Craftfloor.png) ![alt text](Craftminimap.png) ![alt text](Craftancient.png)
 
 Advice: For better experience with this plugin, turn off "Always Show Items Labels On Drop" in the Diablo 3 Gameplay options.
+
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
 ```C#
 // CraftersDelightPlugin Customization
@@ -75,7 +76,7 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
             plugin.HoradricCache = true;
 
             });  
-             // End of CraftersDelightPlugin Customization
+// End of CraftersDelightPlugin Customization
 ```
 #### [CustomLifeWarningPlugin.cs](https://github.com/User5981/Resu/blob/master/CustomLifeWarningPlugin.cs) - Turns the screen progressively to transparent orange when life percentage goes under the set limit. Default is 50%.
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
