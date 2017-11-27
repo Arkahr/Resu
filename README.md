@@ -8,7 +8,7 @@ Turbo.Plugins.Resu
 
 #### [BattleTagAboveBannerPlugin.cs](https://github.com/User5981/Resu/blob/master/BattleTagAboveBannerPlugin.cs) - Adds other players' battletags above banners when they aren't in town. ![alt text](Banner.png)
 #### [BloodSpringsPlugin.cs](https://github.com/User5981/Resu/blob/master/BloodSpringsPlugin.cs) - Adds Circles around Blood springs on the floor and on the minimap (Paths of the Drowned & Blood Marsh area).
-![alt text](Bloodsprings.png)
+![alt text](READMEpics/Bloodsprings.png)
 #### [CraftCountPlugin.cs](https://github.com/User5981/Resu/blob/master/CraftCountPlugin.cs) - Displays total amount of :
 - Death's breath
 - Veiled Crystal 
@@ -22,7 +22,7 @@ Turbo.Plugins.Resu
 - Hellfire crafts
 - Bounty crafts 
 
-![alt text](Craftcount.png) ...near resource globe when total amount changes.
+![alt text](READMEpics/Craftcount.png) ...near resource globe when total amount changes.
 #### [CraftersDelightPlugin.cs](https://github.com/User5981/Resu/blob/master/CraftersDelightPlugin.cs) - Shows on mini map :	
 - Death's Breath 
 - Veiled Crystal 
@@ -45,7 +45,7 @@ Turbo.Plugins.Resu
 
 ...And adds transparent colored groundlabel names with quantity for all + Slain Farmers (discrete and ground label only) except Bovine Bardiche & Puzzle Ring (already in ItemsPlugin).
 
-![alt text](Craftfloor.png) ![alt text](Craftminimap.png) ![alt text](Craftancient.png)
+![alt text](READMEpics/Craftfloor.png) ![alt text](READMEpics/Craftminimap.png) ![alt text](READMEpics/Craftancient.png)
 
 Advice: For better experience with this plugin, turn off "Always Show Items Labels On Drop" in the Diablo 3 Gameplay options.
 
@@ -120,9 +120,9 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 - Heart :	% item life orientation
 - Boot :	% item adventure orientation
 
-![alt text](itemperf.png)
+![alt text](READMEpics/itemperf.png)
 #### [ParagonPercentagePlugin.cs](https://github.com/User5981/Resu/blob/master/ParagonPercentagePlugin.cs) - Shows EXP percentage with two decimal right to portrait paragon level (a bit more precise than the top stats 2 decimals paragon level) with EXP/h & time to next paragon level in the hint and replaces portrait level 70 (only if reached) by each player's highest Greater Rift level with Class, Sheet DPS, EHP and Nemesis Bracers indicator in the hint.
-![alt text](Portrait.png)
+![alt text](READMEpics/Portrait.png)
 
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
 ```C#
@@ -147,9 +147,9 @@ Hud.RunOnPlugin<Resu.ParagonPercentagePlugin>(plugin =>
  // End of Disable Top Experience Statistics
 ```
 #### [TimeEverywherePlugin.cs](https://github.com/User5981/Resu/blob/master/TimeEverywherePlugin.cs) - The default clock is hidden when your inventory is open which means you can't read it when spending time with the mystic, the jeweller and the blacksmith. You have 10mn left before going to school/work but can't see the time while you try to roll that good stat for your item? This plugin is for you, it displays time in your inventory when it's open.
-![alt text](time.png)
+![alt text](READMEpics/time.png)
 #### [UrshisGiftPlugin.cs](https://github.com/User5981/Resu/blob/master/UrshisGiftPlugin.cs) - Adds GR level for n% chance of upgrade on the bottom-right of your legendary gems in your stash and your inventory, maxed Gems are labelled "max", hint in itemhovered menu.The default setting is 100% chance for all 3 consecutive attempts.
-![alt text](urshi.png) ![alt text](urshimin.png)
+![alt text](READMEpics/urshi.png) ![alt text](READMEpics/urshimin.png)
 
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
 ```C#
