@@ -6,7 +6,7 @@ Turbo.Plugins.Resu
 ```
 
 
-#### [BattleTagAboveBannerPlugin.cs](https://github.com/User5981/Resu/blob/master/BattleTagAboveBannerPlugin.cs) - Adds other players' battletags above banners when they aren't in town. ![alt text](Banner.png)
+#### [BattleTagAboveBannerPlugin.cs](https://github.com/User5981/Resu/blob/master/BattleTagAboveBannerPlugin.cs) - Adds other players' battletags above banners when they aren't in town. ![alt text](READMEpics/Banner.png)
 #### [BloodSpringsPlugin.cs](https://github.com/User5981/Resu/blob/master/BloodSpringsPlugin.cs) - Adds Circles around Blood springs on the floor and on the minimap (Paths of the Drowned & Blood Marsh area).
 ![alt text](READMEpics/Bloodsprings.png)
 #### [CraftCountPlugin.cs](https://github.com/User5981/Resu/blob/master/CraftCountPlugin.cs) - Displays total amount of :
@@ -112,7 +112,7 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 // End of Settings for Hunter's Vengeance Plugin
 ```
 #### [ImmortalKingsCallPlugin.cs](https://github.com/User5981/Resu/blob/master/ImmortalKingsCallPlugin.cs) - Shows when Immortal King's Call's +1500 damage buff is active and how many seconds are left.
-![alt text](immortal.png)
+![alt text](READMEpics/immortal.png)
 #### [ItemPerfectionPlugin.cs](https://github.com/User5981/Resu/blob/master/ItemPerfectionPlugin.cs) - displays :
 - Check mark	: % item perfection
 - Crossed swords :	% item offense orientation
