@@ -56,6 +56,7 @@ Turbo.Plugins.Resu
 - Globe :	% item resource orientation
 - Heart :	% item life orientation
 - Boot :	% item adventure orientation
+
 ![alt text](itemperf.png)
 #### [ParagonPercentagePlugin.cs](https://github.com/User5981/Resu/blob/master/ParagonPercentagePlugin.cs) - Shows EXP percentage with two decimal right to portrait paragon level (a bit more precise than the top stats 2 decimals paragon level) with EXP/h & time to next paragon level in the hint and replaces portrait level 70 (only if reached) by each player's highest Greater Rift level with Class, Sheet DPS, EHP and Nemesis Bracers indicator in the hint.
 ![alt text](Portrait.png)
