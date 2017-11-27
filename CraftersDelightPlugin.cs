@@ -133,7 +133,7 @@ namespace Turbo.Plugins.Resu
                 AddDecorator(1054965529, Hud.Render.CreateBrush(120, 0, 0, 0, 0), whiteBrush, whiteFont);
                 AddDecorator(2788723894, Hud.Render.CreateBrush(120, 0, 0, 0, 0), whiteBrush, whiteFont);
                 AddDecorator(2622355732, Hud.Render.CreateBrush(120, 0, 0, 0, 0), whiteBrush, whiteFont);
-                AddDecorator(458185494, Hud.Render.CreateBrush(120, 0, 0, 0, 0), whiteBrush, whiteFont);
+                AddDecorator(1458185494, Hud.Render.CreateBrush(120, 0, 0, 0, 0), whiteBrush, whiteFont);
             }
 			
 			//Bounty crafts
