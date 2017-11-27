@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Crafter's Delight Plugin for TurboHUD Version 12/10/2017 08:04
+// Crafter's Delight Plugin for TurboHUD Version 27/11/2017 11:47
  
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +13,7 @@ namespace Turbo.Plugins.Resu
         public WorldDecoratorCollection SlainFarmerDecorator { get; set; }
         public WorldDecoratorCollection ancientRankDecorator { get; set; }
         public WorldDecoratorCollection ancientRankSetDecorator { get; set; }
+		public WorldDecoratorCollection HoradricCacheDecorator { get; set; }
         public bool ShowAncientRank { get; set; }
         public bool SlainFarmers { get; set; }
         public bool DeathsBreath { get; set; }
@@ -31,6 +32,7 @@ namespace Turbo.Plugins.Resu
 		public bool Bounty { get; set; }
 		public bool HellFire { get; set; }
 		public bool LegendaryGems { get; set; }
+		public bool HoradricCaches { get; set; }
 		private bool init_mapping;
  
         public WorldDecoratorCollection GreaterRiftKeystoneDecorator
@@ -209,7 +211,7 @@ namespace Turbo.Plugins.Resu
             Bounty = true;
             HellFire = true;
             LegendaryGems = true;
-          
+            HoradricCaches = true;
  
             //Slain farmers (actors)
             SlainFarmerDecorator = new WorldDecoratorCollection(
@@ -220,7 +222,27 @@ namespace Turbo.Plugins.Resu
                 TextFont = Hud.Render.CreateFont("tahoma", 7, 255, 146, 29, 0, true, false, false)
             }
             );
- 
+			
+			//Horadric Cache
+            HoradricCacheDecorator = new WorldDecoratorCollection(
+             new MapTextureDecorator(Hud)
+                {
+                    SnoItem = Hud.Inventory.GetSnoItem(2116952111),
+                    Radius = 0.6f,
+                    RadiusTransformator = new StandardPingRadiusTransformator(Hud, 500)
+                    {
+                        RadiusMinimumMultiplier = 0.8f,
+                    }
+                },
+			new GroundLabelDecorator(Hud)
+            {
+                BackgroundBrush = Hud.Render.CreateBrush(100, 0, 0, 0, 0),
+                BorderBrush = Hud.Render.CreateBrush(160, 255, 255, 255, 1),
+                TextFont = Hud.Render.CreateFont("tahoma", 7, 160, 255, 255, 255, true, false, false)
+            }
+            );
+			
+			
             //Ancient rank
             ancientRankDecorator = new WorldDecoratorCollection(
             new MapLabelDecorator(Hud)
@@ -335,6 +357,18 @@ namespace Turbo.Plugins.Resu
                     SlainFarmerDecorator.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
                 }
             }
+			
+			/// Horadric Cache
+            if (HoradricCaches)
+            {
+			var HoradricCache = Hud.Game.Items.Where(item => item.Location == ItemLocation.Floor && item.SnoItem.MainGroupCode == "horadriccache");
+			foreach (var cache in HoradricCache)
+                {
+                    HoradricCacheDecorator.Paint(layer, cache, cache.FloorCoordinate, cache.SnoItem.NameLocalized);
+                }
+			
+			
+			}
         }
     }
 }
