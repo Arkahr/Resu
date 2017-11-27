@@ -112,6 +112,7 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 // End of Settings for Hunter's Vengeance Plugin
 ```
 #### [ImmortalKingsCallPlugin.cs](https://github.com/User5981/Resu/blob/master/ImmortalKingsCallPlugin.cs) - Shows when Immortal King's Call's +1500 damage buff is active and how many seconds are left.
+![alt text](immortal.png)
 #### [ItemPerfectionPlugin.cs](https://github.com/User5981/Resu/blob/master/ItemPerfectionPlugin.cs) - displays :
 - Check mark	: % item perfection
 - Crossed swords :	% item offense orientation
