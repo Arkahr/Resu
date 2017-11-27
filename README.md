@@ -79,6 +79,7 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 // End of CraftersDelightPlugin Customization
 ```
 #### [CustomLifeWarningPlugin.cs](https://github.com/User5981/Resu/blob/master/CustomLifeWarningPlugin.cs) - Turns the screen progressively to transparent orange when life percentage goes under the set limit. Default is 50%.
+![alt text](READMEpics/life.png)
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
 ```C#
 // Settings for Custom Life Warning Plugin
