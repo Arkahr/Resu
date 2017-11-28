@@ -17,7 +17,7 @@ namespace Turbo.Plugins.Resu
 		public WorldDecoratorCollection ShockTowerDecorator { get; set; }
 		public WorldDecoratorCollection MoveWarningDecorator { get; set; }
         
-		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512 };
+		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865 };
 		
 		public DangerPlugin()
 		{
@@ -160,7 +160,7 @@ namespace Turbo.Plugins.Resu
                 new GroundLabelDecorator(Hud)
                 {
                     BackgroundBrush = Hud.Render.CreateBrush(0, 0, 0, 0, 0),
-                    TextFont = Hud.Render.CreateFont("tahoma", 17, 255, 255, 255, 255, true, false, false),                    
+                    TextFont = Hud.Render.CreateFont("tahoma", 20, 255, 255, 255, 255, true, false, false),                    
                 }
                 );
 				
@@ -180,7 +180,7 @@ namespace Turbo.Plugins.Resu
 				if (actor.SnoActor.Sno == 332922) BloodSpringsDecoratorMedium.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
 				if (actor.SnoActor.Sno == 332923) BloodSpringsDecoratorBig.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
 				if (actor.SnoActor.Sno == 332924) BloodSpringsDecoratorSmall.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
-				if (actor.SnoActor.Sno == 84608 && actor.NormalizedXyDistanceToMe <= 8 || actor.SnoActor.Sno == 341512 && actor.NormalizedXyDistanceToMe <= 16) MoveWarningDecorator.Paint(layer, actor, actor.FloorCoordinate, "Move!");
+				if (actor.SnoActor.Sno == 84608 && actor.NormalizedXyDistanceToMe <= 8 || actor.SnoActor.Sno == 341512 && actor.NormalizedXyDistanceToMe <= 16 || actor.SnoActor.Sno == 108869 && actor.NormalizedXyDistanceToMe <= 12 || actor.SnoActor.Sno == 3865 && actor.NormalizedXyDistanceToMe <= 12) MoveWarningDecorator.Paint(layer, actor, actor.FloorCoordinate, "Move!");
 				
 				 
             }
