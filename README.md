@@ -11,6 +11,7 @@ Turbo.Plugins.Resu
 - Circles around Blood springs on the floor and on the minimap (Paths of the Drowned & Blood Marsh area)(previously BloodSpringsPlugin).
 - Circles around Shock Towers on the floor and on the minimap (from DM's ShockTowerPlugin).
 - Circles around Demon Forges on the floor and on the minimap (from DM's DemonForgePlugin).
+- Thunderstorm & Desecrator move! warnings when player is exposed. 
 ![alt text](READMEpics/Bloodsprings.png)
 #### [CraftCountPlugin.cs](https://github.com/User5981/Resu/blob/master/CraftCountPlugin.cs) - Displays total amount of :
 - Death's breath
