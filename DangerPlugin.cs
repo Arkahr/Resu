@@ -1,6 +1,6 @@
 // https://github.com/User5981/Resu
-// Danger Plugin for TurboHUD Version 28/11/2017 07:00
-// Note : This plugin merges BM's DemonForgePlugin & ShockTowerPlugin, my BloodSpringsPlugin and more... 
+// Danger Plugin for TurboHUD Version 28/11/2017 16:15
+// Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and  adds new features
 
 using System.Linq;
 using Turbo.Plugins.Default;
@@ -15,8 +15,9 @@ namespace Turbo.Plugins.Resu
 		public WorldDecoratorCollection BloodSpringsDecoratorBig { get; set; }
 		public WorldDecoratorCollection DemonicForgeDecorator { get; set; }
 		public WorldDecoratorCollection ShockTowerDecorator { get; set; }
+		public WorldDecoratorCollection MoveWarningDecorator { get; set; }
         
-		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194 };
+		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512 };
 		
 		public DangerPlugin()
 		{
@@ -151,6 +152,21 @@ namespace Turbo.Plugins.Resu
                     TextFont = Hud.Render.CreateFont("tahoma", 9, 255, 79, 170, 245, true, false, false),                    
                 }
                 );
+				
+				
+				
+				MoveWarningDecorator = new WorldDecoratorCollection(
+                
+                new GroundLabelDecorator(Hud)
+                {
+                    BackgroundBrush = Hud.Render.CreateBrush(0, 0, 0, 0, 0),
+                    TextFont = Hud.Render.CreateFont("tahoma", 17, 255, 255, 255, 255, true, false, false),                    
+                }
+                );
+				
+				
+				
+				
         }
 
 		public void PaintWorld(WorldLayer layer)
@@ -164,6 +180,9 @@ namespace Turbo.Plugins.Resu
 				if (actor.SnoActor.Sno == 332922) BloodSpringsDecoratorMedium.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
 				if (actor.SnoActor.Sno == 332923) BloodSpringsDecoratorBig.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
 				if (actor.SnoActor.Sno == 332924) BloodSpringsDecoratorSmall.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
+				if (actor.SnoActor.Sno == 84608 && actor.NormalizedXyDistanceToMe <= 8 || actor.SnoActor.Sno == 341512 && actor.NormalizedXyDistanceToMe <= 16) MoveWarningDecorator.Paint(layer, actor, actor.FloorCoordinate, "Move!");
+				
+				 
             }
 		
         }
