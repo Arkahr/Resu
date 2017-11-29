@@ -1,6 +1,6 @@
 // https://github.com/User5981/Resu
 // Danger Plugin for TurboHUD Version 28/11/2017 16:15
-// Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and  adds new features
+// Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds new features
 
 using System.Linq;
 using Turbo.Plugins.Default;
