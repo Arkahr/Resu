@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Crafter's Delight Plugin for TurboHUD Version 27/11/2017 11:47
+// Crafter's Delight Plugin for TurboHUD Version 29/11/2017 23:55
  
 using System.Collections.Generic;
 using System.Linq;
@@ -215,6 +215,10 @@ namespace Turbo.Plugins.Resu
  
             //Slain farmers (actors)
             SlainFarmerDecorator = new WorldDecoratorCollection(
+			new MapLabelDecorator(Hud)
+            {
+                LabelFont = Hud.Render.CreateFont("tahoma", 5, 255, 146, 29, 0, true, false, true),
+            },
             new GroundLabelDecorator(Hud)
             {
                 BackgroundBrush = Hud.Render.CreateBrush(100, 0, 0, 0, 0),
