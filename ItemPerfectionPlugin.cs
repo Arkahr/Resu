@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Item Perfection plugin for TurboHUD version 10/10/2017 12:21
+// Item Perfection plugin for TurboHUD version 30/11/2017 22:25
  
 using System;
 using System.Diagnostics;
@@ -51,10 +51,22 @@ namespace Turbo.Plugins.Resu
          DrawTextLine();
 		} 
        
+	   
+	    public bool IsPluginNameLoaded(string pluginName)
+        {
+            if (string.IsNullOrWhiteSpace(pluginName)) return false;
+
+            var pluginNames = Hud.AllPlugins.Select(p => p.GetType().Name.ToLower()).ToList();
+            return pluginNames.Contains(pluginName.ToLower());
+        }
+	   	   
+	   
         private void DrawTextLine()
         {
             var item = Hud.Inventory.HoveredItem;
             if (item == null) return;
+			bool WeaponDamageRerollCalculatorPlugin = IsPluginNameLoaded("WeaponDamageRerollCalculatorPlugin");
+			if (WeaponDamageRerollCalculatorPlugin && item.SnoItem.HasGroupCode("weapons")) return;
 			var Perfection = Math.Round(item.Perfection, 2);
             			
 			if (Perfection == 0) return;
