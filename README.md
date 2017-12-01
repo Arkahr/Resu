@@ -172,5 +172,5 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
                 plugin.HoveredNumbers = true;     //show upgrade hint on item hovered, set to true; or false;
             
             });  
-             // End of Settings for UrshisGift Plugin
+// End of Settings for UrshisGift Plugin
 ```
