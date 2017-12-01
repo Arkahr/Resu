@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Danger Plugin for TurboHUD Version 28/11/2017 16:15
+// Danger Plugin for TurboHUD Version 01/12/2017 19:52
 // Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds new features
 
 using System.Linq;
@@ -16,8 +16,9 @@ namespace Turbo.Plugins.Resu
 		public WorldDecoratorCollection DemonicForgeDecorator { get; set; }
 		public WorldDecoratorCollection ShockTowerDecorator { get; set; }
 		public WorldDecoratorCollection MoveWarningDecorator { get; set; }
+		public WorldDecoratorCollection ArcaneDecorator { get; set; }
         
-		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865 };
+		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225 };
 		
 		public DangerPlugin()
 		{
@@ -153,7 +154,13 @@ namespace Turbo.Plugins.Resu
                 }
                 );
 				
-				
+				ArcaneDecorator = new WorldDecoratorCollection(
+                new GroundCircleDecorator(Hud)
+                {
+                    Brush = Hud.Render.CreateBrush(128, 255, 60, 255, 3, SharpDX.Direct2D1.DashStyle.Dash),
+                    Radius = 32f,
+                }
+                );
 				
 				MoveWarningDecorator = new WorldDecoratorCollection(
                 
@@ -181,7 +188,7 @@ namespace Turbo.Plugins.Resu
 				if (actor.SnoActor.Sno == 332923) BloodSpringsDecoratorBig.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
 				if (actor.SnoActor.Sno == 332924) BloodSpringsDecoratorSmall.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
 				if (actor.SnoActor.Sno == 84608 && actor.NormalizedXyDistanceToMe <= 8 || actor.SnoActor.Sno == 341512 && actor.NormalizedXyDistanceToMe <= 16 || actor.SnoActor.Sno == 108869 && actor.NormalizedXyDistanceToMe <= 12 || actor.SnoActor.Sno == 3865 && actor.NormalizedXyDistanceToMe <= 12) MoveWarningDecorator.Paint(layer, actor, actor.FloorCoordinate, "Move!");
-				
+				if (actor.SnoActor.Sno == 219702 || actor.SnoActor.Sno == 221225) ArcaneDecorator.Paint(layer, actor, actor.FloorCoordinate, null);
 				 
             }
 		
