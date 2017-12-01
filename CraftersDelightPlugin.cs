@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Crafter's Delight Plugin for TurboHUD Version 29/11/2017 23:55
+// Crafter's Delight Plugin for TurboHUD Version 01/12/2017 11:21
  
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +14,7 @@ namespace Turbo.Plugins.Resu
         public WorldDecoratorCollection ancientRankDecorator { get; set; }
         public WorldDecoratorCollection ancientRankSetDecorator { get; set; }
 		public WorldDecoratorCollection HoradricCacheDecorator { get; set; }
+		public WorldDecoratorCollection cubeDecorator { get; set; }
         public bool ShowAncientRank { get; set; }
         public bool SlainFarmers { get; set; }
         public bool DeathsBreath { get; set; }
@@ -227,6 +228,20 @@ namespace Turbo.Plugins.Resu
             }
             );
 			
+			//not yet cubed
+            cubeDecorator = new WorldDecoratorCollection(
+             new MapTextureDecorator(Hud)
+                {
+					SnoItem = Hud.Inventory.GetSnoItem(1905181657), // yep I know it's not Kanai's cube
+                    Radius = 0.6f,
+                    RadiusTransformator = new StandardPingRadiusTransformator(Hud, 500)
+                    {
+                        RadiusMinimumMultiplier = 0.8f,
+                    }
+                }
+            );
+					
+			
 			//Horadric Cache
             HoradricCacheDecorator = new WorldDecoratorCollection(
              new MapTextureDecorator(Hud)
@@ -338,6 +353,14 @@ namespace Turbo.Plugins.Resu
                 if (!firstItem.IsLegendary) continue;
                 foreach (var item in items)
                 {
+					 var inKanaiCube = Hud.Game.Me.IsCubed(item.SnoItem);
+                     var canKanaiCube = !inKanaiCube && item.SnoItem.CanKanaiCube;
+
+                    if (canKanaiCube)
+					   {
+                        cubeDecorator.Paint(layer, item, item.FloorCoordinate, "Can be cubed");
+					   } 
+					
                     if (item.AncientRank < 1 || !ShowAncientRank) continue;
  
                     var ancientRankText = item.AncientRank == 1 ? "Ancient   ->                     <-   Ancient" : "Primal   ->                     <-   Primal";

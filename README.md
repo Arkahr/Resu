@@ -45,6 +45,7 @@ Turbo.Plugins.Resu
 - Hellfire crafts
 - legendary gems
 - Horadric Caches
+- Item not yet cubed (minimap)
 - Ancient and Primal indicator on legendary or set icons (minimap).
 
 ...And adds transparent colored groundlabel names with quantity for all + Slain Farmers (discrete and ground label only) except Bovine Bardiche & Puzzle Ring (already in ItemsPlugin).
