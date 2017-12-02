@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Paragon Percentage Plugin for TurboHUD Version 24/11/2017 21:12
+// Paragon Percentage Plugin for TurboHUD Version 02/12/2017 22:35
 
 using System;
 using System.Globalization;
@@ -17,11 +17,14 @@ namespace Turbo.Plugins.Resu
         public TopLabelDecorator ParagonPercentageDecorator { get; set; }
         public TopLabelDecorator HighestSoloRiftLevelDecorator { get; set; }
 		public TopLabelDecorator NemesisDecorator { get; set; }
+		public TopLabelDecorator UnityDecorator { get; set; }
+		
        	public int GRlevel { get; set; }
 	    public float SheetDPS { get; set; }
 		public float EHP { get; set; }
 	    public string Class { get; set; }
 		public string Nemesis { get; set; }
+		public string Unity { get; set; }
         		
         public ParagonPercentagePlugin()
         {
@@ -56,16 +59,17 @@ namespace Turbo.Plugins.Resu
 			EHP = -1;
 			Class = "-1";
 			Nemesis = "-1";
+			Unity = "-1";
 			
 			HighestSoloRiftLevelDecorator = new TopLabelDecorator(Hud)
             {
                 BackgroundTexture1 = Hud.Texture.Button2TextureBrown,
-                BackgroundTextureOpacity1 = 0.9f, // 0.7f
+                BackgroundTextureOpacity1 = 0.9f,
                 TextFont = Hud.Render.CreateFont("Segoe UI Light", 7, 250, 255, 255, 255, false, false, true),
                 
                 TextFunc = () =>  "      " + GRlevel,             
                     
-                HintFunc = () =>  Class + Nemesis +  Environment.NewLine + "Sheet DPS : " + ValueToString((long)SheetDPS, ValueFormat.LongNumber) + Environment.NewLine + "EHP : " + ValueToString((long)EHP, ValueFormat.LongNumber),
+                HintFunc = () =>  Class + Nemesis + Unity +  Environment.NewLine + "Sheet DPS : " + ValueToString((long)SheetDPS, ValueFormat.LongNumber) + Environment.NewLine + "EHP : " + ValueToString((long)EHP, ValueFormat.LongNumber),
             };
 			
 			
@@ -79,9 +83,17 @@ namespace Turbo.Plugins.Resu
                 HintFunc = () =>  "Nemesis equipped",
             };
 			
+			UnityDecorator = new TopLabelDecorator(Hud)
+            {
+                BackgroundTexture1 = Hud.Texture.Button2TextureBrown,
+                BackgroundTextureOpacity1 = 0.8f,
+                TextFont = Hud.Render.CreateFont("Segoe UI Light", 7, 250, 212, 144, 0, false, false, true),
+
+                TextFunc = () => "[U]",
+                HintFunc = () =>  "Unity equipped",
+            };
 			
-			
-			
+		
         }
 
         public void PaintTopInGame(ClipState clipState)
@@ -126,6 +138,9 @@ namespace Turbo.Plugins.Resu
 				  Class = player.HeroClassDefinition.HeroClass.ToString();
 				  var Nemo = player.Powers.GetBuff(318820);
                   if (Nemo == null || !Nemo.Active) {Nemesis = "";} else {Nemesis = " [Nemesis]";}
+				  var Unit = player.Powers.GetBuff(318769);
+				  if (Unit == null || !Unit.Active) {Unity = "";} else {Unity = " [Unity]";}
+				  var MyUnit = Hud.Game.Me.Powers.GetBuff(318769);
 				  
 								
 				  if (player.CurrentLevelNormal == 70)
@@ -138,6 +153,29 @@ namespace Turbo.Plugins.Resu
 					 texture.Draw(portrait.Left + portrait.Width * 0.26f, portrait.Top + portrait.Height * 0.17f, 20f, 20f, 1f); 
                    }
 				
+				  if (MyUnit == null || !MyUnit.Active){}
+				  else {
+					     
+						 if (!player.IsMe)
+                            {
+						      if (Unit == null || !Unit.Active){}
+				              else {
+					                if (ParagonPercentageOnTheRight)
+			                             {	
+					    
+                                          UnityDecorator.Paint(portrait.Left + portrait.Width * 0.71f, portrait.Top + portrait.Height * 0.93f, portrait.Width * 0.28f, portrait.Height * 0.14f, HorizontalAlign.Center);
+						                 }
+			                        else 
+			                             {	
+                                          UnityDecorator.Paint(portrait.Left + portrait.Width * -0.18f, portrait.Top + portrait.Height * 0.93f, portrait.Width * 0.28f, portrait.Height * 0.14f, HorizontalAlign.Center);
+                                         };
+					
+					
+						           }
+				            }
+				
+				       }
+					   
 				  if (!player.IsMe)
                     {
 					   if (Nemo == null || !Nemo.Active){} 	
