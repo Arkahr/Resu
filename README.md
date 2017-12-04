@@ -1,20 +1,20 @@
 # Resu
 Turbo.Plugins.Resu
 ```diff
-+ Right Click -> Save As -> plugins/Resu/
++ Click to download zip-> unzip -> Save As -> plugins/Resu/
 
 ```
 
 
 #### [BattleTagAboveBannerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/BattleTagAboveBannerPlugin.cs) - Adds other players' battletags above banners when they aren't in town. ![alt text](READMEpics/Banner.png)
-#### [DangerPlugin.cs](https://github.com/User5981/Resu/blob/master/DangerPlugin.cs) - Adds :
+#### [DangerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/DangerPlugin.cs) - Adds :
 - Circles around Blood springs on the floor and on the minimap (Paths of the Drowned & Blood Marsh area)(previously BloodSpringsPlugin).
 - Circles around Shock Towers on the floor and on the minimap (from DM's ShockTowerPlugin).
 - Circles around Demon Forges on the floor and on the minimap (from DM's DemonForgePlugin).
 - Circles around Arcane enchanted.
 - Thunderstorm, Plagued & Desecrator move! warnings when player is exposed. 
 ![alt text](READMEpics/Bloodsprings.png)
-#### [CraftCountPlugin.cs](https://github.com/User5981/Resu/blob/master/CraftCountPlugin.cs) - Displays total amount of :
+#### [CraftCountPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/CraftCountPlugin.cs) - Displays total amount of :
 - Death's breath
 - Veiled Crystal 
 - Blood Shards 
@@ -28,7 +28,7 @@ Turbo.Plugins.Resu
 - Bounty crafts 
 
 ![alt text](READMEpics/Craftcount.png) ...near resource globe when total amount changes.
-#### [CraftersDelightPlugin.cs](https://github.com/User5981/Resu/blob/master/CraftersDelightPlugin.cs) - Shows on mini map :	
+#### [CraftersDelightPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/CraftersDelightPlugin.cs) - Shows on mini map :	
 - Death's Breath 
 - Veiled Crystal 
 - Arcane Dust 
@@ -84,7 +84,7 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
             });  
 // End of CraftersDelightPlugin Customization
 ```
-#### [CustomLifeWarningPlugin.cs](https://github.com/User5981/Resu/blob/master/CustomLifeWarningPlugin.cs) - Turns the screen progressively to transparent orange when life percentage goes under the set limit. Default is 50%.
+#### [CustomLifeWarningPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/CustomLifeWarningPlugin.cs) - Turns the screen progressively to transparent orange when life percentage goes under the set limit. Default is 50%.
 ![alt text](READMEpics/life.png)
 
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
@@ -99,7 +99,7 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
             });  
 // End of Settings for Custom Life Warning Plugin
 ```
-#### [HuntersVengeancePlugin.cs](https://github.com/User5981/Resu/blob/master/HuntersVengeancePlugin.cs) - Shows 1 circle around your player when you have Zei's stone of vengeance equipped and are fighting, it also displays the percentage of damage increased by the legendary gem under each monster (calculated from gem level and distance from your player), the circle and a visor appears on the minimap to help you to aim at distant monsters.
+#### [HuntersVengeancePlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HuntersVengeancePlugin.cs) - Shows 1 circle around your player when you have Zei's stone of vengeance equipped and are fighting, it also displays the percentage of damage increased by the legendary gem under each monster (calculated from gem level and distance from your player), the circle and a visor appears on the minimap to help you to aim at distant monsters.
 ![alt text](READMEpics/zei.png) ![alt text](READMEpics/zeiminimap.png)
 
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
@@ -121,9 +121,9 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
             });  
 // End of Settings for Hunter's Vengeance Plugin
 ```
-#### [ImmortalKingsCallPlugin.cs](https://github.com/User5981/Resu/blob/master/ImmortalKingsCallPlugin.cs) - Shows when Immortal King's Call's +1500 damage buff is active and how many seconds are left.
+#### [ImmortalKingsCallPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/ImmortalKingsCallPlugin.cs) - Shows when Immortal King's Call's +1500 damage buff is active and how many seconds are left.
 ![alt text](READMEpics/immortal.png)
-#### [ItemPerfectionPlugin.cs](https://github.com/User5981/Resu/blob/master/ItemPerfectionPlugin.cs) - displays :
+#### [ItemPerfectionPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/ItemPerfectionPlugin.cs) - displays :
 - Check mark	: % item perfection
 - Crossed swords :	% item offense orientation
 - Shield :	% item defense orientation
@@ -132,7 +132,7 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 - Boot :	% item adventure orientation
 
 ![alt text](READMEpics/itemperf.png)
-#### [ParagonPercentagePlugin.cs](https://github.com/User5981/Resu/blob/master/ParagonPercentagePlugin.cs) - Shows EXP percentage with two decimal right to portrait paragon level (a bit more precise than the top stats 2 decimals paragon level) with EXP/h & time to next paragon level in the hint and replaces portrait level 70 (only if reached) by each player's highest Greater Rift level with Class, Sheet DPS, EHP and Nemesis Bracers [N] & Unity [U] indicator in the hint.
+#### [ParagonPercentagePlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/ParagonPercentagePlugin.cs) - Shows EXP percentage with two decimal right to portrait paragon level (a bit more precise than the top stats 2 decimals paragon level) with EXP/h & time to next paragon level in the hint and replaces portrait level 70 (only if reached) by each player's highest Greater Rift level with Class, Sheet DPS, EHP and Nemesis Bracers [N] & Unity [U] indicator in the hint.
 ![alt text](READMEpics/Portrait.png)
 
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
@@ -157,9 +157,9 @@ Hud.RunOnPlugin<Resu.ParagonPercentagePlugin>(plugin =>
                            Hud.TogglePlugin<TopExperienceStatistics>(false); 
  // End of Disable Top Experience Statistics
 ```
-#### [TimeEverywherePlugin.cs](https://github.com/User5981/Resu/blob/master/TimeEverywherePlugin.cs) - The default clock is hidden when your inventory is open which means you can't read it when spending time with the mystic, the jeweller and the blacksmith. You have 10mn left before going to school/work but can't see the time while you try to roll that good stat for your item? This plugin is for you, it displays time in your inventory when it's open.
+#### [TimeEverywherePlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/TimeEverywherePlugin.cs) - The default clock is hidden when your inventory is open which means you can't read it when spending time with the mystic, the jeweller and the blacksmith. You have 10mn left before going to school/work but can't see the time while you try to roll that good stat for your item? This plugin is for you, it displays time in your inventory when it's open.
 ![alt text](READMEpics/time.png)
-#### [UrshisGiftPlugin.cs](https://github.com/User5981/Resu/blob/master/UrshisGiftPlugin.cs) - Adds GR level for n% chance of upgrade on the bottom-right of your legendary gems in your stash and your inventory, maxed Gems are labelled "max", hint in itemhovered menu.The default setting is 100% chance for all 3 consecutive attempts.
+#### [UrshisGiftPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/UrshisGiftPlugin.cs) - Adds GR level for n% chance of upgrade on the bottom-right of your legendary gems in your stash and your inventory, maxed Gems are labelled "max", hint in itemhovered menu.The default setting is 100% chance for all 3 consecutive attempts.
 ```diff
 -  Press F3 to update data after a GRift.
 ```
