@@ -1,10 +1,12 @@
 // https://github.com/User5981/Resu
-// Danger Plugin for TurboHUD Version 01/12/2017 19:52
+// Danger Plugin for TurboHUD Version 06/12/2017 07:52
 // Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds new features
 
 using System.Linq;
+using System;
 using Turbo.Plugins.Default;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Turbo.Plugins.Resu
 {
@@ -17,8 +19,11 @@ namespace Turbo.Plugins.Resu
 		public WorldDecoratorCollection ShockTowerDecorator { get; set; }
 		public WorldDecoratorCollection MoveWarningDecorator { get; set; }
 		public WorldDecoratorCollection ArcaneDecorator { get; set; }
+		public int offsetX { get; set; }
+		public int offsetY { get; set; }
         
-		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225 };
+		
+		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319 };
 		
 		public DangerPlugin()
 		{
@@ -163,7 +168,6 @@ namespace Turbo.Plugins.Resu
                 );
 				
 				MoveWarningDecorator = new WorldDecoratorCollection(
-                
                 new GroundLabelDecorator(Hud)
                 {
                     BackgroundBrush = Hud.Render.CreateBrush(0, 0, 0, 0, 0),
@@ -171,14 +175,15 @@ namespace Turbo.Plugins.Resu
                 }
                 );
 				
-				
-				
-				
-        }
+		}
 
 		public void PaintWorld(WorldLayer layer)
 		{
-		
+			var diff = Hud.Window.Size.Width/Hud.Window.Size.Height;
+			offsetX = Hud.Window.Size.Width/4; 
+            offsetY = Hud.Window.Size.Height/(4/diff);
+			
+		     
            	var danger = Hud.Game.Actors.Where(x => dangerIds.Contains(x.SnoActor.Sno));
             foreach (var actor in danger)
             {
@@ -189,7 +194,14 @@ namespace Turbo.Plugins.Resu
 				if (actor.SnoActor.Sno == 332924) BloodSpringsDecoratorSmall.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
 				if (actor.SnoActor.Sno == 84608 && actor.NormalizedXyDistanceToMe <= 8 || actor.SnoActor.Sno == 341512 && actor.NormalizedXyDistanceToMe <= 16 || actor.SnoActor.Sno == 108869 && actor.NormalizedXyDistanceToMe <= 12 || actor.SnoActor.Sno == 3865 && actor.NormalizedXyDistanceToMe <= 12) MoveWarningDecorator.Paint(layer, actor, actor.FloorCoordinate, "Moveth!");
 				if (actor.SnoActor.Sno == 219702 || actor.SnoActor.Sno == 221225) ArcaneDecorator.Paint(layer, actor, actor.FloorCoordinate, null);
-				 
+				if (actor.SnoActor.Sno == 340319)
+				   {
+					 var ActorPos = actor.FloorCoordinate.ToScreenCoordinate();
+					 var brush = Hud.Render.CreateBrush(128, 160, 255, 160, 3, SharpDX.Direct2D1.DashStyle.Dash, SharpDX.Direct2D1.CapStyle.Flat, SharpDX.Direct2D1.CapStyle.Flat);
+                     brush.DrawLine( ActorPos.X+offsetX, ActorPos.Y+offsetY, ActorPos.X-offsetX, ActorPos.Y-offsetY); // antislash	
+                     brush.DrawLine(ActorPos.X+offsetX, ActorPos.Y-offsetY, ActorPos.X-offsetX, ActorPos.Y+offsetY); // slash
+				   } 
+                     				
             }
 		
         }
