@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Paragon Percentage Plugin for TurboHUD Version 02/12/2017 22:35
+// Paragon Percentage Plugin for TurboHUD Version 06/12/2017 08:15
 
 using System;
 using System.Globalization;
@@ -152,30 +152,8 @@ namespace Turbo.Plugins.Resu
                      HighestSoloRiftLevelDecorator.Paint(portrait.Left + portrait.Width * 0.26f, portrait.Top + portrait.Height * 0.2f, portrait.Width * 0.5f, portrait.Height * 0.1f, HorizontalAlign.Center);
 					 texture.Draw(portrait.Left + portrait.Width * 0.26f, portrait.Top + portrait.Height * 0.17f, 20f, 20f, 1f); 
                    }
-				
-				  if (MyUnit == null || !MyUnit.Active){}
-				  else {
-					     
-						 if (!player.IsMe)
-                            {
-						      if (Unit == null || !Unit.Active){}
-				              else {
-					                if (ParagonPercentageOnTheRight)
-			                             {	
-					    
-                                          UnityDecorator.Paint(portrait.Left + portrait.Width * 0.71f, portrait.Top + portrait.Height * 0.93f, portrait.Width * 0.28f, portrait.Height * 0.14f, HorizontalAlign.Center);
-						                 }
-			                        else 
-			                             {	
-                                          UnityDecorator.Paint(portrait.Left + portrait.Width * -0.18f, portrait.Top + portrait.Height * 0.93f, portrait.Width * 0.28f, portrait.Height * 0.14f, HorizontalAlign.Center);
-                                         };
-					
-					
-						           }
-				            }
-				
-				       }
-					   
+				  
+				  
 				  if (!player.IsMe)
                     {
 					   if (Nemo == null || !Nemo.Active){} 	
@@ -193,6 +171,51 @@ namespace Turbo.Plugins.Resu
 					  
                        };
 			        };
+				
+				
+				
+				  if (MyUnit == null || !MyUnit.Active){}
+				  else {
+					    
+						 if (!player.IsMe)
+                            {
+							
+						      if (Unit == null || !Unit.Active){}
+				              else {
+								  
+								      if (Nemo == null || !Nemo.Active)
+									     {
+										     if (ParagonPercentageOnTheRight)
+			                                    {	
+					      
+                                                 UnityDecorator.Paint(portrait.Left + portrait.Width * 0.71f, portrait.Top + portrait.Height * 0.79f, portrait.Width * 0.28f, portrait.Height * 0.14f, HorizontalAlign.Center);
+						                        }
+			                                 else 
+			                                    {	
+                                                 UnityDecorator.Paint(portrait.Left + portrait.Width * -0.18f, portrait.Top + portrait.Height * 0.79f, portrait.Width * 0.28f, portrait.Height * 0.14f, HorizontalAlign.Center);
+                                                };
+									     } 	
+				                         else
+					                     {
+								  
+					                         if (ParagonPercentageOnTheRight)
+			                                    {	
+					    
+                                                  UnityDecorator.Paint(portrait.Left + portrait.Width * 0.71f, portrait.Top + portrait.Height * 0.93f, portrait.Width * 0.28f, portrait.Height * 0.14f, HorizontalAlign.Center);
+						                        }
+			                                 else 
+			                                    {	
+                                                   UnityDecorator.Paint(portrait.Left + portrait.Width * -0.18f, portrait.Top + portrait.Height * 0.93f, portrait.Width * 0.28f, portrait.Height * 0.14f, HorizontalAlign.Center);
+                                                };
+					
+					                     }
+						           }
+							
+				            }
+				
+				       }
+					   
+				  
 			
 			  };
 			}  
