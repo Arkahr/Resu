@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Crafter's Delight Plugin for TurboHUD Version 01/12/2017 11:21
+// Crafter's Delight Plugin for TurboHUD Version 07/12/2017 16:10
  
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +14,7 @@ namespace Turbo.Plugins.Resu
         public WorldDecoratorCollection ancientRankDecorator { get; set; }
         public WorldDecoratorCollection ancientRankSetDecorator { get; set; }
 		public WorldDecoratorCollection HoradricCacheDecorator { get; set; }
-		public WorldDecoratorCollection cubeDecorator { get; set; }
-        public bool ShowAncientRank { get; set; }
+		public bool ShowAncientRank { get; set; }
         public bool SlainFarmers { get; set; }
         public bool DeathsBreath { get; set; }
         public bool VeiledCrystal { get; set; }
@@ -228,20 +227,6 @@ namespace Turbo.Plugins.Resu
             }
             );
 			
-			//not yet cubed
-            cubeDecorator = new WorldDecoratorCollection(
-             new MapTextureDecorator(Hud)
-                {
-					SnoItem = Hud.Inventory.GetSnoItem(1905181657), // yep I know it's not Kanai's cube
-                    Radius = 0.6f,
-                    RadiusTransformator = new StandardPingRadiusTransformator(Hud, 500)
-                    {
-                        RadiusMinimumMultiplier = 0.8f,
-                    }
-                }
-            );
-					
-			
 			//Horadric Cache
             HoradricCacheDecorator = new WorldDecoratorCollection(
              new MapTextureDecorator(Hud)
@@ -358,8 +343,22 @@ namespace Turbo.Plugins.Resu
 
                     if (canKanaiCube)
 					   {
-                        cubeDecorator.Paint(layer, item, item.FloorCoordinate, "Can be cubed");
-					   } 
+                        var cubeTexture = Hud.Texture.KanaiCubeTexture;
+                        float mapX, mapY, radius;
+						Hud.Render.GetMinimapCoordinates(item.FloorCoordinate.X, item.FloorCoordinate.Y, out mapX, out mapY);
+						var RadiusTransformator = new StandardPingRadiusTransformator(Hud, 500)
+                        {
+                        RadiusMinimumMultiplier = 0.8f,
+                        };
+                        radius = 0.6f * Hud.Render.MinimapScale;
+                        if (RadiusTransformator != null)
+                            {
+                              radius = RadiusTransformator.TransformRadius(radius);
+                            }
+						var width = cubeTexture.Width * radius;
+                        var height = cubeTexture.Height * radius;
+                        cubeTexture.Draw(mapX - width / 2, mapY - height / 2, width, height);
+						} 
 					
                     if (item.AncientRank < 1 || !ShowAncientRank) continue;
  
