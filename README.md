@@ -12,7 +12,7 @@ Turbo.Plugins.Resu
 - Circles around Shock Towers on the floor and on the minimap (from DM's ShockTowerPlugin).
 - Circles around Demon Forges on the floor and on the minimap (from DM's DemonForgePlugin).
 - Circles around Arcane enchanted.
-- Thunderstorm, Plagued & Desecrator move! warnings when player is exposed.
+- Thunderstorm, Plagued, Molten & Desecrator move! warnings when player is exposed.
 - Cross on the ground for poison enchanted. 
 ![alt text](READMEpics/Bloodsprings.png)
 #### [CraftCountPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/CraftCountPlugin.cs) - Displays total amount of :

@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Danger Plugin for TurboHUD Version 06/12/2017 07:52
+// Danger Plugin for TurboHUD Version 06/12/2017 23:05
 // Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds new features
 
 using System.Linq;
@@ -23,7 +23,7 @@ namespace Turbo.Plugins.Resu
 		public int offsetY { get; set; }
         
 		
-		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319 };
+		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868 };
 		
 		public DangerPlugin()
 		{
@@ -171,7 +171,7 @@ namespace Turbo.Plugins.Resu
                 new GroundLabelDecorator(Hud)
                 {
                     BackgroundBrush = Hud.Render.CreateBrush(0, 0, 0, 0, 0),
-                    TextFont = Hud.Render.CreateFont("tahoma", 20, 255, 255, 255, 255, true, false, false),                    
+                    TextFont = Hud.Render.CreateFont("tahoma", 20, 255, 255, 255, 255, true, true, true),                    
                 }
                 );
 				
@@ -180,8 +180,8 @@ namespace Turbo.Plugins.Resu
 		public void PaintWorld(WorldLayer layer)
 		{
 			var diff = Hud.Window.Size.Width/Hud.Window.Size.Height;
-			offsetX = Hud.Window.Size.Width/4; 
-            offsetY = Hud.Window.Size.Height/(4/diff);
+			offsetX = Convert.ToInt32(Hud.Window.Size.Width/Math.PI); 
+            offsetY = Convert.ToInt32(Hud.Window.Size.Height/(Math.PI/diff));
 			
 		     
            	var danger = Hud.Game.Actors.Where(x => dangerIds.Contains(x.SnoActor.Sno));
@@ -192,7 +192,7 @@ namespace Turbo.Plugins.Resu
 				if (actor.SnoActor.Sno == 332922) BloodSpringsDecoratorMedium.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
 				if (actor.SnoActor.Sno == 332923) BloodSpringsDecoratorBig.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
 				if (actor.SnoActor.Sno == 332924) BloodSpringsDecoratorSmall.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
-				if (actor.SnoActor.Sno == 84608 && actor.NormalizedXyDistanceToMe <= 8 || actor.SnoActor.Sno == 341512 && actor.NormalizedXyDistanceToMe <= 16 || actor.SnoActor.Sno == 108869 && actor.NormalizedXyDistanceToMe <= 12 || actor.SnoActor.Sno == 3865 && actor.NormalizedXyDistanceToMe <= 12) MoveWarningDecorator.Paint(layer, actor, actor.FloorCoordinate, "Moveth!");
+				if (actor.SnoActor.Sno == 84608 && actor.NormalizedXyDistanceToMe <= 8 || actor.SnoActor.Sno == 341512 && actor.NormalizedXyDistanceToMe <= 16 || actor.SnoActor.Sno == 108869 && actor.NormalizedXyDistanceToMe <= 12 || actor.SnoActor.Sno == 3865 && actor.NormalizedXyDistanceToMe <= 12 || actor.SnoActor.Sno == 95868 && actor.NormalizedXyDistanceToMe <= 5) MoveWarningDecorator.Paint(layer, actor, actor.FloorCoordinate, "Moveth!");
 				if (actor.SnoActor.Sno == 219702 || actor.SnoActor.Sno == 221225) ArcaneDecorator.Paint(layer, actor, actor.FloorCoordinate, null);
 				if (actor.SnoActor.Sno == 340319)
 				   {
@@ -201,6 +201,8 @@ namespace Turbo.Plugins.Resu
                      brush.DrawLine( ActorPos.X+offsetX, ActorPos.Y+offsetY, ActorPos.X-offsetX, ActorPos.Y-offsetY); // antislash	
                      brush.DrawLine(ActorPos.X+offsetX, ActorPos.Y-offsetY, ActorPos.X-offsetX, ActorPos.Y+offsetY); // slash
 				   } 
+				   
+				   
                      				
             }
 		
