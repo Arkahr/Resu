@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Danger Plugin for TurboHUD Version 06/12/2017 23:05
+// Danger Plugin for TurboHUD Version 08/12/2017 16:35
 // Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds new features
 
 using System.Linq;
@@ -21,14 +21,32 @@ namespace Turbo.Plugins.Resu
 		public WorldDecoratorCollection ArcaneDecorator { get; set; }
 		public int offsetX { get; set; }
 		public int offsetY { get; set; }
-        
+		public bool BloodSprings { get; set; }
+        public bool DemonicForge { get; set; }
+		public bool ShockTower { get; set; }
+		public bool Desecrator { get; set; }
+		public bool Thunderstorm { get; set; }
+		public bool Plagued { get; set; }
+		public bool Molten { get; set; }
+		public bool ArcaneEnchanted { get; set; }
+		public bool PoisonEnchanted { get; set; }
 		
 		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868 };
 		
 		public DangerPlugin()
 		{
             Enabled = true;
+			BloodSprings = true;
+			DemonicForge = true;
+			ShockTower = true;
+			Desecrator = true;
+			Thunderstorm = true;
+			Plagued = true;
+			Molten = true;
+			ArcaneEnchanted = true;
+			PoisonEnchanted = true;
 		}
+		
         public override void Load(IController hud)
         {
             base.Load(hud); 
@@ -187,14 +205,14 @@ namespace Turbo.Plugins.Resu
            	var danger = Hud.Game.Actors.Where(x => dangerIds.Contains(x.SnoActor.Sno));
             foreach (var actor in danger)
             {
-                if (actor.SnoActor.Sno == 174900 || actor.SnoActor.Sno == 185391) DemonicForgeDecorator.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
-				if (actor.SnoActor.Sno == 322194) ShockTowerDecorator.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
-				if (actor.SnoActor.Sno == 332922) BloodSpringsDecoratorMedium.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
-				if (actor.SnoActor.Sno == 332923) BloodSpringsDecoratorBig.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
-				if (actor.SnoActor.Sno == 332924) BloodSpringsDecoratorSmall.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
-				if (actor.SnoActor.Sno == 84608 && actor.NormalizedXyDistanceToMe <= 8 || actor.SnoActor.Sno == 341512 && actor.NormalizedXyDistanceToMe <= 16 || actor.SnoActor.Sno == 108869 && actor.NormalizedXyDistanceToMe <= 12 || actor.SnoActor.Sno == 3865 && actor.NormalizedXyDistanceToMe <= 12 || actor.SnoActor.Sno == 95868 && actor.NormalizedXyDistanceToMe <= 5) MoveWarningDecorator.Paint(layer, actor, actor.FloorCoordinate, "Moveth!");
-				if (actor.SnoActor.Sno == 219702 || actor.SnoActor.Sno == 221225) ArcaneDecorator.Paint(layer, actor, actor.FloorCoordinate, null);
-				if (actor.SnoActor.Sno == 340319)
+                if (actor.SnoActor.Sno == 174900 && DemonicForge || actor.SnoActor.Sno == 185391 && DemonicForge) DemonicForgeDecorator.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
+				if (actor.SnoActor.Sno == 322194 && ShockTower) ShockTowerDecorator.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
+				if (actor.SnoActor.Sno == 332922 && BloodSprings) BloodSpringsDecoratorMedium.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
+				if (actor.SnoActor.Sno == 332923 && BloodSprings) BloodSpringsDecoratorBig.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
+				if (actor.SnoActor.Sno == 332924 && BloodSprings) BloodSpringsDecoratorSmall.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
+				if (actor.SnoActor.Sno == 84608 && actor.NormalizedXyDistanceToMe <= 8 && Desecrator || actor.SnoActor.Sno == 341512 && actor.NormalizedXyDistanceToMe <= 16 && Thunderstorm || actor.SnoActor.Sno == 108869 && actor.NormalizedXyDistanceToMe <= 12 && Plagued || actor.SnoActor.Sno == 3865 && actor.NormalizedXyDistanceToMe <= 12 && Plagued || actor.SnoActor.Sno == 95868 && actor.NormalizedXyDistanceToMe <= 5 && Molten) MoveWarningDecorator.Paint(layer, actor, actor.FloorCoordinate, "Moveth!");
+				if (actor.SnoActor.Sno == 219702 && ArcaneEnchanted || actor.SnoActor.Sno == 221225 && ArcaneEnchanted) ArcaneDecorator.Paint(layer, actor, actor.FloorCoordinate, null);
+				if (actor.SnoActor.Sno == 340319 && PoisonEnchanted)
 				   {
 					 var ActorPos = actor.FloorCoordinate.ToScreenCoordinate();
 					 var brush = Hud.Render.CreateBrush(128, 160, 255, 160, 3, SharpDX.Direct2D1.DashStyle.Dash, SharpDX.Direct2D1.CapStyle.Flat, SharpDX.Direct2D1.CapStyle.Flat);

@@ -13,7 +13,26 @@ Turbo.Plugins.Resu
 - Circles around Demon Forges on the floor and on the minimap (from DM's DemonForgePlugin).
 - Circles around Arcane enchanted.
 - Thunderstorm, Plagued, Molten & Desecrator move! warnings when player is exposed.
-- Cross on the ground for poison enchanted. 
+- Crosses on the ground for poison enchanted. 
+
+Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
+```C#
+// DangerPlugin Customization
+               Hud.RunOnPlugin<Resu.DangerPlugin>(plugin => 
+            { 
+               // set to false; the items you don't want to see 
+            plugin.BloodSprings = true; 
+            plugin.DemonicForge = true;
+            plugin.ShockTower = true;
+            plugin.Desecrator = true;
+            plugin.Thunderstorm = true;
+            plugin.Plagued = true;
+            plugin.Molten = true;
+            plugin.ArcaneEnchanted = true;
+            plugin.PoisonEnchanted = true;
+            });  
+// End of DangerPlugin Customization
+```
 
 ![alt text](READMEpics/Bloodsprings.png)
 #### [CraftCountPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/CraftCountPlugin.cs) - Displays total amount of :
