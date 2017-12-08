@@ -15,6 +15,8 @@ Turbo.Plugins.Resu
 - Thunderstorm, Plagued, Molten & Desecrator move! warnings when player is exposed.
 - Crosses on the ground for poison enchanted. 
 
+![alt text](READMEpics/Bloodsprings.png)
+
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
 ```C#
 // DangerPlugin Customization
@@ -33,8 +35,6 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
             });  
 // End of DangerPlugin Customization
 ```
-
-![alt text](READMEpics/Bloodsprings.png)
 #### [CraftCountPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/CraftCountPlugin.cs) - Displays total amount of :
 - Death's breath
 - Veiled Crystal 
