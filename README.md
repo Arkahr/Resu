@@ -12,8 +12,10 @@ Turbo.Plugins.Resu
 - Circles around Shock Towers on the floor and on the minimap (from DM's ShockTowerPlugin).
 - Circles around Demon Forges on the floor and on the minimap (from DM's DemonForgePlugin).
 - Circles around Arcane enchanted.
-- Thunderstorm, Plagued, Molten & Desecrator move! warnings when player is exposed.
-- Crosses on the ground for poison enchanted. 
+- Circles around Demon Mines.
+- Thunderstorm, Plagued, Molten, Morlu's Meteor & Desecrator move! warnings when player is exposed.
+- Crosses on the ground for poison enchanted.
+- SandWasp's Projectile indicator. 
 
 ![alt text](READMEpics/Bloodsprings.png)
 
@@ -33,6 +35,9 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
             plugin.ArcaneEnchanted = true;
             plugin.PoisonEnchanted = true;
 			plugin.GasCloud = true; // (Ghom)
+			plugin.SandWaspProjectile = true;
+			plugin.MorluSpellcasterMeteorPending = true;
+			plugin.DemonMine = true;
             });  
 // End of DangerPlugin Customization
 ```

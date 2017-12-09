@@ -1,6 +1,6 @@
 // https://github.com/User5981/Resu
-// Danger Plugin for TurboHUD Version 08/12/2017 16:35
-// Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds new features
+// Danger Plugin for TurboHUD Version 09/12/2017 23:05
+// Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds many new features
 
 using System.Linq;
 using System;
@@ -19,6 +19,8 @@ namespace Turbo.Plugins.Resu
 		public WorldDecoratorCollection ShockTowerDecorator { get; set; }
 		public WorldDecoratorCollection MoveWarningDecorator { get; set; }
 		public WorldDecoratorCollection ArcaneDecorator { get; set; }
+		public WorldDecoratorCollection ProjectileDecorator { get; set; }
+		public WorldDecoratorCollection DemonMineDecorator { get; set; }
 		public int offsetX { get; set; }
 		public int offsetY { get; set; }
 		public bool BloodSprings { get; set; }
@@ -31,8 +33,11 @@ namespace Turbo.Plugins.Resu
 		public bool ArcaneEnchanted { get; set; }
 		public bool PoisonEnchanted { get; set; }
 		public bool GasCloud { get; set; }
+		public bool SandWaspProjectile { get; set; }
+		public bool MorluSpellcasterMeteorPending { get; set; }
+        public bool DemonMine { get; set; }		
 		
-		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868, 93837 };
+		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868, 93837, 5212, 159369, 118596};
 		
 		public DangerPlugin()
 		{
@@ -47,6 +52,9 @@ namespace Turbo.Plugins.Resu
 			ArcaneEnchanted = true;
 			PoisonEnchanted = true;
 			GasCloud = true;
+			SandWaspProjectile = true; 
+            MorluSpellcasterMeteorPending = true;
+            DemonMine = true;			
 		}
 		
         public override void Load(IController hud)
@@ -195,6 +203,25 @@ namespace Turbo.Plugins.Resu
                 }
                 );
 				
+				ProjectileDecorator = new WorldDecoratorCollection(
+                new GroundLabelDecorator(Hud)
+                {
+                    BackgroundBrush = Hud.Render.CreateBrush(0, 0, 0, 0, 0),
+                    TextFont = Hud.Render.CreateFont("tahoma", 20, 255, 0, 255, 0, true, false, false),                    
+                }
+                );
+				
+				DemonMineDecorator = new WorldDecoratorCollection(
+                                new GroundCircleDecorator(Hud)
+                {
+                    Brush = Hud.Render.CreateBrush(100, 255, 255, 220, 5, SharpDX.Direct2D1.DashStyle.Dash),
+                    Radius = 5,
+                }
+                );
+				
+				
+				
+				
 		}
 
 		public void PaintWorld(WorldLayer layer)
@@ -212,7 +239,7 @@ namespace Turbo.Plugins.Resu
 				if (actor.SnoActor.Sno == 332922 && BloodSprings) BloodSpringsDecoratorMedium.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
 				if (actor.SnoActor.Sno == 332923 && BloodSprings) BloodSpringsDecoratorBig.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
 				if (actor.SnoActor.Sno == 332924 && BloodSprings) BloodSpringsDecoratorSmall.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
-				if (actor.SnoActor.Sno == 84608 && actor.NormalizedXyDistanceToMe <= 8 && Desecrator || actor.SnoActor.Sno == 341512 && actor.NormalizedXyDistanceToMe <= 16 && Thunderstorm || actor.SnoActor.Sno == 108869 && actor.NormalizedXyDistanceToMe <= 12 && Plagued || actor.SnoActor.Sno == 3865 && actor.NormalizedXyDistanceToMe <= 12 && Plagued || actor.SnoActor.Sno == 95868 && actor.NormalizedXyDistanceToMe <= 5 && Molten || actor.SnoActor.Sno == 93837 && actor.NormalizedXyDistanceToMe <= 20 && GasCloud) MoveWarningDecorator.Paint(layer, actor, actor.FloorCoordinate, "Moveth!");
+				if (actor.SnoActor.Sno == 84608 && actor.NormalizedXyDistanceToMe <= 8 && Desecrator || actor.SnoActor.Sno == 341512 && actor.NormalizedXyDistanceToMe <= 16 && Thunderstorm || actor.SnoActor.Sno == 108869 && actor.NormalizedXyDistanceToMe <= 12 && Plagued || actor.SnoActor.Sno == 3865 && actor.NormalizedXyDistanceToMe <= 12 && Plagued || actor.SnoActor.Sno == 95868 && actor.NormalizedXyDistanceToMe <= 5 && Molten || actor.SnoActor.Sno == 93837 && actor.NormalizedXyDistanceToMe <= 20 && GasCloud || actor.SnoActor.Sno == 159369 && actor.NormalizedXyDistanceToMe <= 20 && MorluSpellcasterMeteorPending) MoveWarningDecorator.Paint(layer, actor, actor.FloorCoordinate, "Moveth!");
 				if (actor.SnoActor.Sno == 219702 && ArcaneEnchanted || actor.SnoActor.Sno == 221225 && ArcaneEnchanted) ArcaneDecorator.Paint(layer, actor, actor.FloorCoordinate, null);
 				if (actor.SnoActor.Sno == 340319 && PoisonEnchanted)
 				   {
@@ -221,7 +248,8 @@ namespace Turbo.Plugins.Resu
                      brush.DrawLine( ActorPos.X+offsetX, ActorPos.Y+offsetY, ActorPos.X-offsetX, ActorPos.Y-offsetY); // antislash	
                      brush.DrawLine(ActorPos.X+offsetX, ActorPos.Y-offsetY, ActorPos.X-offsetX, ActorPos.Y+offsetY); // slash
 				   } 
-				   
+				if (actor.SnoActor.Sno == 5212 && SandWaspProjectile) ProjectileDecorator.Paint(layer, actor, actor.FloorCoordinate, "O"); 
+				if (actor.SnoActor.Sno == 118596 && DemonMine) DemonMineDecorator.Paint(layer, actor, actor.FloorCoordinate, null); 
 				   
                      				
             }
