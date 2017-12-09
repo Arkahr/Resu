@@ -32,6 +32,7 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
             plugin.Molten = true;
             plugin.ArcaneEnchanted = true;
             plugin.PoisonEnchanted = true;
+			plugin.GasCloud = true; // (Ghom)
             });  
 // End of DangerPlugin Customization
 ```
