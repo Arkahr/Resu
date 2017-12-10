@@ -13,7 +13,8 @@ Turbo.Plugins.Resu
 - Circles around Demon Forges on the floor and on the minimap (from DM's DemonForgePlugin).
 - Circles around Arcane enchanted.
 - Circles around Demon Mines.
-- Thunderstorm, Plagued, Molten, Morlu's Meteor & Desecrator move! warnings when player is exposed.
+- Circles under Orbiters within 10 yards.
+- Thunderstorm, Plagued, Molten, PoisonDeath, MoltenExplosion, Morlu's Meteor & Desecrator move! warnings when player is exposed.
 - Crosses on the ground for poison enchanted.
 - SandWasp's Projectile indicator. 
 
@@ -38,6 +39,9 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 			plugin.SandWaspProjectile = true;
 			plugin.MorluSpellcasterMeteorPending = true;
 			plugin.DemonMine = true;
+			plugin.PoisonDeath = true;
+			plugin.MoltenExplosion = true;
+			plugin.Orbiter	= true;
             });  
 // End of DangerPlugin Customization
 ```

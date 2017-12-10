@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Danger Plugin for TurboHUD Version 10/12/2017 08:30
+// Danger Plugin for TurboHUD Version 10/12/2017 23:18
 // Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds many new features
 
 using System.Linq;
@@ -21,6 +21,7 @@ namespace Turbo.Plugins.Resu
 		public WorldDecoratorCollection ArcaneDecorator { get; set; }
 		public WorldDecoratorCollection ProjectileDecorator { get; set; }
 		public WorldDecoratorCollection DemonMineDecorator { get; set; }
+		public WorldDecoratorCollection OrbiterDecorator { get; set; }
 		public int offsetX { get; set; }
 		public int offsetY { get; set; }
 		public bool BloodSprings { get; set; }
@@ -37,10 +38,10 @@ namespace Turbo.Plugins.Resu
 		public bool MorluSpellcasterMeteorPending { get; set; }
         public bool DemonMine { get; set; }
         public bool PoisonDeath { get; set; }
-        public bool FallenShamanProjectile { get; set; }
-        public bool MoltenExplosion { get; set; }		
+        public bool MoltenExplosion { get; set; }
+		public bool Orbiter { get; set; }
 		
-		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868, 93837, 5212, 159369, 118596, 4104, 4105, 4106, 4803}; // doesn't work : 4102 to check : 4804 ?  
+		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868, 93837, 5212, 159369, 118596, 4104, 4105, 4106, 4803, 343539};  
 		
 		public DangerPlugin()
 		{
@@ -59,8 +60,8 @@ namespace Turbo.Plugins.Resu
             MorluSpellcasterMeteorPending = true;
             DemonMine = true;
             PoisonDeath = true;	
-            FallenShamanProjectile = true;
-            MoltenExplosion	= true;		
+            MoltenExplosion	= true;
+            Orbiter	= true;			
 		}
 		
         public override void Load(IController hud)
@@ -225,6 +226,14 @@ namespace Turbo.Plugins.Resu
                 }
                 );
 				
+				OrbiterDecorator = new WorldDecoratorCollection(
+                                new GroundCircleDecorator(Hud)
+                {
+                    Brush = Hud.Render.CreateBrush(255, 0, 255, 0, 5, SharpDX.Direct2D1.DashStyle.Solid),
+                    Radius = 5,
+                }
+                );
+				
 				
 				
 				
@@ -257,8 +266,9 @@ namespace Turbo.Plugins.Resu
                      brush.DrawLine( ActorPos.X+offsetX, ActorPos.Y+offsetY, ActorPos.X-offsetX, ActorPos.Y-offsetY); // antislash	
                      brush.DrawLine(ActorPos.X+offsetX, ActorPos.Y-offsetY, ActorPos.X-offsetX, ActorPos.Y+offsetY); // slash
 				   } 
-				if (actor.SnoActor.Sno == 5212 && SandWaspProjectile || actor.SnoActor.Sno == 4102 && FallenShamanProjectile) ProjectileDecorator.Paint(layer, actor, actor.FloorCoordinate, "O"); 
-				if (actor.SnoActor.Sno == 118596 && DemonMine) DemonMineDecorator.Paint(layer, actor, actor.FloorCoordinate, null); 
+				if (actor.SnoActor.Sno == 5212 && SandWaspProjectile) ProjectileDecorator.Paint(layer, actor, actor.FloorCoordinate, "O"); 
+				if (actor.SnoActor.Sno == 118596 && DemonMine) DemonMineDecorator.Paint(layer, actor, actor.FloorCoordinate, null);
+                if (actor.SnoActor.Sno == 343539 && actor.NormalizedXyDistanceToMe <= 10 && Orbiter) OrbiterDecorator.Paint(layer, actor, actor.FloorCoordinate, null);				
 				   
                      				
             }
