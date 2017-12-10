@@ -35,9 +35,12 @@ namespace Turbo.Plugins.Resu
 		public bool GasCloud { get; set; }
 		public bool SandWaspProjectile { get; set; }
 		public bool MorluSpellcasterMeteorPending { get; set; }
-        public bool DemonMine { get; set; }		
+        public bool DemonMine { get; set; }
+        public bool PoisonDeath { get; set; }
+        public bool FallenShamanProjectile { get; set; }
+        public bool MoltenExplosion { get; set; }		
 		
-		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868, 93837, 5212, 159369, 118596};
+		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868, 93837, 5212, 159369, 118596, 4104, 4105, 4106, 4803}; // doesn't work : 4102 to check : 4804 ?  
 		
 		public DangerPlugin()
 		{
@@ -54,7 +57,10 @@ namespace Turbo.Plugins.Resu
 			GasCloud = true;
 			SandWaspProjectile = true; 
             MorluSpellcasterMeteorPending = true;
-            DemonMine = true;			
+            DemonMine = true;
+            PoisonDeath = true;	
+            FallenShamanProjectile = true;
+            MoltenExplosion	= true;		
 		}
 		
         public override void Load(IController hud)
@@ -241,7 +247,7 @@ namespace Turbo.Plugins.Resu
 				if (actor.SnoActor.Sno == 332924 && BloodSprings) BloodSpringsDecoratorSmall.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
 				if(!Hud.Game.Me.IsDead)
 				{
-				if (actor.SnoActor.Sno == 84608 && actor.NormalizedXyDistanceToMe <= 8 && Desecrator || actor.SnoActor.Sno == 341512 && actor.NormalizedXyDistanceToMe <= 16 && Thunderstorm || actor.SnoActor.Sno == 108869 && actor.NormalizedXyDistanceToMe <= 12 && Plagued || actor.SnoActor.Sno == 3865 && actor.NormalizedXyDistanceToMe <= 12 && Plagued || actor.SnoActor.Sno == 95868 && actor.NormalizedXyDistanceToMe <= 5 && Molten || actor.SnoActor.Sno == 93837 && actor.NormalizedXyDistanceToMe <= 20 && GasCloud || actor.SnoActor.Sno == 159369 && actor.NormalizedXyDistanceToMe <= 20 && MorluSpellcasterMeteorPending) MoveWarningDecorator.Paint(layer, actor, actor.FloorCoordinate, "Moveth!");
+				if (actor.SnoActor.Sno == 84608 && actor.NormalizedXyDistanceToMe <= 8 && Desecrator || actor.SnoActor.Sno == 341512 && actor.NormalizedXyDistanceToMe <= 16 && Thunderstorm || actor.SnoActor.Sno == 108869 && actor.NormalizedXyDistanceToMe <= 12 && Plagued || actor.SnoActor.Sno == 3865 && actor.NormalizedXyDistanceToMe <= 12 && Plagued || actor.SnoActor.Sno == 95868 && actor.NormalizedXyDistanceToMe <= 5 && Molten || actor.SnoActor.Sno == 93837 && actor.NormalizedXyDistanceToMe <= 20 && GasCloud || actor.SnoActor.Sno == 159369 && actor.NormalizedXyDistanceToMe <= 20 && MorluSpellcasterMeteorPending || actor.SnoActor.Sno >= 4104 && actor.SnoActor.Sno <= 4106 && actor.NormalizedXyDistanceToMe <= 5 && PoisonDeath || actor.SnoActor.Sno == 4803 && actor.NormalizedXyDistanceToMe <= 13f && MoltenExplosion) MoveWarningDecorator.Paint(layer, actor, actor.FloorCoordinate, "Moveth!");
 				}
 				if (actor.SnoActor.Sno == 219702 && ArcaneEnchanted || actor.SnoActor.Sno == 221225 && ArcaneEnchanted) ArcaneDecorator.Paint(layer, actor, actor.FloorCoordinate, null);
 				if (actor.SnoActor.Sno == 340319 && PoisonEnchanted)
@@ -251,7 +257,7 @@ namespace Turbo.Plugins.Resu
                      brush.DrawLine( ActorPos.X+offsetX, ActorPos.Y+offsetY, ActorPos.X-offsetX, ActorPos.Y-offsetY); // antislash	
                      brush.DrawLine(ActorPos.X+offsetX, ActorPos.Y-offsetY, ActorPos.X-offsetX, ActorPos.Y+offsetY); // slash
 				   } 
-				if (actor.SnoActor.Sno == 5212 && SandWaspProjectile) ProjectileDecorator.Paint(layer, actor, actor.FloorCoordinate, "O"); 
+				if (actor.SnoActor.Sno == 5212 && SandWaspProjectile || actor.SnoActor.Sno == 4102 && FallenShamanProjectile) ProjectileDecorator.Paint(layer, actor, actor.FloorCoordinate, "O"); 
 				if (actor.SnoActor.Sno == 118596 && DemonMine) DemonMineDecorator.Paint(layer, actor, actor.FloorCoordinate, null); 
 				   
                      				
