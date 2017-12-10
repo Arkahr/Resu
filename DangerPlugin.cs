@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Danger Plugin for TurboHUD Version 09/12/2017 23:05
+// Danger Plugin for TurboHUD Version 10/12/2017 08:30
 // Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds many new features
 
 using System.Linq;
@@ -239,7 +239,10 @@ namespace Turbo.Plugins.Resu
 				if (actor.SnoActor.Sno == 332922 && BloodSprings) BloodSpringsDecoratorMedium.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
 				if (actor.SnoActor.Sno == 332923 && BloodSprings) BloodSpringsDecoratorBig.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
 				if (actor.SnoActor.Sno == 332924 && BloodSprings) BloodSpringsDecoratorSmall.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
+				if(!Hud.Game.Me.IsDead)
+				{
 				if (actor.SnoActor.Sno == 84608 && actor.NormalizedXyDistanceToMe <= 8 && Desecrator || actor.SnoActor.Sno == 341512 && actor.NormalizedXyDistanceToMe <= 16 && Thunderstorm || actor.SnoActor.Sno == 108869 && actor.NormalizedXyDistanceToMe <= 12 && Plagued || actor.SnoActor.Sno == 3865 && actor.NormalizedXyDistanceToMe <= 12 && Plagued || actor.SnoActor.Sno == 95868 && actor.NormalizedXyDistanceToMe <= 5 && Molten || actor.SnoActor.Sno == 93837 && actor.NormalizedXyDistanceToMe <= 20 && GasCloud || actor.SnoActor.Sno == 159369 && actor.NormalizedXyDistanceToMe <= 20 && MorluSpellcasterMeteorPending) MoveWarningDecorator.Paint(layer, actor, actor.FloorCoordinate, "Moveth!");
+				}
 				if (actor.SnoActor.Sno == 219702 && ArcaneEnchanted || actor.SnoActor.Sno == 221225 && ArcaneEnchanted) ArcaneDecorator.Paint(layer, actor, actor.FloorCoordinate, null);
 				if (actor.SnoActor.Sno == 340319 && PoisonEnchanted)
 				   {
