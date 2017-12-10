@@ -350,7 +350,7 @@ namespace Turbo.Plugins.Resu
                         {
                         RadiusMinimumMultiplier = 0.8f,
                         };
-                        radius = 0.6f * Hud.Render.MinimapScale;
+                        radius = 0.9f * Hud.Render.MinimapScale;
                         if (RadiusTransformator != null)
                             {
                               radius = RadiusTransformator.TransformRadius(radius);
