@@ -35,7 +35,11 @@ namespace Turbo.Plugins.Resu
 
         public void PaintTopInGame(ClipState clipState)
         {
-            if (Hud.Render.UiHidden) return;
+            var hedPlugin = Hud.GetPlugin<HotEnablerDisablerPlugin>();
+			bool GoOn = hedPlugin.CanIRun(Hud.Game.Me,this.GetType().Name); 
+			if (!GoOn) return;
+			
+			if (Hud.Render.UiHidden) return;
             if (clipState != ClipState.BeforeClip) return;
 
              CustomLifeWarningDecorator = new TopLabelDecorator(Hud)
