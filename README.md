@@ -210,4 +210,27 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 // End of Settings for UrshisGift Plugin
 ```
 
-#### [HotEnablerDisablerPlugin.cs] (https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HotEnablerDisablerPlugin.cs) - This plugin allows to disable a plugin  
+#### [HotEnablerDisablerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HotEnablerDisablerPlugin.cs) - This plugin allows you to disable a plugin by :
+- Hero is Softcore
+- Hero is Hardcore
+- Hero class
+- Hero Name
+
+The plugin developper has just to add these (unchanged) three lines at the begining of the rendering part to make it compatible, (thereafter the plugin will throw an exception if this plugin is not present) :
+```C#
+var hedPlugin = Hud.GetPlugin<HotEnablerDisablerPlugin>();
+bool GoOn = hedPlugin.CanIRun(Hud.Game.Me,this.GetType().Name); 
+if (!GoOn) return;
+```
+Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
+```C#
+// Settings for Hot Enabler/Disabler Plugin
+// One line per plugin, case sensitive 
+               Hud.RunOnPlugin<Resu.HotEnablerDisablerPlugin>(plugin => 
+            { 
+		plugin.DisableThis.Add("NameOfThePlugin","Hardcore"); // This disables the plugin NameOfThePlugin for all Hardcore Heroes. 1 entry possible, 2 options : Hardcore Softcore  
+		plugin.DisableThis.Add("NameOfThePlugin","DemonHunter"); // This disables the plugin NameOfThePlugin for all DemonHunter Heroes. Many entries possible for one plugin, separated by spaces : DemonHunter Barbarian Wizard WitchDoctor Monk Crusader Necromancer 
+		plugin.DisableThis.Add("NameOfThePlugin","IncredibleMe"); // This disables the plugin NameOfThePlugin for the Hero named IncredibleMe. Many entries possible for one plugin, separated by spaces. 
+		});	
+// End of Settings for Hot Enabler/Disabler Plugin
+```
