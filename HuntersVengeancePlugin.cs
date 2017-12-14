@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Hunter's Vengeance Plugin for TurboHUD Version 17/10/2017 07:26
+// Hunter's Vengeance Plugin for TurboHUD Version 14/12/2017 15:05
 
 using System;
 using System.Collections.Generic;
@@ -18,13 +18,6 @@ namespace Turbo.Plugins.Resu
 		public bool permanentCircle { get; set; }
         public string percentDamageBonus { get; set; }
 		public int ZeiRank { get; set; }
-		public bool DemonHunter { get; set; }
-		public bool Barbarian { get; set; }
-		public bool Wizard { get; set; }
-		public bool WitchDoctor { get; set; }
-		public bool Monk { get; set; }
-		public bool Crusader { get; set; }
-		public bool Necromancer { get; set; }
 		public bool ElitesOnlyNumbers { get; set; }
 		public int midX { get; set; }
 		public int midY { get; set; }
@@ -35,13 +28,6 @@ namespace Turbo.Plugins.Resu
 		public HuntersVengeancePlugin()
 		{
             Enabled = true;
-			DemonHunter = true;
-		    Barbarian = true;
-		    Wizard = true;
-		    WitchDoctor = true;
-		    Monk = true;
-            Crusader = true;
-            Necromancer = true;
 			permanentCircle = false;
 			ElitesOnlyNumbers = false;
 		}
@@ -87,42 +73,13 @@ namespace Turbo.Plugins.Resu
 			
         }
 		
-		private bool DrawForMe(IPlayer me)
-             {
-              switch (me.HeroClassDefinition.HeroClass)
-                    {
-                     case HeroClass.Barbarian:
-                     return Barbarian;
-					 
-                     case HeroClass.DemonHunter:
-                     return DemonHunter;
-					 
-					 case HeroClass.Wizard:
-                     return Wizard;
-					 
-					 case HeroClass.WitchDoctor:
-                     return WitchDoctor;
-					 
-					 case HeroClass.Monk:
-                     return Monk;
-					 
-					 case HeroClass.Crusader:
-                     return Crusader;
-					 
-					 case HeroClass.Necromancer:
-                     return Necromancer;
-					
-                     default:
-                     return false;
-                    }
-             }
-		
-		
 		
         public void PaintWorld(WorldLayer layer)
         {
-		  if (!DrawForMe(Hud.Game.Me)) return;
-		  
+		    var hedPlugin = Hud.GetPlugin<HotEnablerDisablerPlugin>();
+			bool GoOn = hedPlugin.CanIRun(Hud.Game.Me,this.GetType().Name); 
+			if (!GoOn) return;
+			
 		  bool ZeiActive = false;
 		  ZeiRank = 0;
           var jewelsLocations = Hud.Game.Items.Where(x => x.Location == ItemLocation.LeftRing || x.Location == ItemLocation.RightRing || x.Location == ItemLocation.Neck);
