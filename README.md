@@ -134,6 +134,8 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 // End of Settings for Custom Life Warning Plugin
 ```
 #### [HuntersVengeancePlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HuntersVengeancePlugin.cs) - Shows 1 circle around your player when you have Zei's stone of vengeance equipped and are fighting, it also displays the percentage of damage increased by the legendary gem under each monster (calculated from gem level and distance from your player), the circle and a visor appears on the minimap to help you to aim at distant monsters.
+Note : [HotEnablerDisablerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HotEnablerDisablerPlugin.cs) is now MANDATORY to use this plugin.
+
 ![alt text](READMEpics/zei.png) ![alt text](READMEpics/zeiminimap.png)
 
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
@@ -141,15 +143,7 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 // Settings for Hunter's Vengeance Plugin
                Hud.RunOnPlugin<Resu.HuntersVengeancePlugin>(plugin => 
             { 
-                    // Disable the plugin for a class : Set it to false;
-                   // Enable permanent circle : Set it to true;
-                     plugin.DemonHunter = true;
-                     plugin.Barbarian = true;
-                     plugin.Wizard = true;
-                     plugin.WitchDoctor = true;
-                     plugin.Monk = true;
-                     plugin.Crusader = true;
-                     plugin.Necromancer = true;
+                    // Enable permanent circle : Set it to true;
                      plugin.permanentCircle = false;
                      plugin.ElitesOnlyNumbers = false;
             });  
