@@ -209,3 +209,5 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
             });  
 // End of Settings for UrshisGift Plugin
 ```
+
+#### [HotEnablerDisablerPlugin.cs] (https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HotEnablerDisablerPlugin.cs) - This plugin allows to disable a plugin  
