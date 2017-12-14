@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Hot Enabler/Disabler Plugin for TurboHUD Version 14/12/2017 11:22
+// Hot Enabler/Disabler Plugin for TurboHUD Version 14/12/2017 15:03
 
 using System;
 using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace Turbo.Plugins.Resu
              {
 		      bool Hardcore = me.HeroIsHardcore;
 		      string Heroclass = me.HeroClassDefinition.HeroClass.ToString();
-		      var Cause = "";
+		      var Exclude = "";
 		
 		      if (DisableThis.TryGetValue(ThisPlugin, out Exclude)) 
                  {
