@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Time Everywhere plugin for TurboHUD version 26/09/2017 08:05
+// Time Everywhere plugin for TurboHUD version 14/12/2017 12:22
 using Turbo.Plugins.Default;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,11 +39,11 @@ namespace Turbo.Plugins.Resu
 		
         }
 		
-		
-		 
+				 
         public void PaintTopInGame(ClipState clipState)
 		{
-         	 if (clipState != ClipState.Inventory) return; 
+			   
+			 if (clipState != ClipState.Inventory) return; 
 			   
 			   var uiRect = Hud.Render.GetUiElement("Root.NormalLayer.inventory_dialog_mainPage.inventory_button_neck").Rectangle; 
 			   
