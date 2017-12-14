@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Danger Plugin for TurboHUD Version 10/12/2017 23:18
+// Danger Plugin for TurboHUD Version 14/12/2017 12:25
 // Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds many new features
 
 using System.Linq;
@@ -40,8 +40,9 @@ namespace Turbo.Plugins.Resu
         public bool PoisonDeath { get; set; }
         public bool MoltenExplosion { get; set; }
 		public bool Orbiter { get; set; }
+		public bool BloodStar { get; set; }
 		
-		private HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868, 93837, 5212, 159369, 118596, 4104, 4105, 4106, 4803, 343539};  
+		public static HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868, 93837, 5212, 159369, 118596, 4104, 4105, 4106, 4803, 343539, 164829};  
 		
 		public DangerPlugin()
 		{
@@ -61,7 +62,8 @@ namespace Turbo.Plugins.Resu
             DemonMine = true;
             PoisonDeath = true;	
             MoltenExplosion	= true;
-            Orbiter	= true;			
+            Orbiter	= true;	
+			BloodStar	= true;
 		}
 		
         public override void Load(IController hud)
@@ -230,7 +232,7 @@ namespace Turbo.Plugins.Resu
                                 new GroundCircleDecorator(Hud)
                 {
                     Brush = Hud.Render.CreateBrush(255, 0, 255, 0, 5, SharpDX.Direct2D1.DashStyle.Solid),
-                    Radius = 5,
+                    Radius = 4,
                 }
                 );
 				
@@ -241,6 +243,10 @@ namespace Turbo.Plugins.Resu
 
 		public void PaintWorld(WorldLayer layer)
 		{
+			var hedPlugin = Hud.GetPlugin<HotEnablerDisablerPlugin>();
+			bool GoOn = hedPlugin.CanIRun(Hud.Game.Me,this.GetType().Name); 
+			if (!GoOn) return;
+			
 			var diff = Hud.Window.Size.Width/Hud.Window.Size.Height;
 			offsetX = Convert.ToInt32(Hud.Window.Size.Width/Math.PI); 
             offsetY = Convert.ToInt32(Hud.Window.Size.Height/(Math.PI/diff));
@@ -268,7 +274,7 @@ namespace Turbo.Plugins.Resu
 				   } 
 				if (actor.SnoActor.Sno == 5212 && SandWaspProjectile) ProjectileDecorator.Paint(layer, actor, actor.FloorCoordinate, "O"); 
 				if (actor.SnoActor.Sno == 118596 && DemonMine) DemonMineDecorator.Paint(layer, actor, actor.FloorCoordinate, null);
-                if (actor.SnoActor.Sno == 343539 && actor.NormalizedXyDistanceToMe <= 10 && Orbiter) OrbiterDecorator.Paint(layer, actor, actor.FloorCoordinate, null);				
+                if (actor.SnoActor.Sno == 343539 && actor.NormalizedXyDistanceToMe <= 10 && Orbiter || actor.SnoActor.Sno == 164829 && actor.NormalizedXyDistanceToMe <= 12 && BloodStar) OrbiterDecorator.Paint(layer, actor, actor.FloorCoordinate, null);				
 				   
                      				
             }
