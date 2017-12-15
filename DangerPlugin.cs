@@ -41,8 +41,9 @@ namespace Turbo.Plugins.Resu
         public bool MoltenExplosion { get; set; }
 		public bool Orbiter { get; set; }
 		public bool BloodStar { get; set; }
+		public bool ArrowProjectile { get; set; }
 		
-		public static HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868, 93837, 5212, 159369, 118596, 4104, 4105, 4106, 4803, 343539, 164829};  
+		public static HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868, 93837, 5212, 159369, 118596, 4104, 4105, 4106, 4803, 343539, 164829, 312942};  
 		
 		public DangerPlugin()
 		{
@@ -63,7 +64,8 @@ namespace Turbo.Plugins.Resu
             PoisonDeath = true;	
             MoltenExplosion	= true;
             Orbiter	= true;	
-			BloodStar	= true;
+			BloodStar = true;
+			ArrowProjectile = true;
 		}
 		
         public override void Load(IController hud)
@@ -272,7 +274,7 @@ namespace Turbo.Plugins.Resu
                      brush.DrawLine( ActorPos.X+offsetX, ActorPos.Y+offsetY, ActorPos.X-offsetX, ActorPos.Y-offsetY); // antislash	
                      brush.DrawLine(ActorPos.X+offsetX, ActorPos.Y-offsetY, ActorPos.X-offsetX, ActorPos.Y+offsetY); // slash
 				   } 
-				if (actor.SnoActor.Sno == 5212 && SandWaspProjectile) ProjectileDecorator.Paint(layer, actor, actor.FloorCoordinate, "O"); 
+				if (actor.SnoActor.Sno == 5212 && SandWaspProjectile || actor.SnoActor.Sno == 312942 && ArrowProjectile) ProjectileDecorator.Paint(layer, actor, actor.FloorCoordinate, "O"); 
 				if (actor.SnoActor.Sno == 118596 && DemonMine) DemonMineDecorator.Paint(layer, actor, actor.FloorCoordinate, null);
                 if (actor.SnoActor.Sno == 343539 && actor.NormalizedXyDistanceToMe <= 10 && Orbiter || actor.SnoActor.Sno == 164829 && actor.NormalizedXyDistanceToMe <= 12 && BloodStar) OrbiterDecorator.Paint(layer, actor, actor.FloorCoordinate, null);				
 				   
