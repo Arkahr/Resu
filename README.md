@@ -238,8 +238,8 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
                Hud.RunOnPlugin<Resu.HotEnablerDisablerPlugin>(plugin => 
             { 
 		plugin.DisableThis.Add("NameOfThePlugin","Hardcore"); // This disables the plugin NameOfThePlugin for all Hardcore Heroes. 1 entry possible, 2 options : Hardcore Softcore  
-		plugin.DisableThis.Add("NameOfThePlugin","DemonHunter"); // This disables the plugin NameOfThePlugin for all DemonHunter Heroes. Many entries possible for one plugin, separated by spaces : DemonHunter Barbarian Wizard WitchDoctor Monk Crusader Necromancer 
-		plugin.DisableThis.Add("NameOfThePlugin","IncredibleMe"); // This disables the plugin NameOfThePlugin for the Hero named IncredibleMe. Many entries possible for one plugin, separated by spaces. 
+		plugin.DisableThis.Add("AnotherPlugin","DemonHunter Necromancer"); // This disables the plugin AnotherPlugin for all DemonHunter & Necromancer Heroes. Many entries possible for one plugin, separated by spaces : DemonHunter Barbarian Wizard WitchDoctor Monk Crusader Necromancer 
+		plugin.DisableThis.Add("YetAnotherPlugin","IncredibleMe"); // This disables the plugin YetAnotherPlugin for the Hero named IncredibleMe. Many entries possible for one plugin, separated by spaces. 
 		});	
 // End of Settings for Hot Enabler/Disabler Plugin
 ```
