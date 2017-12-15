@@ -21,7 +21,7 @@ namespace Turbo.Plugins.Resu
         {
             Enabled = true;
             coordinates = new Dictionary<int, Dictionary<int, IWorldCoordinate>>();
-			SeePlayersInTown = true;
+			SeePlayersInTown = false;
         }
 
         public override void Load(IController hud)
