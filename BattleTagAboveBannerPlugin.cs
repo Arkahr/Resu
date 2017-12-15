@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// BattleTag Above Banner Plugin for TurboHUD Version 15/12/2017 07:35
+// BattleTag Above Banner Plugin for TurboHUD Version 15/12/2017 08:21
 
 using System;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace Turbo.Plugins.Resu
         {
             Enabled = true;
             coordinates = new Dictionary<int, Dictionary<int, IWorldCoordinate>>();
-			SeePlayersInTown = false;
+			SeePlayersInTown = true;
         }
 
         public override void Load(IController hud)
@@ -94,9 +94,12 @@ namespace Turbo.Plugins.Resu
             {
                 if (player == null) continue; 
                 if (player.IsInTown && !SeePlayersInTown) continue;
-
-                var battleTag = player.BattleTagAbovePortrait;
-                var currentAct = Hud.Game.Me.SnoArea.Act;
+                if (SeePlayersInTown && player.IsMe) continue;
+				
+				var town = "";
+				var battleTag = player.BattleTagAbovePortrait;	
+                if (player.IsInTown && SeePlayersInTown) {town = " \u2302";}
+				var currentAct = Hud.Game.Me.SnoArea.Act;
                 var playerIndex = player.Index;
 				
 				
@@ -107,11 +110,11 @@ namespace Turbo.Plugins.Resu
                 
 				if (currentAct == 2) 
 				 {
-				  BattleTagAboveBannerActTwoDecorator.Paint(layer, null, coordinates[currentAct][playerIndex], battleTag);
+				  BattleTagAboveBannerActTwoDecorator.Paint(layer, null, coordinates[currentAct][playerIndex], battleTag + town);
 				 }
 				else
 				 {
-				  BattleTagAboveBannerDecorator.Paint(layer, null, coordinates[currentAct][playerIndex], battleTag);
+				  BattleTagAboveBannerDecorator.Paint(layer, null, coordinates[currentAct][playerIndex], battleTag + town);
 				 }	
             }
         }
