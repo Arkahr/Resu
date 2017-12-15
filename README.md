@@ -7,6 +7,18 @@ Turbo.Plugins.Resu
 
 
 #### [BattleTagAboveBannerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/BattleTagAboveBannerPlugin.cs) - Adds other players' battletags above banners when they aren't in town. ![alt text](READMEpics/Banner.png)
+Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
+```C#
+// BattleTagAboveBannerPlugin Customization
+               Hud.RunOnPlugin<Resu.BattleTagAboveBannerPlugin>(plugin => 
+            { 
+                
+            plugin.SeePlayersInTown = false; 
+            
+            });  
+// End of BattleTagAboveBannerPlugin Customization
+```
+
 #### [DangerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/DangerPlugin.cs) - Adds : 
 Note : [HotEnablerDisablerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HotEnablerDisablerPlugin.cs) is now MANDATORY to use this plugin.
 - Circles around Blood springs on the floor and on the minimap (Paths of the Drowned & Blood Marsh area)(previously BloodSpringsPlugin).

@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// BattleTag Above Banner Plugin for TurboHUD Version 22/09/2017 12:05
+// BattleTag Above Banner Plugin for TurboHUD Version 15/12/2017 07:35
 
 using System;
 using System.Collections.Generic;
@@ -12,6 +12,7 @@ namespace Turbo.Plugins.Resu
     {
         public WorldDecoratorCollection BattleTagAboveBannerDecorator { get; set; }
         public WorldDecoratorCollection BattleTagAboveBannerActTwoDecorator { get; set; }
+		public bool SeePlayersInTown { get; set; }
 		
         // Dictionary<ACT_INDEX, Dictionary<PLAYER_INDEX, COORDINATE>>
         private Dictionary<int, Dictionary<int, IWorldCoordinate>> coordinates;
@@ -20,7 +21,7 @@ namespace Turbo.Plugins.Resu
         {
             Enabled = true;
             coordinates = new Dictionary<int, Dictionary<int, IWorldCoordinate>>();
-			
+			SeePlayersInTown = false;
         }
 
         public override void Load(IController hud)
@@ -92,7 +93,7 @@ namespace Turbo.Plugins.Resu
             foreach (var player in Hud.Game.Players) 
             {
                 if (player == null) continue; 
-                if (player.IsInTown) continue;
+                if (player.IsInTown && !SeePlayersInTown) continue;
 
                 var battleTag = player.BattleTagAbovePortrait;
                 var currentAct = Hud.Game.Me.SnoArea.Act;
@@ -103,7 +104,7 @@ namespace Turbo.Plugins.Resu
                 if (!coordinates.ContainsKey(currentAct)) return;
                 if (!coordinates[currentAct].ContainsKey(playerIndex)) return;
 
-                // moved all the logic into a 'dataset' aka a Dictionary<ACT_INDEX, Dictionary<PLAYER_INDEX, COORDINATE>>
+                
 				if (currentAct == 2) 
 				 {
 				  BattleTagAboveBannerActTwoDecorator.Paint(layer, null, coordinates[currentAct][playerIndex], battleTag);
