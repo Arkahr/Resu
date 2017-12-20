@@ -163,7 +163,7 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 ```
 #### [ImmortalKingsCallPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/ImmortalKingsCallPlugin.cs) - Shows when Immortal King's Call's +1500 damage buff is active and how many seconds are left.
 ![alt text](READMEpics/immortal.png)
-#### [NextHeroPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/NextHeroPlugin.cs) - If you like switch often to play with the hero that have the less hours of playing, that plugin will display the next hero to play with and the time gap between the two heroes.
+#### [NextHeroPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/NextHeroPlugin.cs) - If you like switch often to play with the hero that have the less hours of playing, that plugin will display the next hero to play with and the time gap between the two heroes when you are in town.
 Heroes not in the same Hardcore/Softcore Seasonal/Regular will be ignored.
 
 ![alt text](READMEpics/nexthero.png)
