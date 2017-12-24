@@ -42,8 +42,11 @@ namespace Turbo.Plugins.Resu
 		public bool Orbiter { get; set; }
 		public bool BloodStar { get; set; }
 		public bool ArrowProjectile { get; set; }
+		public bool BogFamilyProjectile { get; set; }
+		public bool bloodGolemProjectile { get; set; }
+		public bool MoleMutantProjectile { get; set; }
 		
-		public static HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868, 93837, 5212, 159369, 118596, 4104, 4105, 4106, 4803, 343539, 164829, 312942};  
+		public static HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868, 93837, 5212, 159369, 118596, 4104, 4105, 4106, 4803, 343539, 164829, 312942, 337030, 353256, 349564, 117921, 117906, 150825, 468082};  
 		
 		public DangerPlugin()
 		{
@@ -66,6 +69,9 @@ namespace Turbo.Plugins.Resu
             Orbiter	= true;	
 			BloodStar = true;
 			ArrowProjectile = true;
+			BogFamilyProjectile = true;
+			bloodGolemProjectile = true;
+			MoleMutantProjectile = true;
 		}
 		
         public override void Load(IController hud)
@@ -274,11 +280,13 @@ namespace Turbo.Plugins.Resu
                      brush.DrawLine( ActorPos.X+offsetX, ActorPos.Y+offsetY, ActorPos.X-offsetX, ActorPos.Y-offsetY); // antislash	
                      brush.DrawLine(ActorPos.X+offsetX, ActorPos.Y-offsetY, ActorPos.X-offsetX, ActorPos.Y+offsetY); // slash
 				   } 
-				if (actor.SnoActor.Sno == 5212 && SandWaspProjectile || actor.SnoActor.Sno == 312942 && ArrowProjectile) ProjectileDecorator.Paint(layer, actor, actor.FloorCoordinate, "O"); 
-				if (actor.SnoActor.Sno == 118596 && DemonMine) DemonMineDecorator.Paint(layer, actor, actor.FloorCoordinate, null);
+				if (actor.SnoActor.Sno == 5212 && SandWaspProjectile || actor.SnoActor.Sno == 312942 && ArrowProjectile || actor.SnoActor.Sno == 337030 && BogFamilyProjectile || actor.SnoActor.Sno == 353256 && bloodGolemProjectile || actor.SnoActor.Sno == 349564 && MoleMutantProjectile) ProjectileDecorator.Paint(layer, actor, actor.FloorCoordinate, "O"); 
+				if (DemonMine)
+				   {
+				if (actor.SnoActor.Sno == 118596 || actor.SnoActor.Sno == 117921 || actor.SnoActor.Sno == 117906 || actor.SnoActor.Sno == 150825 || actor.SnoActor.Sno == 468082) DemonMineDecorator.Paint(layer, actor, actor.FloorCoordinate, null);
+				   }
                 if (actor.SnoActor.Sno == 343539 && actor.NormalizedXyDistanceToMe <= 10 && Orbiter || actor.SnoActor.Sno == 164829 && actor.NormalizedXyDistanceToMe <= 12 && BloodStar) OrbiterDecorator.Paint(layer, actor, actor.FloorCoordinate, null);				
-				   
-                     				
+	
             }
 		
         }
