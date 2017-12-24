@@ -226,6 +226,8 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 #### [HotEnablerDisablerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HotEnablerDisablerPlugin.cs) - This plugin allows you to disable a plugin by :
 - Hero is Softcore
 - Hero is Hardcore
+- Hero is Seasonal
+- Hero is NonSeasonal
 - Hero class
 - Hero Name
 
