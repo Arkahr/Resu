@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// BattleTag Above Banner Plugin for TurboHUD Version 28/12/2017 13:13
+// BattleTag Above Banner Plugin for TurboHUD Version 28/12/2017 13:42
 
 using System;
 using System.Collections.Generic;
@@ -30,9 +30,7 @@ namespace Turbo.Plugins.Resu
             BattleTagAboveBannerDecorator = new WorldDecoratorCollection(
                 new GroundLabelDecorator(Hud)
                 {
-                    //BackgroundBrush = Hud.Render.CreateBrush(80, 0, 0, 0, 0),
-                    //BorderBrush = Hud.Render.CreateBrush(200, 191, 150, 68, 1),
-                    TextFont = Hud.Render.CreateFont("tahoma", 7, 200, 168, 117, 23, true, false, false)
+                    TextFont = Hud.Render.CreateFont("tahoma", 7, 150, 255, 255, 255, true, false, false)
                 }
             );
 
