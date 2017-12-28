@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Next Hero Plugin for TurboHUD Version 20/12/2017 11:10
+// Next Hero Plugin for TurboHUD Version 28/12/2017 11:15
 
 using System;
 using System.Globalization;
