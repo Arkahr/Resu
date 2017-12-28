@@ -68,10 +68,49 @@ namespace Turbo.Plugins.Resu
 				 
 				NextHeroText = "━━━━━━━ Next Hero to play ━━━━━━━" + Environment.NewLine + Hero.Name + " [" + Hero.ClassDefinition.HeroClass + "]" + Environment.NewLine + Diff + " behind " + Hud.Game.Me.Hero.Name;
 				
+				var HeroTexture = Hud.Texture.GetTexture(890155253);
 				
-								  
+				if (Hero.ClassDefinition.HeroClass.ToString() == "Barbarian")
+				   {
+					if (Hero.IsMale) HeroTexture = Hud.Texture.GetTexture(3921484788);
+					else HeroTexture = Hud.Texture.GetTexture(1030273087);	
+				   }
+				else if (Hero.ClassDefinition.HeroClass.ToString() == "Crusader")
+				   {
+					if (Hero.IsMale) HeroTexture = Hud.Texture.GetTexture(3742271755);
+					else HeroTexture = Hud.Texture.GetTexture(3435775766);	
+				   } 
+				else if (Hero.ClassDefinition.HeroClass.ToString() == "DemonHunter")
+				   {
+					if (Hero.IsMale) HeroTexture = Hud.Texture.GetTexture(3785199803);
+					else HeroTexture = Hud.Texture.GetTexture(2939779782);	
+				   } 
+				else if (Hero.ClassDefinition.HeroClass.ToString() == "Monk")
+				   {
+					if (Hero.IsMale) HeroTexture = Hud.Texture.GetTexture(2227317895);
+					else HeroTexture = Hud.Texture.GetTexture(2918463890);	
+				   } 
+				else if (Hero.ClassDefinition.HeroClass.ToString() == "Necromancer")
+				   {
+					if (Hero.IsMale) HeroTexture = Hud.Texture.GetTexture(890155253); // no necromancer texture ids yet
+					else HeroTexture = Hud.Texture.GetTexture(890155253);	// no necromancer texture ids yet
+				   }
+				else if (Hero.ClassDefinition.HeroClass.ToString() == "WitchDoctor")
+				   {
+					if (Hero.IsMale) HeroTexture = Hud.Texture.GetTexture(3925954876);
+					else HeroTexture = Hud.Texture.GetTexture(1603231623);	
+				   }
+				else if (Hero.ClassDefinition.HeroClass.ToString() == "Wizard")
+				   {
+					if (Hero.IsMale) HeroTexture = Hud.Texture.GetTexture(44435619);
+					else HeroTexture = Hud.Texture.GetTexture(876580014);	
+				   }
+				
+				
+				HeroTexture.Draw(PosX-50, PosY, 50f, 50f, 0.59f);
+				NextHeroDecorator.Paint(PosX, PosY, 50f, 50f, HorizontalAlign.Left);				  
 			 } 			 
-				NextHeroDecorator.Paint(PosX, PosY, 50f, 50f, HorizontalAlign.Left);		 
+						 
 	
         }
 		
