@@ -30,7 +30,7 @@ namespace Turbo.Plugins.Resu
             BattleTagAboveBannerDecorator = new WorldDecoratorCollection(
                 new GroundLabelDecorator(Hud)
                 {
-                    TextFont = Hud.Render.CreateFont("tahoma", 7, 150, 255, 255, 255, true, false, false)
+                    TextFont = Hud.Render.CreateFont("tahoma", 7, 200, 255, 255, 255, true, false, false) 
                 }
             );
 
@@ -97,7 +97,7 @@ namespace Turbo.Plugins.Resu
 				
                 var BattleTagTexture = Hud.Texture.GetTexture(3098562643);
 				var ToScreenPos = coordinates[currentAct][playerIndex].ToScreenCoordinate();
-                BattleTagTexture.Draw(ToScreenPos.X-49, ToScreenPos.Y-17, 100f, 28f, 0.59f); 
+                BattleTagTexture.Draw(ToScreenPos.X-49, ToScreenPos.Y-17, 100f, 28f, 0.7843f);
 				BattleTagAboveBannerDecorator.Paint(layer, null, coordinates[currentAct][playerIndex], battleTag + town);
 				 	
             }
