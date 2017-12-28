@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// BattleTag Above Banner Plugin for TurboHUD Version 15/12/2017 08:21
+// BattleTag Above Banner Plugin for TurboHUD Version 28/12/2017 13:13
 
 using System;
 using System.Collections.Generic;
@@ -11,8 +11,7 @@ namespace Turbo.Plugins.Resu
     public class BattleTagAboveBanner : BasePlugin, IInGameWorldPainter
     {
         public WorldDecoratorCollection BattleTagAboveBannerDecorator { get; set; }
-        public WorldDecoratorCollection BattleTagAboveBannerActTwoDecorator { get; set; }
-		public bool SeePlayersInTown { get; set; }
+       	public bool SeePlayersInTown { get; set; }
 		
         // Dictionary<ACT_INDEX, Dictionary<PLAYER_INDEX, COORDINATE>>
         private Dictionary<int, Dictionary<int, IWorldCoordinate>> coordinates;
@@ -31,18 +30,9 @@ namespace Turbo.Plugins.Resu
             BattleTagAboveBannerDecorator = new WorldDecoratorCollection(
                 new GroundLabelDecorator(Hud)
                 {
-                    BackgroundBrush = Hud.Render.CreateBrush(80, 0, 0, 0, 0),
-                    BorderBrush = Hud.Render.CreateBrush(200, 191, 150, 68, 1),
-                    TextFont = Hud.Render.CreateFont("tahoma", 7, 200, 191, 150, 68, true, false, false)
-                }
-            );
-
-            BattleTagAboveBannerActTwoDecorator = new WorldDecoratorCollection(
-                new GroundLabelDecorator(Hud)
-                {
-                    BackgroundBrush = Hud.Render.CreateBrush(80, 191, 150, 68, 0),
-                    BorderBrush = Hud.Render.CreateBrush(175, 255, 255, 255, 1),
-                    TextFont = Hud.Render.CreateFont("tahoma", 7, 175, 255, 255, 255, true, false, false)
+                    //BackgroundBrush = Hud.Render.CreateBrush(80, 0, 0, 0, 0),
+                    //BorderBrush = Hud.Render.CreateBrush(200, 191, 150, 68, 1),
+                    TextFont = Hud.Render.CreateFont("tahoma", 7, 200, 168, 117, 23, true, false, false)
                 }
             );
 
@@ -106,16 +96,12 @@ namespace Turbo.Plugins.Resu
 
                 if (!coordinates.ContainsKey(currentAct)) return;
                 if (!coordinates[currentAct].ContainsKey(playerIndex)) return;
-
-                
-				if (currentAct == 2) 
-				 {
-				  BattleTagAboveBannerActTwoDecorator.Paint(layer, null, coordinates[currentAct][playerIndex], battleTag + town);
-				 }
-				else
-				 {
-				  BattleTagAboveBannerDecorator.Paint(layer, null, coordinates[currentAct][playerIndex], battleTag + town);
-				 }	
+				
+                var BattleTagTexture = Hud.Texture.GetTexture(3098562643);
+				var ToScreenPos = coordinates[currentAct][playerIndex].ToScreenCoordinate();
+                BattleTagTexture.Draw(ToScreenPos.X-49, ToScreenPos.Y-17, 100f, 28f, 0.59f); 
+				BattleTagAboveBannerDecorator.Paint(layer, null, coordinates[currentAct][playerIndex], battleTag + town);
+				 	
             }
         }
     }
