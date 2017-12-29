@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// BattleTag Above Banner Plugin for TurboHUD Version 28/12/2017 13:42
+// BattleTag Above Banner Plugin for TurboHUD Version 29/12/2017 07:24
 
 using System;
 using System.Collections.Generic;
@@ -89,15 +89,57 @@ namespace Turbo.Plugins.Resu
                 if (player.IsInTown && SeePlayersInTown) {town = " \u2302";}
 				var currentAct = Hud.Game.Me.SnoArea.Act;
                 var playerIndex = player.Index;
-				
+				var HeroTexture = Hud.Texture.GetTexture(890155253);
 				
 
                 if (!coordinates.ContainsKey(currentAct)) return;
                 if (!coordinates[currentAct].ContainsKey(playerIndex)) return;
 				
+				
+				if (player.HeroClassDefinition.HeroClass.ToString() == "Barbarian")
+				   {
+					 if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(3921484788); // male/female doesn't work, keep it for later
+ 					 else HeroTexture = Hud.Texture.GetTexture(1030273087);	
+				   }
+				else if (player.HeroClassDefinition.HeroClass.ToString() == "Crusader")
+				   {
+					if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(3742271755);
+					else HeroTexture = Hud.Texture.GetTexture(3435775766);	
+				   } 
+				else if (player.HeroClassDefinition.HeroClass.ToString() == "DemonHunter")
+				   {
+					if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(3785199803);
+					else HeroTexture = Hud.Texture.GetTexture(2939779782);	
+				   } 
+				else if (player.HeroClassDefinition.HeroClass.ToString() == "Monk")
+				   {
+					if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(2227317895);
+					else HeroTexture = Hud.Texture.GetTexture(2918463890);	
+				   } 
+				else if (player.HeroClassDefinition.HeroClass.ToString() == "Necromancer")
+				   {
+					if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(890155253); // no necromancer texture ids yet
+					else HeroTexture = Hud.Texture.GetTexture(890155253);	// no necromancer texture ids yet
+				   }
+				else if (player.HeroClassDefinition.HeroClass.ToString() == "WitchDoctor")
+				   {
+					if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(3925954876);
+					else HeroTexture = Hud.Texture.GetTexture(1603231623);	
+				   }
+				else if (player.HeroClassDefinition.HeroClass.ToString() == "Wizard")
+				   {
+					if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(44435619);
+					else HeroTexture = Hud.Texture.GetTexture(876580014);	
+				   }
+				
+				
+				
+				
+				
                 var BattleTagTexture = Hud.Texture.GetTexture(3098562643);
 				var ToScreenPos = coordinates[currentAct][playerIndex].ToScreenCoordinate();
                 BattleTagTexture.Draw(ToScreenPos.X-49, ToScreenPos.Y-17, 100f, 28f, 0.7843f);
+				HeroTexture.Draw(ToScreenPos.X-52, ToScreenPos.Y-17, 22.3f, 24.1f, 0.7843f);
 				BattleTagAboveBannerDecorator.Paint(layer, null, coordinates[currentAct][playerIndex], battleTag + town);
 				 	
             }
