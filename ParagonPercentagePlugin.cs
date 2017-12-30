@@ -13,11 +13,12 @@ namespace Turbo.Plugins.Resu
         public bool ShowGreaterRiftMaxLevel { get; set; }
 		public bool ParagonPercentageOnTheRight { get; set; }
 		public string ParagonPercentage { get; set; }
-
+		
         public TopLabelDecorator ParagonPercentageDecorator { get; set; }
         public TopLabelDecorator HighestSoloRiftLevelDecorator { get; set; }
 		public TopLabelDecorator NemesisDecorator { get; set; }
 		public TopLabelDecorator UnityDecorator { get; set; }
+		
 		
        	public int GRlevel { get; set; }
 	    public float SheetDPS { get; set; }
@@ -92,7 +93,7 @@ namespace Turbo.Plugins.Resu
                 TextFunc = () => "[U]",
                 HintFunc = () =>  "Unity equipped",
             };
-			
+
 		
         }
 
@@ -131,6 +132,8 @@ namespace Turbo.Plugins.Resu
               {
                   if (player == null) continue;
                   var portrait = player.PortraitUiElement.Rectangle;
+				  
+				  
 						
 				  GRlevel = player.HighestSoloRiftLevel; 
 				  SheetDPS = player.Offense.SheetDps;

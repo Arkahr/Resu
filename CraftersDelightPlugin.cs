@@ -301,15 +301,13 @@ namespace Turbo.Plugins.Resu
             ));
         }
  
-        
- 
- 
+          
         public void PaintWorld(WorldLayer layer)
         {
 			if(!init_mapping) { init(); } 
 			var uiInv = Hud.Inventory.InventoryMainUiElement; 
             if (uiInv.Visible && Hud.Game.IsInTown) return;
-			
+		
 			
             var itemGroups = Hud.Game.Items.Where(item => item.Location == ItemLocation.Floor).GroupBy(item => item.SnoItem.Sno);
  

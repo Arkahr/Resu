@@ -44,7 +44,8 @@ namespace Turbo.Plugins.Resu
 		{
 			   
 			 if (clipState != ClipState.Inventory) return; 
-			   
+			 
+						   
 			   var uiRect = Hud.Render.GetUiElement("Root.NormalLayer.inventory_dialog_mainPage.inventory_button_neck").Rectangle; 
 			   
 			   TimeEverywhereDecorator.Paint(uiRect.Left + uiRect.Width * 0f, uiRect.Top + uiRect.Height * -1.65f, uiRect.Width * 0.44f, uiRect.Height * 0.14f, HorizontalAlign.Center);				
