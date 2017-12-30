@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// BattleTag Above Banner Plugin for TurboHUD Version 29/12/2017 20:30
+// BattleTag Above Banner Plugin for TurboHUD Version 30/12/2017 07:38
 
 using System;
 using System.Collections.Generic;
@@ -10,8 +10,7 @@ namespace Turbo.Plugins.Resu
 {
     public class BattleTagAboveBanner : BasePlugin, IInGameWorldPainter
     {
-        public WorldDecoratorCollection BattleTagAboveBannerDecorator { get; set; }
-       	public bool SeePlayersInTown { get; set; }
+       public bool SeePlayersInTown { get; set; }
 		
         // Dictionary<ACT_INDEX, Dictionary<PLAYER_INDEX, COORDINATE>>
         private Dictionary<int, Dictionary<int, IWorldCoordinate>> coordinates;
@@ -26,13 +25,6 @@ namespace Turbo.Plugins.Resu
         public override void Load(IController hud)
         {
             base.Load(hud);
-
-            BattleTagAboveBannerDecorator = new WorldDecoratorCollection(
-                new GroundLabelDecorator(Hud)
-                {
-                    TextFont = Hud.Render.CreateFont("tahoma", 7, 200, 255, 255, 255, true, false, false) 
-                }
-            );
 
             // Act 1
             coordinates.Add(1, new Dictionary<int, IWorldCoordinate>()
@@ -135,15 +127,15 @@ namespace Turbo.Plugins.Resu
 				   }
 				
 				
-				
-				
-				
                 var BattleTagTexture = Hud.Texture.GetTexture(3098562643);
 				var ToScreenPos = coordinates[currentAct][playerIndex].ToScreenCoordinate();
+				var TextFont = Hud.Render.CreateFont("tahoma", 7, 200, 255, 255, 255, true, false, false);
+				var SpacesAmount = 12 - battleTag.Length;
+				battleTag = battleTag.PadLeft(12);
                 BattleTagTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/32.653)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/16), (float)(ScreenHeight/32.1428), 0.7843f); // 49 17 
 				HeroTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/30.769)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/71.7488), (float)(ScreenHeight/37.3443), 0.7843f); // 52 17
-				BattleTagAboveBannerDecorator.Paint(layer, null, coordinates[currentAct][playerIndex], battleTag + town);
-				 	
+				TextFont.DrawText(battleTag + town, (float)(ToScreenPos.X-(ScreenWidth/44.444)), (float)(ToScreenPos.Y-(ScreenHeight/128.571)), true); // 36 7
+			
             }
         }
     }
