@@ -69,6 +69,8 @@ namespace Turbo.Plugins.Resu
 				NextHeroText = "━━━━━━━ Next Hero to play ━━━━━━━" + Environment.NewLine + Hero.Name + " [" + Hero.ClassDefinition.HeroClass + "]" + Environment.NewLine + Diff + " behind " + Hud.Game.Me.Hero.Name;
 				
 				var HeroTexture = Hud.Texture.GetTexture(890155253);
+				var SeasonTexture = Hud.Texture.GetTexture(1944779632);
+				var HardcoreTexture = Hud.Texture.GetTexture(2946806416);
 				
 				if (Hero.ClassDefinition.HeroClass.ToString() == "Barbarian")
 				   {
@@ -92,8 +94,8 @@ namespace Turbo.Plugins.Resu
 				   } 
 				else if (Hero.ClassDefinition.HeroClass.ToString() == "Necromancer")
 				   {
-					if (Hero.IsMale) HeroTexture = Hud.Texture.GetTexture(890155253); // no necromancer texture ids yet
-					else HeroTexture = Hud.Texture.GetTexture(890155253);	// no necromancer texture ids yet
+					if (Hero.IsMale) HeroTexture = Hud.Texture.GetTexture(3285997023); 
+					else HeroTexture = Hud.Texture.GetTexture(473831658);	
 				   }
 				else if (Hero.ClassDefinition.HeroClass.ToString() == "WitchDoctor")
 				   {
@@ -108,7 +110,10 @@ namespace Turbo.Plugins.Resu
 				
 				
 				HeroTexture.Draw(PosX-50, PosY, 50f, 50f, 0.59f);
-				NextHeroDecorator.Paint(PosX, PosY, 50f, 50f, HorizontalAlign.Left);				  
+				if (Hero.Seasonal) SeasonTexture.Draw(PosX-50, PosY-30, 42f, 84.666f, 0.59f);
+				if (Hero.Hardcore) HardcoreTexture.Draw(PosX-20, PosY+35, 22f, 28.444f, 0.59f);
+				NextHeroDecorator.Paint(PosX, PosY, 50f, 50f, HorizontalAlign.Left);
+				
 			 } 			 
 						 
 	
