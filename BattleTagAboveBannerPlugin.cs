@@ -76,10 +76,9 @@ namespace Turbo.Plugins.Resu
                 if (player.IsInTown && !SeePlayersInTown) continue;
                 if (SeePlayersInTown && player.IsMe) continue;
 				
-				var town = "";
+				
 				var battleTag = player.BattleTagAbovePortrait;	
-                if (player.IsInTown && SeePlayersInTown) {town = " \u2302";}
-				var currentAct = Hud.Game.Me.SnoArea.Act;
+                var currentAct = Hud.Game.Me.SnoArea.Act;
                 var playerIndex = player.Index;
 				var HeroTexture = Hud.Texture.GetTexture(890155253);
 				var ScreenWidth = Hud.Window.Size.Width; 
@@ -112,8 +111,8 @@ namespace Turbo.Plugins.Resu
 				   } 
 				else if (player.HeroClassDefinition.HeroClass.ToString() == "Necromancer")
 				   {
-					if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(890155253); // no necromancer texture ids yet
-					else HeroTexture = Hud.Texture.GetTexture(890155253);	// no necromancer texture ids yet
+					if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(3285997023); 
+					else HeroTexture = Hud.Texture.GetTexture(473831658);	
 				   }
 				else if (player.HeroClassDefinition.HeroClass.ToString() == "WitchDoctor")
 				   {
@@ -128,14 +127,18 @@ namespace Turbo.Plugins.Resu
 				
 				
                 var BattleTagTexture = Hud.Texture.GetTexture(3098562643);
+				var TownTexture = Hud.Texture.GetTexture(3153923970);
 				var ToScreenPos = coordinates[currentAct][playerIndex].ToScreenCoordinate();
 				var TextFont = Hud.Render.CreateFont("tahoma", 7, 200, 255, 255, 255, true, false, false);
-				var SpacesAmount = 12 - battleTag.Length;
 				battleTag = battleTag.PadLeft(12);
-                BattleTagTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/32.653)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/16), (float)(ScreenHeight/32.1428), 0.7843f); // 49 17 
-				HeroTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/30.769)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/71.7488), (float)(ScreenHeight/37.3443), 0.7843f); // 52 17
-				TextFont.DrawText(battleTag + town, (float)(ToScreenPos.X-(ScreenWidth/44.444)), (float)(ToScreenPos.Y-(ScreenHeight/128.571)), true); // 36 7
-			
+                BattleTagTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/32.653)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/15), (float)(ScreenHeight/30), 0.7843f); 
+				HeroTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/30.769)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/60), (float)(ScreenHeight/34), 0.7843f); 
+				TextFont.DrawText(battleTag, (float)(ToScreenPos.X-(ScreenWidth/49)), (float)(ToScreenPos.Y-(ScreenHeight/145)), true); 
+			    if (player.IsInTown && SeePlayersInTown) 
+				   {
+					   TownTexture.Draw((float)(ToScreenPos.X+(ScreenWidth/45)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenHeight/29), (float)(ScreenHeight/29), 0.7843f);
+			       }
+				
             }
         }
     }
