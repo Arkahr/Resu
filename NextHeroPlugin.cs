@@ -42,7 +42,7 @@ namespace Turbo.Plugins.Resu
              NextHeroDecorator = new TopLabelDecorator(Hud)
             {
 				
-				 TextFont = Hud.Render.CreateFont("Microsoft Sans Serif", 9, 150, 255, 235, 170, false, false, 100, 81, 60, 11, false), 
+				 TextFont = Hud.Render.CreateFont("Microsoft Sans Serif", 9, 150, 255, 255, 255, false, false, 100, 0, 0, 0, false), 
                  TextFunc = () => NextHeroText, 
               
             };
