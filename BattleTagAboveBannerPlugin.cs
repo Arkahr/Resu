@@ -11,8 +11,8 @@ namespace Turbo.Plugins.Resu
     public class BattleTagAboveBanner : BasePlugin, IInGameWorldPainter
     {
        public bool SeePlayersInTown { get; set; }
-		
-        // Dictionary<ACT_INDEX, Dictionary<PLAYER_INDEX, COORDINATE>>
+	   
+       // Dictionary<ACT_INDEX, Dictionary<PLAYER_INDEX, COORDINATE>>
         private Dictionary<int, Dictionary<int, IWorldCoordinate>> coordinates;
         
         public BattleTagAboveBanner()
@@ -21,12 +21,14 @@ namespace Turbo.Plugins.Resu
             coordinates = new Dictionary<int, Dictionary<int, IWorldCoordinate>>();
 			SeePlayersInTown = false;
         }
-
+		
+				  
         public override void Load(IController hud)
         {
             base.Load(hud);
-
-            // Act 1
+			
+						
+			// Act 1
             coordinates.Add(1, new Dictionary<int, IWorldCoordinate>()
             {
                 { 0, Hud.Window.CreateWorldCoordinate(381.154f, 551.850f, 33.3f) }, // Top of North East Banner  Act 1
@@ -62,6 +64,14 @@ namespace Turbo.Plugins.Resu
             });
         }
 
+		
+		public bool IsChinese(string text)
+         {
+               return text.Any(c => c >= 0x20000 && c <= 0xFA2D);
+         }
+		
+		
+		
         public void PaintWorld(WorldLayer layer)
         {
             if (!Hud.Game.IsInTown) return;
@@ -91,37 +101,37 @@ namespace Turbo.Plugins.Resu
 				
 				if (player.HeroClassDefinition.HeroClass.ToString() == "Barbarian")
 				   {
-					 if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(3921484788); // male/female doesn't work, keep it for later
+					 if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(3921484788); // male/female can't be determined, let's keep it for later...
  					 else HeroTexture = Hud.Texture.GetTexture(1030273087);	
 				   }
 				else if (player.HeroClassDefinition.HeroClass.ToString() == "Crusader")
 				   {
-					if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(3742271755);
+					if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(3742271755);
 					else HeroTexture = Hud.Texture.GetTexture(3435775766);	
 				   } 
 				else if (player.HeroClassDefinition.HeroClass.ToString() == "DemonHunter")
 				   {
-					if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(3785199803);
+					if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(3785199803);
 					else HeroTexture = Hud.Texture.GetTexture(2939779782);	
 				   } 
 				else if (player.HeroClassDefinition.HeroClass.ToString() == "Monk")
 				   {
-					if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(2227317895);
+					if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(2227317895);
 					else HeroTexture = Hud.Texture.GetTexture(2918463890);	
 				   } 
 				else if (player.HeroClassDefinition.HeroClass.ToString() == "Necromancer")
 				   {
-					if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(3285997023); 
+					if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(3285997023); 
 					else HeroTexture = Hud.Texture.GetTexture(473831658);	
 				   }
 				else if (player.HeroClassDefinition.HeroClass.ToString() == "WitchDoctor")
 				   {
-					if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(3925954876);
+					if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(3925954876);
 					else HeroTexture = Hud.Texture.GetTexture(1603231623);	
 				   }
 				else if (player.HeroClassDefinition.HeroClass.ToString() == "Wizard")
 				   {
-					if (player.HeroClassDefinition.MaleActorSno != null) HeroTexture = Hud.Texture.GetTexture(44435619);
+					if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(44435619);
 					else HeroTexture = Hud.Texture.GetTexture(876580014);	
 				   }
 				
@@ -129,15 +139,32 @@ namespace Turbo.Plugins.Resu
                 var BattleTagTexture = Hud.Texture.GetTexture(3098562643);
 				var TownTexture = Hud.Texture.GetTexture(3153923970);
 				var ToScreenPos = coordinates[currentAct][playerIndex].ToScreenCoordinate();
+				
+				
 				var TextFont = Hud.Render.CreateFont("tahoma", 7, 200, 255, 255, 255, true, false, false);
+				
+				
+                bool Chinese = IsChinese(battleTag);
+				
+				if (Chinese)
+				{
+				TextFont = Hud.Render.CreateFont("tahoma", 10, 200, 255, 255, 255, true, false, false);	
+				battleTag = battleTag.PadLeft(16);	
+				}
+				else
+				{	
 				battleTag = battleTag.PadLeft(12);
+				}
+				
                 BattleTagTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/32.653)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/15), (float)(ScreenHeight/30), 0.7843f); 
 				HeroTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/30.769)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/60), (float)(ScreenHeight/34), 0.7843f); 
-				TextFont.DrawText(battleTag, (float)(ToScreenPos.X-(ScreenWidth/49)), (float)(ToScreenPos.Y-(ScreenHeight/145)), true); 
+				TextFont.DrawText(battleTag, (float)(ToScreenPos.X-(ScreenWidth/49)), (float)(ToScreenPos.Y-(ScreenHeight/160)), true); 
 			    if (player.IsInTown && SeePlayersInTown) 
 				   {
 					   TownTexture.Draw((float)(ToScreenPos.X+(ScreenWidth/45)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenHeight/29), (float)(ScreenHeight/29), 0.7843f);
 			       }
+				   
+				
 				
             }
         }
