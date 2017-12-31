@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Danger Plugin for TurboHUD Version 14/12/2017 12:25
+// Danger Plugin for TurboHUD Version 31/12/2017 17:57
 // Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds many new features
 
 using System.Linq;
@@ -209,7 +209,36 @@ namespace Turbo.Plugins.Resu
                 {
                     Brush = Hud.Render.CreateBrush(128, 255, 60, 255, 3, SharpDX.Direct2D1.DashStyle.Dash),
                     Radius = 32f,
+                },
+                new GroundLabelDecorator(Hud) 
+                {
+                    BackgroundBrush = Hud.Render.CreateBrush(0, 0, 0, 0, 0),
+                    TextFont = Hud.Render.CreateFont("tahoma", 20, 128, 255, 60, 255, true, false, false),
+                    OffsetY = 200f,
+                    
+                },
+				new GroundLabelDecorator(Hud) 
+                {
+                    BackgroundBrush = Hud.Render.CreateBrush(0, 0, 0, 0, 0),
+                    TextFont = Hud.Render.CreateFont("tahoma", 20, 128, 255, 60, 255, true, false, false),
+                    OffsetY = -200f,
+                                        
+                },
+				new GroundLabelDecorator(Hud) 
+                {
+                    BackgroundBrush = Hud.Render.CreateBrush(0, 0, 0, 0, 0),
+                    TextFont = Hud.Render.CreateFont("tahoma", 20, 128, 255, 60, 255, true, false, false),
+                    
+                    OffsetX = -200f,                    
+                },
+				new GroundLabelDecorator(Hud) 
+                {
+                    BackgroundBrush = Hud.Render.CreateBrush(0, 0, 0, 0, 0),
+                    TextFont = Hud.Render.CreateFont("tahoma", 20, 128, 255, 60, 255, true, false, false),
+                    
+                    OffsetX = 200f,                    
                 }
+				
                 );
 				
 				MoveWarningDecorator = new WorldDecoratorCollection(
@@ -272,7 +301,12 @@ namespace Turbo.Plugins.Resu
 				{
 				if (actor.SnoActor.Sno == 84608 && actor.NormalizedXyDistanceToMe <= 8 && Desecrator || actor.SnoActor.Sno == 341512 && actor.NormalizedXyDistanceToMe <= 16 && Thunderstorm || actor.SnoActor.Sno == 108869 && actor.NormalizedXyDistanceToMe <= 12 && Plagued || actor.SnoActor.Sno == 3865 && actor.NormalizedXyDistanceToMe <= 12 && Plagued || actor.SnoActor.Sno == 95868 && actor.NormalizedXyDistanceToMe <= 5 && Molten || actor.SnoActor.Sno == 93837 && actor.NormalizedXyDistanceToMe <= 20 && GasCloud || actor.SnoActor.Sno == 159369 && actor.NormalizedXyDistanceToMe <= 20 && MorluSpellcasterMeteorPending || actor.SnoActor.Sno >= 4104 && actor.SnoActor.Sno <= 4106 && actor.NormalizedXyDistanceToMe <= 5 && PoisonDeath || actor.SnoActor.Sno == 4803 && actor.NormalizedXyDistanceToMe <= 13f && MoltenExplosion) MoveWarningDecorator.Paint(layer, actor, actor.FloorCoordinate, "Moveth!");
 				}
-				if (actor.SnoActor.Sno == 219702 && ArcaneEnchanted || actor.SnoActor.Sno == 221225 && ArcaneEnchanted) ArcaneDecorator.Paint(layer, actor, actor.FloorCoordinate, null);
+				if (ArcaneEnchanted) 
+				   {
+					if (actor.SnoActor.Sno == 219702) ArcaneDecorator.Paint(layer, actor, actor.FloorCoordinate, "\u21BA");
+					if (actor.SnoActor.Sno == 221225) ArcaneDecorator.Paint(layer, actor, actor.FloorCoordinate, "\u21BB");
+				   }
+					 
 				if (actor.SnoActor.Sno == 340319 && PoisonEnchanted)
 				   {
 					 var ActorPos = actor.FloorCoordinate.ToScreenCoordinate();
