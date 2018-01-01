@@ -148,8 +148,7 @@ namespace Turbo.Plugins.Resu
 					{	
 				     TextFont = Hud.Render.CreateFont("tahoma", 8, 200, 255, 255, 255, true, false, false);	
 				     battleTag = battleTag.PadLeft(16);
-					 battleTag = battleTag + " Chinese condition is working";
-					 TextFont.DrawText(battleTag, (float)(ToScreenPos.X-(ScreenWidth/40)), (float)(ToScreenPos.Y-(ScreenHeight/160)), true);
+					 TextFont.DrawText(battleTag, (float)(ToScreenPos.X-(ScreenWidth/35)), (float)(ToScreenPos.Y-(ScreenHeight/160)), true);
 					}
 				else if (Regex.IsMatch(battleTag, @"\p{IsCyrillic}"))
                    {
