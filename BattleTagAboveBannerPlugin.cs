@@ -1,19 +1,18 @@
 // https://github.com/User5981/Resu
-// BattleTag Above Banner Plugin for TurboHUD Version 30/12/2017 07:38
+// BattleTag Above Banner Plugin for TurboHUD Version 01/01/2018 14:58
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Turbo.Plugins.Default;
-using System.Text.RegularExpressions;
 
 namespace Turbo.Plugins.Resu
 {
     public class BattleTagAboveBanner : BasePlugin, IInGameWorldPainter
     {
        public bool SeePlayersInTown { get; set; }
-	   
-       // Dictionary<ACT_INDEX, Dictionary<PLAYER_INDEX, COORDINATE>>
+        public TopLabelDecorator TagDecorator { get; set; }
+        // Dictionary<ACT_INDEX, Dictionary<PLAYER_INDEX, COORDINATE>>
         private Dictionary<int, Dictionary<int, IWorldCoordinate>> coordinates;
         
         public BattleTagAboveBanner()
@@ -27,9 +26,12 @@ namespace Turbo.Plugins.Resu
         public override void Load(IController hud)
         {
             base.Load(hud);
-			
-						
-			// Act 1
+            TagDecorator = new TopLabelDecorator(Hud)
+            {
+                TextFont = Hud.Render.CreateFont("tahoma", 8, 200, 255, 255, 255, true, false, false),
+            };
+
+            // Act 1
             coordinates.Add(1, new Dictionary<int, IWorldCoordinate>()
             {
                 { 0, Hud.Window.CreateWorldCoordinate(381.154f, 551.850f, 33.3f) }, // Top of North East Banner  Act 1
@@ -65,8 +67,8 @@ namespace Turbo.Plugins.Resu
             });
         }
 
-		
-		public void PaintWorld(WorldLayer layer)
+
+        public void PaintWorld(WorldLayer layer)
         {
             if (!Hud.Game.IsInTown) return;
             if (Hud.Game.NumberOfPlayersInGame == 1) return;
@@ -79,9 +81,9 @@ namespace Turbo.Plugins.Resu
                 if (player == null) continue; 
                 if (player.IsInTown && !SeePlayersInTown) continue;
                 if (SeePlayersInTown && player.IsMe) continue;
-				
-				
-				var battleTag = player.BattleTagAbovePortrait;	
+				string battleTag = player.BattleTagAbovePortrait;
+                if (battleTag == null) continue;
+                TagDecorator.TextFunc = () => battleTag.ToString();
                 var currentAct = Hud.Game.Me.SnoArea.Act;
                 var playerIndex = player.Index;
 				var HeroTexture = Hud.Texture.GetTexture(890155253);
@@ -129,45 +131,17 @@ namespace Turbo.Plugins.Resu
 					else HeroTexture = Hud.Texture.GetTexture(876580014);	
 				   }
 				
-				
+
                 var BattleTagTexture = Hud.Texture.GetTexture(3098562643);
 				var TownTexture = Hud.Texture.GetTexture(3153923970);
 				var ToScreenPos = coordinates[currentAct][playerIndex].ToScreenCoordinate();
-				
-				
-				var TextFont = Hud.Render.CreateFont("tahoma", 7, 200, 255, 255, 255, true, false, false);
-				
-				
-				
-				BattleTagTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/32.653)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/14), (float)(ScreenHeight/30), 0.7843f); 
-				HeroTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/30.769)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/60), (float)(ScreenHeight/34), 0.7843f); 
-				 
-				
-				
-                if (Regex.IsMatch(battleTag, @"\p{IsCJKUnifiedIdeographs}"))
-					{	
-				     TextFont = Hud.Render.CreateFont("tahoma", 8, 200, 255, 255, 255, true, false, false);	
-				     battleTag = battleTag.PadLeft(16);
-					 TextFont.DrawText(battleTag, (float)(ToScreenPos.X-(ScreenWidth/35)), (float)(ToScreenPos.Y-(ScreenHeight/160)), true);
-					}
-				else if (Regex.IsMatch(battleTag, @"\p{IsCyrillic}"))
-                   {
-                     TextFont = Hud.Render.CreateFont("tahoma", 6, 200, 255, 255, 255, true, false, false);
-					 battleTag = battleTag.PadLeft(12);
-					 TextFont.DrawText(battleTag, (float)(ToScreenPos.X-(ScreenWidth/49)), (float)(ToScreenPos.Y-(ScreenHeight/160)), true);
-                   }
-				else
-				   {	
-				     battleTag = battleTag.PadLeft(12);
-					 TextFont.DrawText(battleTag, (float)(ToScreenPos.X-(ScreenWidth/49)), (float)(ToScreenPos.Y-(ScreenHeight/160)), true);
-				   }
-				
-				
-				
-                
-			    if (player.IsInTown && SeePlayersInTown) 
+
+                BattleTagTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/32.653)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/10), (float)(ScreenHeight/28), 0.7843f); 
+				HeroTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/28.769)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/56), (float)(ScreenHeight/31), 0.7843f);
+                TagDecorator.Paint((float)(ToScreenPos.X - (ScreenWidth / 41)), (float)(ToScreenPos.Y - (ScreenHeight / 100)), (float)(ScreenWidth / 11.5), (float)(ScreenHeight / 45), HorizontalAlign.Center);
+                if (player.IsInTown && SeePlayersInTown) 
 				   {
-					   TownTexture.Draw((float)(ToScreenPos.X+(ScreenWidth/45)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenHeight/29), (float)(ScreenHeight/29), 0.7843f);
+					   TownTexture.Draw((float)(ToScreenPos.X+(ScreenWidth/20)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenHeight/27), (float)(ScreenHeight/26), 0.7843f);
 			       }
 				   
 				
