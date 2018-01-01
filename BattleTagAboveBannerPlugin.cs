@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Turbo.Plugins.Default;
+using System.Text.RegularExpressions;
 
 namespace Turbo.Plugins.Resu
 {
@@ -65,14 +66,7 @@ namespace Turbo.Plugins.Resu
         }
 
 		
-		public bool IsChinese(string text)
-         {
-               return text.Any(c => c >= 0x20000 && c <= 0xFA2D);
-         }
-		
-		
-		
-        public void PaintWorld(WorldLayer layer)
+		public void PaintWorld(WorldLayer layer)
         {
             if (!Hud.Game.IsInTown) return;
             if (Hud.Game.NumberOfPlayersInGame == 1) return;
@@ -144,21 +138,34 @@ namespace Turbo.Plugins.Resu
 				var TextFont = Hud.Render.CreateFont("tahoma", 7, 200, 255, 255, 255, true, false, false);
 				
 				
-                bool Chinese = IsChinese(battleTag);
 				
-				if (Chinese)
-				{
-				TextFont = Hud.Render.CreateFont("tahoma", 10, 200, 255, 255, 255, true, false, false);	
-				battleTag = battleTag.PadLeft(16);	
-				}
-				else
-				{	
-				battleTag = battleTag.PadLeft(12);
-				}
-				
-                BattleTagTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/32.653)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/15), (float)(ScreenHeight/30), 0.7843f); 
+				BattleTagTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/32.653)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/14), (float)(ScreenHeight/30), 0.7843f); 
 				HeroTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/30.769)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/60), (float)(ScreenHeight/34), 0.7843f); 
-				TextFont.DrawText(battleTag, (float)(ToScreenPos.X-(ScreenWidth/49)), (float)(ToScreenPos.Y-(ScreenHeight/160)), true); 
+				 
+				
+				
+                if (Regex.IsMatch(battleTag, @"\p{IsCJKUnifiedIdeographs}"))
+					{	
+				     TextFont = Hud.Render.CreateFont("tahoma", 8, 200, 255, 255, 255, true, false, false);	
+				     battleTag = battleTag.PadLeft(16);
+					 battleTag = battleTag + " Chinese condition is working";
+					 TextFont.DrawText(battleTag, (float)(ToScreenPos.X-(ScreenWidth/40)), (float)(ToScreenPos.Y-(ScreenHeight/160)), true);
+					}
+				else if (Regex.IsMatch(battleTag, @"\p{IsCyrillic}"))
+                   {
+                     TextFont = Hud.Render.CreateFont("tahoma", 6, 200, 255, 255, 255, true, false, false);
+					 battleTag = battleTag.PadLeft(12);
+					 TextFont.DrawText(battleTag, (float)(ToScreenPos.X-(ScreenWidth/49)), (float)(ToScreenPos.Y-(ScreenHeight/160)), true);
+                   }
+				else
+				   {	
+				     battleTag = battleTag.PadLeft(12);
+					 TextFont.DrawText(battleTag, (float)(ToScreenPos.X-(ScreenWidth/49)), (float)(ToScreenPos.Y-(ScreenHeight/160)), true);
+				   }
+				
+				
+				
+                
 			    if (player.IsInTown && SeePlayersInTown) 
 				   {
 					   TownTexture.Draw((float)(ToScreenPos.X+(ScreenWidth/45)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenHeight/29), (float)(ScreenHeight/29), 0.7843f);
