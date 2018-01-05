@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Urshi's gift plugin for TurboHUD version 25/11/2017 17:00
+// Urshi's gift plugin for TurboHUD version 05/01/2018 08:38
  
 using System;
 using System.Diagnostics;
@@ -179,12 +179,31 @@ namespace Turbo.Plugins.Resu
 			  {
 			   var legendaryGem = item.ItemsInSocket.FirstOrDefault(x => x.Quality == ItemQuality.Legendary && x.JewelRank > -1);
                if (legendaryGem == null) return;	 
-			   jewelRank = legendaryGem.JewelRank; 
-			
-			   if (item.SnoItem.MainGroupCode == "2h")
+			   jewelRank = legendaryGem.JewelRank;
+              			
+			   if (item.SnoItem.MainGroupCode == "2h" || item.SnoItem.MainGroupCode == "1h" )
 			      {
-				   LGemName =  "GoE: ";
-			      }	
+				   if (!item.IsLegendary || item.SetSno != uint.MaxValue)
+			           {
+                         LGemName =  item.AncientRank + "GoE: ";	
+			           } 
+                    else
+			           {
+				        LGemName =  Environment.NewLine + "GoE: ";
+			           }				
+			      }
+                else if (item.SnoItem.MainGroupCode == "helm")
+			      {
+					if (item.AncientRank < 1 || item.SetSno != uint.MaxValue)
+			           {
+                        LGemName =  "RSS: ";	
+			           } 
+                    else
+			           {
+				        LGemName =  Environment.NewLine + "RSS: ";
+			           }		
+	
+				  }		 		   
 			   else if (item.AncientRank < 1 || item.SetSno != uint.MaxValue)
 			      {
                    LGemName = legendaryGem.SnoItem.NameLocalized + ":" + Environment.NewLine;	
@@ -225,7 +244,8 @@ namespace Turbo.Plugins.Resu
 			       }
 			   }
 			   
-			}  
+			} 
+			
         }
 		
     }
