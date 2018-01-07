@@ -222,7 +222,20 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
             });  
 // End of Settings for UrshisGift Plugin
 ```
+#### [DiadrasFirstGemPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/DiadrasFirstGemPlugin.cs) - Shows stacks & the percentage of damage increased by the legendary gem under each monster when you have Bane of the Stricken equipped. 
+Note : [HotEnablerDisablerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HotEnablerDisablerPlugin.cs) is now MANDATORY to use this plugin.
 
+![alt text](READMEpics/Stricken.png) 
+
+Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
+```C#
+// Settings for Diadra's First Gem Plugin
+               Hud.RunOnPlugin<Resu.DiadrasFirstGemPlugin>(plugin => 
+            { 
+                    plugin.ElitesOnly = false;
+            });  
+// End of Settings for Diadra's First Gem Plugin
+```
 #### [HotEnablerDisablerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HotEnablerDisablerPlugin.cs) - This plugin allows you to disable a plugin by :
 - Hero is Softcore
 - Hero is Hardcore
