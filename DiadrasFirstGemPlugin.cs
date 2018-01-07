@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Diadra's First Gem Plugin for TurboHUD Version 07/01/2018 17:33
+// Diadra's First Gem Plugin for TurboHUD Version 07/01/2018 22:19
 
 using System;
 using System.Collections.Generic;
@@ -110,7 +110,7 @@ namespace Turbo.Plugins.Resu
 								 double prevHealth = valuesOut.Item1;
 								 int prevStacks = valuesOut.Item2;
 								 													 
-								  if (prevHealth > Health) 
+								  if (prevHealth > Health && monster.Attackable) 
                                     { 
 								      if ((Hud.Game.CurrentRealTimeMilliseconds - lastStrikeTime) >= (1000/3))
 									     { 
