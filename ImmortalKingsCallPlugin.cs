@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Immortal King's Call Plugin for TurboHUD Version 25/11/2017 07:35
+// Immortal King's Call Plugin for TurboHUD Version 07/01/2018 19:56
 
 using System;
 using System.Globalization;
@@ -51,7 +51,7 @@ namespace Turbo.Plugins.Resu
 					   } 	
 				       else
 					   {
-						    ImmortalKingsCall = "+1500% " + (int)WrathOfTheBerserker.TimeLeft() + "s";
+						    ImmortalKingsCall = "+1500% " + WrathOfTheBerserker.TimeLeftSeconds + "s"; //(int)WrathOfTheBerserker.TimeLeft()
 							
 							if (Hud.Game.NumberOfPlayersInGame == 1) 
 							  {
