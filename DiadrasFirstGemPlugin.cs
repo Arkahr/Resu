@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Diadra's First Gem Plugin for TurboHUD Version 07/01/2018 22:19
+// Diadra's First Gem Plugin for TurboHUD Version 08/01/2018 08:03
 
 using System;
 using System.Collections.Generic;
@@ -109,10 +109,13 @@ namespace Turbo.Plugins.Resu
 								 double Health = monster.CurHealth;
 								 double prevHealth = valuesOut.Item1;
 								 int prevStacks = valuesOut.Item2;
+								 
+														 
+								 
 								 													 
 								  if (prevHealth > Health && monster.Attackable) 
                                     { 
-								      if ((Hud.Game.CurrentRealTimeMilliseconds - lastStrikeTime) >= (1000/3))
+								      if (Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && (Hud.Game.CurrentRealTimeMilliseconds - lastStrikeTime) >= (1000/3)) 
 									     { 
                                           int Stacks = (int)(prevStacks + 1); 
 								          Tuple<double,int> updateValues = new Tuple<double,int>(monster.CurHealth, Stacks);
