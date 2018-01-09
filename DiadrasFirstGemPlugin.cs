@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Diadra's First Gem Plugin for TurboHUD Version 09/01/2018 14:07
+// Diadra's First Gem Plugin for TurboHUD Version 09/01/2018 22:09
 
 using System;
 using System.Collections.Generic;
@@ -18,6 +18,7 @@ namespace Turbo.Plugins.Resu
 		public bool ElitesOnly { get; set; }
 		public int propSquare { get; set; }
 		public long lastStrikeTime { get; set; }
+		
 		public TopLabelDecorator StrickenStackDecorator { get; set; }
 		public TopLabelDecorator StrickenPercentDecorator { get; set; }
 		public Dictionary<uint,Tuple<double,int>> MonsterStatus { get; set; } // AcdId, Health, Stacks
@@ -38,6 +39,7 @@ namespace Turbo.Plugins.Resu
 		    propSquare = (int)(Hud.Window.Size.Width/53.333);
 			
 			
+			
 			StrickenStackDecorator = new TopLabelDecorator(Hud)
             {
                 TextFont = Hud.Render.CreateFont("tahoma", 7, 255, 0, 0, 0, true, false, 250, 255, 255, 255, true),
@@ -49,10 +51,7 @@ namespace Turbo.Plugins.Resu
                 TextFont = Hud.Render.CreateFont("tahoma", 6, 255, 255, 255, 255, false, false, 250, 0, 0, 0, true),
                
             };
-		    
-			
-			 
-		
+	
 			
         }
 		
@@ -63,6 +62,7 @@ namespace Turbo.Plugins.Resu
             if (newGame)
             {
                 MonsterStatus.Clear();
+						
             }
         }
 		
@@ -89,7 +89,7 @@ namespace Turbo.Plugins.Resu
 		  
 		 
            if (StrickenActive == false) return;
-		  
+		   	   
 		  
 			 float gemMaths = 0.8f + (0.01f*(float)StrickenRank);
 		     var Texture = Hud.Texture.GetItemTexture(Hud.Sno.SnoItems.Unique_Gem_018_x1);
@@ -110,12 +110,15 @@ namespace Turbo.Plugins.Resu
 								 double prevHealth = valuesOut.Item1;
 								 int prevStacks = valuesOut.Item2;
 								 
-														 
-								 
+								 bool isAttacking = false;
+								 if (Hud.Game.Me.AnimationState.ToString() == "Attacking" || Hud.Game.Me.AnimationState.ToString() == "Channeling") {isAttacking = true;} else {isAttacking = false;}
+								
 								 													 
-								  if (prevHealth > Health && monster.Attackable) 
+								  if (prevHealth > Health && monster.Attackable && isAttacking) 
                                     { 
-								      if (Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 0) && !Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && (Hud.Game.CurrentRealTimeMilliseconds - lastStrikeTime) >= (1/Hud.Game.Me.Offense.AttackSpeed)*1000)
+								      float APS = Hud.Game.Me.Offense.AttackSpeed;
+									  if (APS > 5f) APS = 5f;
+								      if (Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 0) && !Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && (Hud.Game.CurrentRealTimeMilliseconds - lastStrikeTime) >= (0.9/APS)*1000)
 									     { 
                                           int Stacks = (int)(prevStacks + 1); 
 								          Tuple<double,int> updateValues = new Tuple<double,int>(monster.CurHealth, Stacks);
