@@ -1,6 +1,5 @@
 // https://github.com/User5981/Resu
-// Diadra's First Gem Plugin for TurboHUD Version 10/01/2018 14:42
-
+// Diadra's First Gem Plugin for TurboHUD Version 10/01/2018 15:30
 using System;
 using System.Collections.Generic;
 using Turbo.Plugins.Default;
@@ -111,14 +110,8 @@ namespace Turbo.Plugins.Resu
 								 double prevHealth = valuesOut.Item1;
 								 int prevStacks = valuesOut.Item2;
 								 
-								 
-								 
-
-                                    if (Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2)) {cooldown = true; monsterCount = 0;}
-                                    else {cooldown = false;}
-
-								
-								  if (prevHealth > Health && monster.Attackable && Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 0) && !cooldown && monsterCount == 0) 
+		
+								  if (prevHealth > Health && monster.Attackable && Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2)  && monsterCount == 0) //&& !cooldown
                                     { 
 								     
 									      
@@ -127,7 +120,7 @@ namespace Turbo.Plugins.Resu
 									      MonsterStatus[monster.AcdId] = updateValues;
 										  lastStrikeTime = Hud.Game.CurrentRealTimeMilliseconds;
 									 	  monsterCount++; 								  
-									  
+									      cooldown = true;
 									  									  
 									   /*  float APS = Hud.Game.Me.Offense.AttackSpeed;
 									     if (APS > 5f) APS = 5f;
@@ -140,7 +133,7 @@ namespace Turbo.Plugins.Resu
 										 } */
 						
 									}
-									
+								  else {cooldown = false; monsterCount = 0;}	
 									
 
                                   if (prevStacks > 0)
