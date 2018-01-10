@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Diadra's First Gem Plugin for TurboHUD Version 10/01/2018 15:30
+// Diadra's First Gem Plugin for TurboHUD Version 10/01/2018 21:50
 using System;
 using System.Collections.Generic;
 using Turbo.Plugins.Default;
@@ -111,7 +111,7 @@ namespace Turbo.Plugins.Resu
 								 int prevStacks = valuesOut.Item2;
 								 
 		
-								  if (prevHealth > Health && monster.Attackable && Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2)  && monsterCount == 0) //&& !cooldown
+								  if (prevHealth > Health && monster.Attackable && Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && monsterCount == 0 && !cooldown) 
                                     { 
 								     
 									      
@@ -122,18 +122,8 @@ namespace Turbo.Plugins.Resu
 									 	  monsterCount++; 								  
 									      cooldown = true;
 									  									  
-									   /*  float APS = Hud.Game.Me.Offense.AttackSpeed;
-									     if (APS > 5f) APS = 5f;
-								         if (Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 0) && !Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && (Hud.Game.CurrentRealTimeMilliseconds - lastStrikeTime) >= (0.9/APS)*1000)
-									     { 
-                                          int Stacks = (int)(prevStacks + 1); 
-								          Tuple<double,int> updateValues = new Tuple<double,int>(monster.CurHealth, Stacks);
-									      MonsterStatus[monster.AcdId] = updateValues;
-										  lastStrikeTime = Hud.Game.CurrentRealTimeMilliseconds;
-										 } */
-						
 									}
-								  else {cooldown = false; monsterCount = 0;}	
+								  else if (!Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && cooldown){cooldown = false; monsterCount = 0;}	
 									
 
                                   if (prevStacks > 0)
