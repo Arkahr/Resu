@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Diadra's First Gem Plugin for TurboHUD Version 10/01/2018 21:50
+// Diadra's First Gem Plugin for TurboHUD Version 10/01/2018 22:44
 using System;
 using System.Collections.Generic;
 using Turbo.Plugins.Default;
@@ -11,12 +11,9 @@ namespace Turbo.Plugins.Resu
     public class DiadrasFirstGemPlugin : BasePlugin, IInGameWorldPainter
 	{
 
-       
-       
 		public int StrickenRank { get; set; }
 		public bool ElitesOnly { get; set; }
 		public int propSquare { get; set; }
-		public long lastStrikeTime { get; set; }
 		public bool cooldown { get; set; }
 		public int monsterCount { get; set; }
 		public TopLabelDecorator StrickenStackDecorator { get; set; }
@@ -35,8 +32,7 @@ namespace Turbo.Plugins.Resu
         {
             base.Load(hud);
 			StrickenRank = 0;
-			lastStrikeTime = 0;
-		    propSquare = (int)(Hud.Window.Size.Width/53.333);
+			propSquare = (int)(Hud.Window.Size.Width/53.333);
 			cooldown = false;
 			monsterCount = 0;
 			
@@ -93,7 +89,7 @@ namespace Turbo.Plugins.Resu
 		  
 			 float gemMaths = 0.8f + (0.01f*(float)StrickenRank);
 		     var Texture = Hud.Texture.GetItemTexture(Hud.Sno.SnoItems.Unique_Gem_018_x1);
-                var monsters = Hud.Game.Monsters.OrderBy(i => i.NormalizedXyDistanceToMe);
+                var monsters = Hud.Game.Monsters; //.OrderBy(i => i.NormalizedXyDistanceToMe);
              	foreach (var monster in monsters)
                 {
 					if (ElitesOnly && !monster.IsElite) continue;
@@ -111,19 +107,22 @@ namespace Turbo.Plugins.Resu
 								 int prevStacks = valuesOut.Item2;
 								 
 		
-								  if (prevHealth > Health && monster.Attackable && Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && monsterCount == 0 && !cooldown) 
-                                    { 
+								  if (prevHealth > Health && Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && monsterCount == 0 && !cooldown) 
+                                     { 
 								     
 									      
 									      int Stacks = (int)(prevStacks + 1); 
 								          Tuple<double,int> updateValues = new Tuple<double,int>(monster.CurHealth, Stacks);
 									      MonsterStatus[monster.AcdId] = updateValues;
-										  lastStrikeTime = Hud.Game.CurrentRealTimeMilliseconds;
-									 	  monsterCount++; 								  
+										  monsterCount++; 								  
 									      cooldown = true;
 									  									  
-									}
-								  else if (!Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && cooldown){cooldown = false; monsterCount = 0;}	
+									 }
+								  else if (!Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && cooldown)
+								     {
+										 cooldown = false; 
+										 monsterCount = 0;
+									 }	
 									
 
                                   if (prevStacks > 0)
