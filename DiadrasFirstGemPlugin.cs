@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Diadra's First Gem Plugin for TurboHUD Version 09/01/2018 22:09
+// Diadra's First Gem Plugin for TurboHUD Version 10/01/2018 14:42
 
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,8 @@ namespace Turbo.Plugins.Resu
 		public bool ElitesOnly { get; set; }
 		public int propSquare { get; set; }
 		public long lastStrikeTime { get; set; }
-		
+		public bool cooldown { get; set; }
+		public int monsterCount { get; set; }
 		public TopLabelDecorator StrickenStackDecorator { get; set; }
 		public TopLabelDecorator StrickenPercentDecorator { get; set; }
 		public Dictionary<uint,Tuple<double,int>> MonsterStatus { get; set; } // AcdId, Health, Stacks
@@ -37,8 +38,8 @@ namespace Turbo.Plugins.Resu
 			StrickenRank = 0;
 			lastStrikeTime = 0;
 		    propSquare = (int)(Hud.Window.Size.Width/53.333);
-			
-			
+			cooldown = false;
+			monsterCount = 0;
 			
 			StrickenStackDecorator = new TopLabelDecorator(Hud)
             {
@@ -93,7 +94,7 @@ namespace Turbo.Plugins.Resu
 		  
 			 float gemMaths = 0.8f + (0.01f*(float)StrickenRank);
 		     var Texture = Hud.Texture.GetItemTexture(Hud.Sno.SnoItems.Unique_Gem_018_x1);
-                var monsters = Hud.Game.Monsters;
+                var monsters = Hud.Game.Monsters.OrderBy(i => i.NormalizedXyDistanceToMe);
              	foreach (var monster in monsters)
                 {
 					if (ElitesOnly && !monster.IsElite) continue;
@@ -110,23 +111,37 @@ namespace Turbo.Plugins.Resu
 								 double prevHealth = valuesOut.Item1;
 								 int prevStacks = valuesOut.Item2;
 								 
-								 bool isAttacking = false;
-								 if (Hud.Game.Me.AnimationState.ToString() == "Attacking" || Hud.Game.Me.AnimationState.ToString() == "Channeling") {isAttacking = true;} else {isAttacking = false;}
+								 
+								 
+
+                                    if (Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2)) {cooldown = true; monsterCount = 0;}
+                                    else {cooldown = false;}
+
 								
-								 													 
-								  if (prevHealth > Health && monster.Attackable && isAttacking) 
+								  if (prevHealth > Health && monster.Attackable && Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 0) && !cooldown && monsterCount == 0) 
                                     { 
-								      float APS = Hud.Game.Me.Offense.AttackSpeed;
-									  if (APS > 5f) APS = 5f;
-								      if (Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 0) && !Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && (Hud.Game.CurrentRealTimeMilliseconds - lastStrikeTime) >= (0.9/APS)*1000)
+								     
+									      
+									      int Stacks = (int)(prevStacks + 1); 
+								          Tuple<double,int> updateValues = new Tuple<double,int>(monster.CurHealth, Stacks);
+									      MonsterStatus[monster.AcdId] = updateValues;
+										  lastStrikeTime = Hud.Game.CurrentRealTimeMilliseconds;
+									 	  monsterCount++; 								  
+									  
+									  									  
+									   /*  float APS = Hud.Game.Me.Offense.AttackSpeed;
+									     if (APS > 5f) APS = 5f;
+								         if (Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 0) && !Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && (Hud.Game.CurrentRealTimeMilliseconds - lastStrikeTime) >= (0.9/APS)*1000)
 									     { 
                                           int Stacks = (int)(prevStacks + 1); 
 								          Tuple<double,int> updateValues = new Tuple<double,int>(monster.CurHealth, Stacks);
 									      MonsterStatus[monster.AcdId] = updateValues;
 										  lastStrikeTime = Hud.Game.CurrentRealTimeMilliseconds;
-										 }
+										 } */
 						
 									}
+									
+									
 
                                   if (prevStacks > 0)
 					                 {
@@ -140,7 +155,11 @@ namespace Turbo.Plugins.Resu
 				                     StrickenPercentDecorator.TextFunc = () => percentDamageBonus;
 				                     StrickenStackDecorator.Paint(monsterScreenCoordinate.X, monsterScreenCoordinate.Y, propSquare, propSquare, HorizontalAlign.Center);
 				                     StrickenPercentDecorator.Paint(monsterScreenCoordinate.X, (float)(monsterScreenCoordinate.Y+(propSquare/2.5)), propSquare, propSquare, HorizontalAlign.Right);
-                                      
+									 if (cooldown)
+									    { 
+									     StrickenPercentDecorator.TextFunc = () => "\u231B";
+				                         StrickenPercentDecorator.Paint((float)(monsterScreenCoordinate.X+(propSquare/2)),monsterScreenCoordinate.Y, propSquare, propSquare, HorizontalAlign.Center);
+                                        } 
 					                 }
 
 						
