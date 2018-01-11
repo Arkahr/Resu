@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Diadra's First Gem Plugin for TurboHUD Version 10/01/2018 22:44
+// Diadra's First Gem Plugin for TurboHUD Version 11/01/2018 11:45
 using System;
 using System.Collections.Generic;
 using Turbo.Plugins.Default;
@@ -8,11 +8,11 @@ using System.Linq;
 namespace Turbo.Plugins.Resu
 {
 
-    public class DiadrasFirstGemPlugin : BasePlugin, IInGameWorldPainter
+	public class DiadrasFirstGemPlugin : BasePlugin, IInGameWorldPainter
 	{
-
 		public int StrickenRank { get; set; }
-		public bool ElitesOnly { get; set; }
+		public bool ElitesnBossOnly { get; set; }
+		public bool BossOnly { get; set; }
 		public int propSquare { get; set; }
 		public bool cooldown { get; set; }
 		public int monsterCount { get; set; }
@@ -24,7 +24,8 @@ namespace Turbo.Plugins.Resu
 		public DiadrasFirstGemPlugin()
 		{
             Enabled = true;
-			ElitesOnly = false;
+			ElitesnBossOnly = false;
+			BossOnly = false;
 			MonsterStatus = new Dictionary<uint,Tuple<double,int>>();
 		}
 
@@ -38,17 +39,13 @@ namespace Turbo.Plugins.Resu
 			
 			StrickenStackDecorator = new TopLabelDecorator(Hud)
             {
-                TextFont = Hud.Render.CreateFont("tahoma", 7, 255, 0, 0, 0, true, false, 250, 255, 255, 255, true),
-               
+              TextFont = Hud.Render.CreateFont("tahoma", 7, 255, 0, 0, 0, true, false, 250, 255, 255, 255, true),
             };
             
 			StrickenPercentDecorator = new TopLabelDecorator(Hud)
             {
-                TextFont = Hud.Render.CreateFont("tahoma", 6, 255, 255, 255, 255, false, false, 250, 0, 0, 0, true),
-               
+              TextFont = Hud.Render.CreateFont("tahoma", 6, 255, 255, 255, 255, false, false, 250, 0, 0, 0, true),
             };
-	
-			
         }
 		
 		
@@ -58,7 +55,6 @@ namespace Turbo.Plugins.Resu
             if (newGame)
             {
                 MonsterStatus.Clear();
-						
             }
         }
 		
@@ -71,62 +67,58 @@ namespace Turbo.Plugins.Resu
 			bool GoOn = hedPlugin.CanIRun(Hud.Game.Me,this.GetType().Name); 
 			if (!GoOn) return;
 			
-		  bool StrickenActive = false;
-		  
-          var jewelsLocations = Hud.Game.Items.Where(x => x.Location == ItemLocation.LeftRing || x.Location == ItemLocation.RightRing || x.Location == ItemLocation.Neck);
-		  foreach (var StrickenLocation in jewelsLocations)
-		  {
-			if (StrickenLocation.SocketCount != 1 || StrickenLocation.ItemsInSocket == null) continue; 
-			var Stricken = StrickenLocation.ItemsInSocket.FirstOrDefault(); 
-			if (Stricken == null) continue;
-            if (Stricken.SnoItem.Sno == 3249948847) {StrickenActive = true; StrickenRank = Stricken.JewelRank; break;} else {continue;}
-			
-		  }
+		    bool StrickenActive = false;
+            var jewelsLocations = Hud.Game.Items.Where(x => x.Location == ItemLocation.LeftRing || x.Location == ItemLocation.RightRing || x.Location == ItemLocation.Neck);
+		   
+		    foreach (var StrickenLocation in jewelsLocations)
+		            {
+			          if (StrickenLocation.SocketCount != 1 || StrickenLocation.ItemsInSocket == null) continue; 
+			          var Stricken = StrickenLocation.ItemsInSocket.FirstOrDefault(); 
+			          if (Stricken == null) continue;
+                      if (Stricken.SnoItem.Sno == 3249948847) {StrickenActive = true; StrickenRank = Stricken.JewelRank; break;} else {continue;}
+		            }
 		  
 		 
            if (StrickenActive == false) return;
 		   	   
 		  
-			 float gemMaths = 0.8f + (0.01f*(float)StrickenRank);
-		     var Texture = Hud.Texture.GetItemTexture(Hud.Sno.SnoItems.Unique_Gem_018_x1);
-                var monsters = Hud.Game.Monsters; //.OrderBy(i => i.NormalizedXyDistanceToMe);
-             	foreach (var monster in monsters)
-                {
-					if (ElitesOnly && !monster.IsElite) continue;
-					var monsterScreenCoordinate = monster.FloorCoordinate.ToScreenCoordinate();
+		   float gemMaths = 0.8f + (0.01f*(float)StrickenRank);
+		   var Texture = Hud.Texture.GetItemTexture(Hud.Sno.SnoItems.Unique_Gem_018_x1);
+           var monsters = Hud.Game.Monsters; //.OrderBy(i => i.NormalizedXyDistanceToMe);
+           foreach (var monster in monsters)
+                   {
+					 if (ElitesnBossOnly && !monster.IsElite) continue;
+					 if (BossOnly && monster.Rarity.ToString() != "Boss") continue;
+					 var monsterScreenCoordinate = monster.FloorCoordinate.ToScreenCoordinate();
 					
-					if  (monster.IsAlive)
+					 if (monster.IsAlive)
 					    {
 							
-						   Tuple<double,int> valuesOut;
-						   if  (MonsterStatus.TryGetValue(monster.AcdId, out valuesOut)) 
-                               {
-								 
-								 double Health = monster.CurHealth;
-								 double prevHealth = valuesOut.Item1;
-								 int prevStacks = valuesOut.Item2;
-								 
-		
-								  if (prevHealth > Health && Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && monsterCount == 0 && !cooldown) 
-                                     { 
-								     
-									      
-									      int Stacks = (int)(prevStacks + 1); 
-								          Tuple<double,int> updateValues = new Tuple<double,int>(monster.CurHealth, Stacks);
-									      MonsterStatus[monster.AcdId] = updateValues;
-										  monsterCount++; 								  
-									      cooldown = true;
-									  									  
-									 }
-								  else if (!Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && cooldown)
-								     {
-										 cooldown = false; 
-										 monsterCount = 0;
-									 }	
+						  Tuple<double,int> valuesOut;
+						  if  (MonsterStatus.TryGetValue(monster.AcdId, out valuesOut)) 
+                              {
+							    double Health = monster.CurHealth;
+							    double prevHealth = valuesOut.Item1;
+							    int prevStacks = valuesOut.Item2;
+								
+								if (prevHealth > Health && Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && monsterCount == 0 && !cooldown) 
+                                   { 
+									 int Stacks = (int)(prevStacks + 1); 
+								     Tuple<double,int> updateValues = new Tuple<double,int>(monster.CurHealth, Stacks);
+									 MonsterStatus[monster.AcdId] = updateValues;
+									 monsterCount++; 								  
+									 cooldown = true;
+								   }
+									
+								else if (!Hud.Game.Me.Powers.BuffIsActive(Hud.Sno.SnoPowers.BaneOfTheStrickenPrimary.Sno, 2) && cooldown)
+								        {
+									      cooldown = false; 
+									      monsterCount = 0;
+									    }	
 									
 
-                                  if (prevStacks > 0)
-					                 {
+                                if (prevStacks > 0)
+					               {
 									 int bossPerc = 0; 
 									 if (monster.SnoMonster.Priority == MonsterPriority.boss) {bossPerc = 25;}
 									 else {bossPerc = 0;}
@@ -137,39 +129,26 @@ namespace Turbo.Plugins.Resu
 				                     StrickenPercentDecorator.TextFunc = () => percentDamageBonus;
 				                     StrickenStackDecorator.Paint(monsterScreenCoordinate.X, monsterScreenCoordinate.Y, propSquare, propSquare, HorizontalAlign.Center);
 				                     StrickenPercentDecorator.Paint(monsterScreenCoordinate.X, (float)(monsterScreenCoordinate.Y+(propSquare/2.5)), propSquare, propSquare, HorizontalAlign.Right);
+									  
 									 if (cooldown)
 									    { 
-									     StrickenPercentDecorator.TextFunc = () => "\u231B";
-				                         StrickenPercentDecorator.Paint((float)(monsterScreenCoordinate.X+(propSquare/2)),monsterScreenCoordinate.Y, propSquare, propSquare, HorizontalAlign.Center);
+									      StrickenPercentDecorator.TextFunc = () => "\u231B";
+				                          StrickenPercentDecorator.Paint((float)(monsterScreenCoordinate.X+(propSquare/2)),monsterScreenCoordinate.Y, propSquare, propSquare, HorizontalAlign.Center);
                                         } 
-					                 }
-
-						
-				                }
-			               else 
-						        { 
-						         Tuple<double,int> valuesIn = new Tuple<double,int>(monster.CurHealth, (int)(0));
-					             MonsterStatus.Add(monster.AcdId, valuesIn);
-						 	    }	
+					               }
+				              }
+			              else 
+						      { 
+						        Tuple<double,int> valuesIn = new Tuple<double,int>(monster.CurHealth, (int)(0));
+					            MonsterStatus.Add(monster.AcdId, valuesIn);
+						 	  }	
 						   
 					    }						   
 					else
 					    {
-					       
-	
-					     MonsterStatus.Remove(monster.AcdId);
-						}
-				
-					
-                    					 
-				}
-			
-			
-	
-						
+						  MonsterStatus.Remove(monster.AcdId);
+					    }
+				   }
         }
-
-       
     }
-
 }
