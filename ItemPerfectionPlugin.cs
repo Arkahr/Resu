@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Item Perfection plugin for TurboHUD version 30/11/2017 22:25
+// Item Perfection plugin for TurboHUD version 12/01/2018 06:23
  
 using System;
 using System.Diagnostics;
@@ -72,7 +72,7 @@ namespace Turbo.Plugins.Resu
 			if (Perfection == 0) return;
 			ShadowBrush = Hud.Render.CreateBrush(255, 0, 0, 0, 0.1f); 
 			
-			PerfectFont = Hud.Render.CreateFont("tahoma", 8, 255, 197, 177, 118, false, false, false);
+			PerfectFont = Hud.Render.CreateFont("tahoma", 8, 255, 154, 105, 24, false, false, false);
 			
 			height = 80f;
 			
