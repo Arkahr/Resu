@@ -36,7 +36,7 @@ namespace Turbo.Plugins.Resu
 			propSquare = (int)(Hud.Window.Size.Width/53.333);
 			cooldown = false;
 			monsterCount = 0;
-			
+						
 			StrickenStackDecorator = new TopLabelDecorator(Hud)
             {
               TextFont = Hud.Render.CreateFont("tahoma", 7, 255, 0, 0, 0, true, false, 250, 255, 255, 255, true),
@@ -114,7 +114,13 @@ namespace Turbo.Plugins.Resu
 								        {
 									      cooldown = false; 
 									      monsterCount = 0;
-									    }	
+										  if (prevHealth > Health)
+										     {
+										       int Stacks = (int)(prevStacks); 
+								               Tuple<double,int> updateValues = new Tuple<double,int>(monster.CurHealth, Stacks);
+									           MonsterStatus[monster.AcdId] = updateValues;
+										     }
+										}	
 									
 
                                 if (prevStacks > 0)
@@ -135,7 +141,7 @@ namespace Turbo.Plugins.Resu
 									      StrickenPercentDecorator.TextFunc = () => "\u231B";
 				                          StrickenPercentDecorator.Paint((float)(monsterScreenCoordinate.X+(propSquare/2)),monsterScreenCoordinate.Y, propSquare, propSquare, HorizontalAlign.Center);
                                         } 
-					               }
+								   }
 				              }
 			              else 
 						      { 
