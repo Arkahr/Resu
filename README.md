@@ -234,6 +234,8 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
             { 
                     plugin.ElitesnBossOnly = false;
 		    plugin.BossOnly = false;
+		    plugin.offsetX = 0;
+		    plugin.offsetY = 0;
             });  
 // End of Settings for Diadra's First Gem Plugin
 ```
