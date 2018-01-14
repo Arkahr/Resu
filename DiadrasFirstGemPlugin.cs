@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Diadra's First Gem Plugin for TurboHUD Version 14/01/2018 09:19
+// Diadra's First Gem Plugin for TurboHUD Version 14/01/2018 19:51
 using System;
 using System.Collections.Generic;
 using Turbo.Plugins.Default;
@@ -20,8 +20,6 @@ namespace Turbo.Plugins.Resu
 		public int offsetY { get; set; }
         public TopLabelDecorator StrickenStackDecorator { get; set; }
         public TopLabelDecorator StrickenPercentDecorator { get; set; }
-		public TopLabelDecorator BossStrickenStackDecorator { get; set; }
-        public TopLabelDecorator BossStrickenPercentDecorator { get; set; }
         public Dictionary<uint,Tuple<double,int>> MonsterStatus { get; set; }  // AcdId, Health, Stacks
                 
         
@@ -52,16 +50,7 @@ namespace Turbo.Plugins.Resu
             {
               TextFont = Hud.Render.CreateFont("tahoma", 6, 255, 255, 255, 255, false, false, 250, 0, 0, 0, true),
             };
-			
-			BossStrickenStackDecorator = new TopLabelDecorator(Hud)
-            {
-              TextFont = Hud.Render.CreateFont("tahoma", 14, 255, 0, 0, 0, true, false, 250, 255, 255, 255, true),
-            };
-            
-            BossStrickenPercentDecorator = new TopLabelDecorator(Hud)
-            {
-              TextFont = Hud.Render.CreateFont("tahoma", 12, 255, 255, 255, 255, false, false, 250, 0, 0, 0, true),
-            };
+		
         }
         
         
@@ -142,38 +131,21 @@ namespace Turbo.Plugins.Resu
                                 if (prevStacks > 0)
                                    {
                                      int bossPerc = 0;
-									 int bossMult = 1;
-                                     if (monster.SnoMonster.Priority == MonsterPriority.boss) {bossPerc = 25; bossMult = 2;}
-                                     else {bossPerc = 0; bossMult = 1;}
+									 if (monster.SnoMonster.Priority == MonsterPriority.boss) {bossPerc = 25;}
+                                     else {bossPerc = 0;}
                                      float StrickenDamagePercent = (float)(bossPerc + (prevStacks * gemMaths));
                                      string percentDamageBonus = "+" + StrickenDamagePercent.ToString("0.00") + "%"; 
-                                     Texture.Draw(monsterScreenCoordinate.X + offsetX, monsterScreenCoordinate.Y + offsetY, propSquare*bossMult, propSquare*bossMult);
+                                     Texture.Draw(monsterScreenCoordinate.X + offsetX, monsterScreenCoordinate.Y + offsetY, propSquare, propSquare);
                                      StrickenStackDecorator.TextFunc = () => prevStacks.ToString();
                                      StrickenPercentDecorator.TextFunc = () => percentDamageBonus;
-									 BossStrickenStackDecorator.TextFunc = () => prevStacks.ToString();
-                                     BossStrickenPercentDecorator.TextFunc = () => percentDamageBonus;
-									 
-									 if (monster.SnoMonster.Priority == MonsterPriority.boss)
-									    {
-										  BossStrickenStackDecorator.Paint(monsterScreenCoordinate.X + offsetX, monsterScreenCoordinate.Y + offsetY, propSquare*bossMult, propSquare*bossMult, HorizontalAlign.Center);
-                                          BossStrickenPercentDecorator.Paint(monsterScreenCoordinate.X + offsetX, (float)(monsterScreenCoordinate.Y + offsetY +((propSquare*bossMult)/2.5)), propSquare * bossMult, propSquare * bossMult, HorizontalAlign.Right);	
-										  if (cooldown)
-                                             { 
-                                          	  BossStrickenPercentDecorator.TextFunc = () => "\u231B";
-                                              BossStrickenPercentDecorator.Paint((float)(monsterScreenCoordinate.X + offsetX +((propSquare*bossMult)/2)),monsterScreenCoordinate.Y + offsetY, propSquare * bossMult, propSquare * bossMult, HorizontalAlign.Center);
-                                             } 	
-										}
-									 else
-									    {	
-                                          StrickenStackDecorator.Paint(monsterScreenCoordinate.X + offsetX, monsterScreenCoordinate.Y + offsetY, propSquare*bossMult, propSquare*bossMult, HorizontalAlign.Center);
-                                          StrickenPercentDecorator.Paint(monsterScreenCoordinate.X + offsetX, (float)(monsterScreenCoordinate.Y + offsetY +((propSquare*bossMult)/2.5)), propSquare * bossMult, propSquare * bossMult, HorizontalAlign.Right);
-                                          if (cooldown)
-                                             { 
-                                          	  StrickenPercentDecorator.TextFunc = () => "\u231B";
-                                              StrickenPercentDecorator.Paint((float)(monsterScreenCoordinate.X + offsetX +((propSquare*bossMult)/2)),monsterScreenCoordinate.Y + offsetY, propSquare * bossMult, propSquare * bossMult, HorizontalAlign.Center);
-                                             } 
-										}
-                                     
+									 StrickenStackDecorator.Paint(monsterScreenCoordinate.X + offsetX, monsterScreenCoordinate.Y + offsetY, propSquare, propSquare, HorizontalAlign.Center);
+                                     StrickenPercentDecorator.Paint(monsterScreenCoordinate.X + offsetX, (float)(monsterScreenCoordinate.Y + offsetY +(propSquare/2.5)), propSquare, propSquare, HorizontalAlign.Right);
+                                     if (cooldown)
+                                        { 
+                                          StrickenPercentDecorator.TextFunc = () => "\u231B";
+                                          StrickenPercentDecorator.Paint((float)(monsterScreenCoordinate.X + offsetX +(propSquare/2)),monsterScreenCoordinate.Y + offsetY, propSquare, propSquare, HorizontalAlign.Center);
+                                        } 
+				
                                    }
                               }
                           else 
