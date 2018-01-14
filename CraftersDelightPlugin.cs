@@ -1,13 +1,14 @@
 // https://github.com/User5981/Resu
-// Crafter's Delight Plugin for TurboHUD Version 07/12/2017 16:10
+// Crafter's Delight Plugin for TurboHUD Version 14/01/2018 19:27
  
 using System.Collections.Generic;
 using System.Linq;
 using Turbo.Plugins.Default;
+using System.Threading;
  
 namespace Turbo.Plugins.Resu
 {
-    public class CraftersDelightPlugin : BasePlugin, IInGameWorldPainter
+    public class CraftersDelightPlugin : BasePlugin, IInGameWorldPainter, ILootGeneratedHandler
     {
         public Dictionary<uint, WorldDecoratorCollection> SnoMapping { get; set; }
         public WorldDecoratorCollection SlainFarmerDecorator { get; set; }
@@ -301,12 +302,27 @@ namespace Turbo.Plugins.Resu
             ));
         }
  
-          
+        public void OnLootGenerated(IItem item, bool gambled)
+        {
+          if (!Hud.Game.IsIngameSoundEnabled) return;
+		  if (item.AncientRank < 1) {}
+		  else
+		  {
+		    var soundPlayer = item.AncientRank == 1 ? Hud.Sound.LoadSoundPlayer("Ancient-Drop-By-Resu.wav") : Hud.Sound.LoadSoundPlayer("Primal-Drop-By-Resu.wav");
+		    
+			ThreadPool.QueueUserWorkItem(state =>
+              {
+                soundPlayer.PlaySync();
+               });
+
+		  }
+     	}
+		
         public void PaintWorld(WorldLayer layer)
         {
 			if(!init_mapping) { init(); } 
-			var uiInv = Hud.Inventory.InventoryMainUiElement; 
-            if (uiInv.Visible && Hud.Game.IsInTown) return;
+			//var uiInv = Hud.Inventory.InventoryMainUiElement; 
+            //if (uiInv.Visible && Hud.Game.IsInTown) return;
 		
 			
             var itemGroups = Hud.Game.Items.Where(item => item.Location == ItemLocation.Floor).GroupBy(item => item.SnoItem.Sno);
@@ -359,8 +375,8 @@ namespace Turbo.Plugins.Resu
 						} 
 					
                     if (item.AncientRank < 1 || !ShowAncientRank) continue;
- 
                     var ancientRankText = item.AncientRank == 1 ? "Ancient   ->                     <-   Ancient" : "Primal   ->                     <-   Primal";
+					
                     if (item.SetSno != uint.MaxValue)
                     {
                         ancientRankSetDecorator.Paint(layer, item, item.FloorCoordinate, ancientRankText); // set color
