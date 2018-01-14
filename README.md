@@ -48,13 +48,13 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
             plugin.Molten = true;
             plugin.ArcaneEnchanted = true;
             plugin.PoisonEnchanted = true;
-			plugin.GasCloud = true; // (Ghom)
-			plugin.SandWaspProjectile = true;
-			plugin.MorluSpellcasterMeteorPending = true;
-			plugin.DemonMine = true;
-			plugin.PoisonDeath = true;
-			plugin.MoltenExplosion = true;
-			plugin.Orbiter	= true;
+	    plugin.GasCloud = true; // (Ghom)
+	    plugin.SandWaspProjectile = true;
+	    plugin.MorluSpellcasterMeteorPending = true;
+	    plugin.DemonMine = true;
+	    plugin.PoisonDeath = true;
+	    plugin.MoltenExplosion = true;
+	    plugin.Orbiter = true;
             });  
 // End of DangerPlugin Customization
 ```
@@ -72,7 +72,8 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 - Bounty crafts 
 
 ![alt text](READMEpics/Craftcount.png) ...near resource globe when total amount changes.
-#### [CraftersDelightPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/CraftersDelightPlugin.cs) - Shows on mini map :	
+#### [CraftersDelightPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/CraftersDelightPlugin.cs) - Shows on mini map :
+Note : Don't forget to download the [Soundfiles](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/tree/master/sounds) and place them in TurboHUD's /sounds/ directory to have notification sounds on Ancient & Primal drops.
 - Death's Breath 
 - Veiled Crystal 
 - Arcane Dust 
