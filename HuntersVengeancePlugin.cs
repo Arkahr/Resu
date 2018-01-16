@@ -39,9 +39,7 @@ namespace Turbo.Plugins.Resu
 			TextFont = Hud.Render.CreateFont("tahoma", 12, 100, 252, 126, 0, true, false, true);
             OutlineBrush = Hud.Render.CreateBrush(30, 252, 126, 0, 3); 
             Fader = new StandardFader(hud, this);
-			
-			
-		    midX = Hud.Window.Size.Width/2; 
+			midX = Hud.Window.Size.Width/2; 
             midY = Hud.Window.Size.Height/2;
 			
 			  ZeiMiniMapDecorator = new WorldDecoratorCollection( 
@@ -115,11 +113,10 @@ namespace Turbo.Plugins.Resu
                     var monsterScreenCoordinate = monster.FloorCoordinate.ToScreenCoordinate();
 					percentDamageBonus = "";
 					float gemMaths = 4f + (0.08f*(float)ZeiRank);
+									
                     if (monster.NormalizedXyDistanceToMe < 50) {percentDamageBonus = "+" + (gemMaths*((float)monster.NormalizedXyDistanceToMe/10)).ToString("0.00") + "%";}  
 					else {percentDamageBonus = "+" + (gemMaths*5f).ToString("0.00") + "% Max!";}
-                   
-				 
-				   
+                  
 				   float visibleX;
 		           float visibleY;
 				   float MidX = (float)midX;
