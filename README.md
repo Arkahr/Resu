@@ -18,6 +18,22 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
             });  
 // End of BattleTagAboveBannerPlugin Customization
 ```
+#### [ChannelingPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/ChannelingPlugin.cs) - Plays a sound when resource is back to full :
+Note : Don't forget to download the [Soundfiles](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/tree/master/sounds) and place them in TurboHUD's /sounds/ directory to have the notification sound.
+
+Note 2 : [HotEnablerDisablerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HotEnablerDisablerPlugin.cs) is now MANDATORY to use this plugin.
+
+Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
+```C#
+// ChannelingPlugin Customization
+               Hud.RunOnPlugin<Resu.ChannelingPlugin>(plugin => 
+            { 
+              plugin.ResourceMax = 100; // Resource % at which the sound is played 
+              plugin.ResourceMin = 15; // Resource % at which the trigger re-enables (if not reached the sound will not be played if ResourceMax is reached)
+            });  
+// End of ChannelingPlugin Customization
+```
+
 
 #### [DangerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/DangerPlugin.cs) - Adds : 
 Note : [HotEnablerDisablerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HotEnablerDisablerPlugin.cs) is now MANDATORY to use this plugin.
