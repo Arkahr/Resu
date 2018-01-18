@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Channeling Plugin for TurboHUD Version 16/01/2018 18:22
+// Channeling Plugin for TurboHUD Version 18/01/2018 14:30
 
 using System;
 using System.Globalization;
@@ -15,8 +15,8 @@ namespace Turbo.Plugins.Resu
 		public int ResourceMax { get; set; }
         public int ResourceMin { get; set; }
 		public bool isOn { get; set; }
-        
-        
+        public bool HighNotification { get; set; }
+        public bool LowNotification { get; set; }
         		
         public ChannelingPlugin()
         {
@@ -24,6 +24,8 @@ namespace Turbo.Plugins.Resu
 			ResourceMax = 100;
 			ResourceMin = 15;
 			isOn = false;
+			HighNotification = true;
+			LowNotification = true;
         }
 		
 		public override void Load(IController hud)
@@ -67,22 +69,37 @@ namespace Turbo.Plugins.Resu
 			
 		    if (resource >= ResourceMax && isOn == true)
 		       {
-		         var soundPlayer = Hud.Sound.LoadSoundPlayer("Resource-Full-By-Resu.wav");
+				 if	(Hud.Game.Me.IsDead || Hud.Game.IsInTown){ isOn = false; }
+				 else if (HighNotification)
+				         {	 
+		                   var highSound = Hud.Sound.LoadSoundPlayer("Resource-Full-By-Resu.wav");
 		    
-			     ThreadPool.QueueUserWorkItem(state =>
-                 {
-                   soundPlayer.PlaySync();
-                 });	
-			
-		         isOn = false;	
-			
+			               ThreadPool.QueueUserWorkItem(state =>
+                           {
+                             highSound.PlaySync();
+                           });	
+						
+		                   isOn = false;	
+						 }
 		       }
-            else if (resource <= ResourceMin)
-		       {
-                 isOn = true;
-               }
+            else if (resource <= ResourceMin && isOn == false)
+		            {
+                      if	(Hud.Game.Me.IsDead || Hud.Game.IsInTown){ isOn = true; }
+                      else if (LowNotification)
+				              {	 
+		                        var lowSound = Hud.Sound.LoadSoundPlayer("Resource-Low-By-Resu.wav");
+		    
+			                    ThreadPool.QueueUserWorkItem(state =>
+                                {
+                                  lowSound.PlaySync();
+                                });	
+						
+		                        isOn = true;	
+						      } 
+	
+                    }
 			
-            if	(Hud.Game.Me.IsDead || Hud.Game.IsInTown){isOn = false;}		
+            		
 
         }
     }
