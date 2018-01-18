@@ -28,8 +28,10 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 // ChannelingPlugin Customization
                Hud.RunOnPlugin<Resu.ChannelingPlugin>(plugin => 
             { 
-              plugin.ResourceMax = 100; // Resource % at which the sound is played 
-              plugin.ResourceMin = 15; // Resource % at which the trigger re-enables (if not reached the sound will not be played if ResourceMax is reached)
+              plugin.ResourceMax = 100; // Resource % at which the HighNotification sound is played (also thresold for LowNotification to be replayed even if HighNotification is disabled)
+              plugin.ResourceMin = 15; // Resource % at which the LowNotification sound is played (also thresold for HighNotification to be replayed even if LowNotification is disabled)
+	      plugin.HighNotification = true; // Play HighNotification
+	      plugin.LowNotification = true; // Play LowNotification
             });  
 // End of ChannelingPlugin Customization
 ```
