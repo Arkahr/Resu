@@ -18,7 +18,7 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
             });  
 // End of BattleTagAboveBannerPlugin Customization
 ```
-#### [ChannelingPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/ChannelingPlugin.cs) - Plays a sound when resource is back to full :
+#### [ChannelingPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/ChannelingPlugin.cs) - Plays a sound when resource is back to full, another when down to the set limit (customizable). :
 Note : Don't forget to download the [Soundfiles](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/tree/master/sounds) and place them in TurboHUD's /sounds/ directory to have the notification sound.
 
 Note 2 : [HotEnablerDisablerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HotEnablerDisablerPlugin.cs) is now MANDATORY to use this plugin.
@@ -28,8 +28,10 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 // ChannelingPlugin Customization
                Hud.RunOnPlugin<Resu.ChannelingPlugin>(plugin => 
             { 
-              plugin.ResourceMax = 100; // Resource % at which the sound is played 
-              plugin.ResourceMin = 15; // Resource % at which the trigger re-enables (if not reached the sound will not be played if ResourceMax is reached)
+              plugin.ResourceMax = 100; // Resource % at which the HighNotification sound is played (also threshold for LowNotification to be replayed even if HighNotification is disabled)
+              plugin.ResourceMin = 15; // Resource % at which the LowNotification sound is played (also threshold for HighNotification to be replayed even if LowNotification is disabled)
+	      plugin.HighNotification = true; // Play HighNotification
+	      plugin.LowNotification = true; // Play LowNotification
             });  
 // End of ChannelingPlugin Customization
 ```
