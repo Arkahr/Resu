@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Cloud of Bats Plugin for TurboHUD Version 20/01/2018 10:08
+// Cloud of Bats Plugin for TurboHUD Version 22/01/2018 08:08
 
 using System;
 using System.Globalization;
@@ -24,7 +24,7 @@ namespace Turbo.Plugins.Resu
 		public override void Load(IController hud)
         {
             base.Load(hud);
-			OutlineBrush = Hud.Render.CreateBrush(30, 252, 183, 57, 7);
+			 OutlineBrush = Hud.Render.CreateBrush(30, 252, 126, 0, 3);
         }
 
         public void PaintTopInGame(ClipState clipState)
