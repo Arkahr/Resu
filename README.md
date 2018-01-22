@@ -36,6 +36,7 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 // End of ChannelingPlugin Customization
 ```
 
+#### [CloudofBatsPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/CloudofBatsPlugin.cs) - Draws the Cloud of Bats range circle when hero is in combat.
 
 #### [DangerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/DangerPlugin.cs) - Adds : 
 Note : [HotEnablerDisablerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HotEnablerDisablerPlugin.cs) is now MANDATORY to use this plugin.
