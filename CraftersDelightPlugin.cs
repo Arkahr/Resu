@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Crafter's Delight Plugin for TurboHUD Version 14/01/2018 19:27
+// Crafter's Delight Plugin for TurboHUD Version 22/01/2018 08:28
  
 using System.Collections.Generic;
 using System.Linq;
@@ -321,9 +321,8 @@ namespace Turbo.Plugins.Resu
         public void PaintWorld(WorldLayer layer)
         {
 			if(!init_mapping) { init(); } 
-			//var uiInv = Hud.Inventory.InventoryMainUiElement; 
-            //if (uiInv.Visible && Hud.Game.IsInTown) return;
-		
+			if (Hud.Render.UiHidden) return;
+            	
 			
             var itemGroups = Hud.Game.Items.Where(item => item.Location == ItemLocation.Floor).GroupBy(item => item.SnoItem.Sno);
  

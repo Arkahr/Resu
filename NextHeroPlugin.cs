@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Next Hero Plugin for TurboHUD Version 28/12/2017 11:15
+// Next Hero Plugin for TurboHUD Version 22/01/2018 08:29
 
 using System;
 using System.Globalization;
@@ -43,10 +43,12 @@ namespace Turbo.Plugins.Resu
             {
 				
 				 TextFont = Hud.Render.CreateFont("Microsoft Sans Serif", 9, 225, 255, 255, 255, false, false, 100, 0, 0, 0, true), 
-                 TextFunc = () => NextHeroText, 
-              
+                 TextFunc = () => NextHeroText,
+  
             };
 			
+			 if (Hud.Render.UiHidden) return;
+             if (clipState != ClipState.BeforeClip) return;
 			 var uiInv = Hud.Inventory.InventoryMainUiElement; 
              if (uiInv.Visible) return;
 			 if (!Hud.Game.IsInTown) return;			

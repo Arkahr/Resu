@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// BattleTag Above Banner Plugin for TurboHUD Version 01/01/2018 14:58
+// BattleTag Above Banner Plugin for TurboHUD Version 22/01/2018 08:27
 
 using System;
 using System.Collections.Generic;
@@ -70,6 +70,7 @@ namespace Turbo.Plugins.Resu
 
         public void PaintWorld(WorldLayer layer)
         {
+            if (Hud.Render.UiHidden) return;
             if (!Hud.Game.IsInTown) return;
             if (Hud.Game.NumberOfPlayersInGame == 1) return;
 
