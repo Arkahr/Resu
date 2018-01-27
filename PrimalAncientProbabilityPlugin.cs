@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Primal Ancient Probability Plugin for TurboHUD Version 27/01/2018 07:24
+// Primal Ancient Probability Plugin for TurboHUD Version 27/01/2018 15:37
 
 using System;
 using System.Globalization;
@@ -46,6 +46,8 @@ namespace Turbo.Plugins.Resu
            		
 			if (Hud.Render.UiHidden) return;
             if (clipState != ClipState.BeforeClip) return;
+			if (Hud.Game.Me.CurrentLevelNormal != 70) return;
+			 
 
              ancientDecorator = new TopLabelDecorator(Hud)
             {
@@ -85,7 +87,7 @@ namespace Turbo.Plugins.Resu
 			     }
 			   }
 
-             if (Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropPrimalAncient != primalDrop)
+             if (Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropPrimalAncient != primalDrop && Hud.Game.Me.HighestSoloRiftLevel >= 70)
 			   {
 				 if (Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropPrimalAncient != primalDrop + 1) primalDrop = Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropPrimalAncient;
 				 else
@@ -123,7 +125,11 @@ namespace Turbo.Plugins.Resu
             var uiRect = Hud.Render.GetUiElement("Root.NormalLayer.game_dialog_backgroundScreenPC.game_progressBar_manaBall").Rectangle;
 			
             ancientDecorator.Paint(uiRect.Left - (uiRect.Width/3f), uiRect.Bottom - (uiRect.Height/5.7f), 50f, 50f, HorizontalAlign.Left);
+			
+			if (Hud.Game.Me.HighestSoloRiftLevel >= 70)
+			{
             primalDecorator.Paint(uiRect.Left + (uiRect.Width/10f), uiRect.Bottom - (uiRect.Height/5.7f), 50f, 50f, HorizontalAlign.Left);
+			}
 
         }
     }
