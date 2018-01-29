@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Primal Ancient Probability Plugin for TurboHUD Version 29/01/2018 16:30
+// Primal Ancient Probability Plugin for TurboHUD Version 29/01/2018 18:00
 
 using System;
 using System.Globalization;
@@ -36,17 +36,16 @@ namespace Turbo.Plugins.Resu
 		
 		 public void OnLootGenerated(IItem item, bool gambled)
         {
-		  if (item.IsLegendary) legendaryCount++;
-		  if (item.AncientRank == 1) ancientMarker = legendaryCount;
-		  if (item.AncientRank == 2) primalMarker = legendaryCount;
+		  if (item.IsLegendary && Hud.Game.Me.CurrentLevelNormal == 70) legendaryCount++;
+		  if (item.AncientRank == 1 || Hud.Game.Me.CurrentLevelNormal < 70) ancientMarker = legendaryCount;
+		  if (item.AncientRank == 2 || Hud.Game.Me.HighestSoloRiftLevel < 70) primalMarker = legendaryCount;
 		} 
 		
 		public void PaintTopInGame(ClipState clipState)
         {
            		
 			if (Hud.Game.Me.CurrentLevelNormal != 70) return;
-			 
-
+		
              ancientDecorator = new TopLabelDecorator(Hud)
             {
                  TextFont = Hud.Render.CreateFont("arial", 7, 220, 227, 153, 25, true, false, 255, 0, 0, 0, true),
