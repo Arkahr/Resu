@@ -1,7 +1,7 @@
 # Resu
 Turbo.Plugins.Resu
 ```diff
-+ Click to download zip-> unzip -> Save As -> plugins/Resu/
++ LEFT click to download zip-> unzip -> Save As -> plugins/Resu/
 
 ```
 
