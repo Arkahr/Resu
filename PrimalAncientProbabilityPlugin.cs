@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Primal Ancient Probability Plugin for TurboHUD Version 27/01/2018 15:37
+// Primal Ancient Probability Plugin for TurboHUD Version 29/01/2018 16:30
 
 using System;
 using System.Globalization;
@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Turbo.Plugins.Resu
 {
-    public class PrimalAncientProbabilityPlugin : BasePlugin, IInGameTopPainter
+    public class PrimalAncientProbabilityPlugin : BasePlugin, IInGameTopPainter, ILootGeneratedHandler
     {
       
         public TopLabelDecorator ancientDecorator { get; set; }
@@ -18,9 +18,6 @@ namespace Turbo.Plugins.Resu
 		public double ancientMarker{ get; set; }
         public double primalMarker{ get; set; }
 		public double legendaryCount{ get; set; }
-		public double legendaryDrop { get; set; }
-		public double ancientDrop { get; set; }
-		public double primalDrop { get; set; }
         		
         public PrimalAncientProbabilityPlugin()
         {
@@ -35,17 +32,18 @@ namespace Turbo.Plugins.Resu
 			ancientMarker = 0;
 			primalMarker = 0;
 			legendaryCount = 0;
-			legendaryDrop = 0;
-			ancientDrop = 0;
-			primalDrop = 0;
-			
 		}
-
+		
+		 public void OnLootGenerated(IItem item, bool gambled)
+        {
+		  if (item.IsLegendary) legendaryCount++;
+		  if (item.AncientRank == 1) ancientMarker = legendaryCount;
+		  if (item.AncientRank == 2) primalMarker = legendaryCount;
+		} 
+		
 		public void PaintTopInGame(ClipState clipState)
         {
            		
-			if (Hud.Render.UiHidden) return;
-            if (clipState != ClipState.BeforeClip) return;
 			if (Hud.Game.Me.CurrentLevelNormal != 70) return;
 			 
 
@@ -65,40 +63,6 @@ namespace Turbo.Plugins.Resu
               
             };
 			
-			if (Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropLegendary != legendaryDrop)
-			   {
-				 if (Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropLegendary != legendaryDrop + 1) legendaryDrop = Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropLegendary;
-				 else
-				 {
-				   legendaryDrop = Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropLegendary;
-				   legendaryCount++;
-			     }
-			   }
-			   
-            if (Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropAncient != ancientDrop)
-			   {
-				 if (Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropAncient != ancientDrop + 1) ancientDrop = Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropAncient;
-				 else
-				 {
-				   legendaryDrop = Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropLegendary;
-				   ancientDrop = Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropAncient;
-				   legendaryCount++;
-				   ancientMarker = legendaryCount;
-			     }
-			   }
-
-             if (Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropPrimalAncient != primalDrop && Hud.Game.Me.HighestSoloRiftLevel >= 70)
-			   {
-				 if (Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropPrimalAncient != primalDrop + 1) primalDrop = Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropPrimalAncient;
-				 else
-				 {
-				   legendaryDrop = Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropLegendary;
-				   primalDrop = Hud.Game.CurrentAccountTodayOnCurrentDifficulty.DropPrimalAncient;
-				   legendaryCount++;
-				   primalMarker = legendaryCount;
-			     }
-			   }
-
 			double probaAncient = 0;
 			double probaPrimal = 0;
 			double powAncient = legendaryCount-ancientMarker;
@@ -109,16 +73,12 @@ namespace Turbo.Plugins.Resu
 			if (powAncient == 0) powAncient = 1;
 			if (powPrimal == 0) powPrimal = 1;
 			
-			
-			
 			probaAncient = (1 - Math.Pow(ancientMaths, powAncient))*100;
 			probaPrimal = (1 - Math.Pow(primalMaths, powPrimal))*100;
-			
-			   
+						   
 			probaAncient = Math.Round(probaAncient, 2);   
 			probaPrimal = Math.Round(probaPrimal, 2);   
-	
-			
+				
 			ancientText = "A: " + probaAncient  + "%";
 			primalText =  "P: " + probaPrimal  + "%";
 
