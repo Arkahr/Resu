@@ -867,8 +867,38 @@ namespace Turbo.Plugins.Resu
 						      worldCoord2 = Hud.Window.WorldToScreenCoordinate(1027.099f, 677.289f, 0.1f, false, false);
                               break;
 							  
+							  case "1830.000, 1155.001, 0.0":
+						      worldCoord1 = Hud.Window.WorldToScreenCoordinate(1806.783f, 1188.490f, 0.1f, false, false); 
+						      worldCoord2 = Hud.Window.WorldToScreenCoordinate(1794.464f, 1175.351f, 0.1f, false, false);
+                              break;
+							  
+							  case "1794.000, 1182.000, 0.0":
+						      worldCoord1 = Hud.Window.WorldToScreenCoordinate(1799.684f, 1134.512f, 0.1f, false, false); 
+						      worldCoord2 = Hud.Window.WorldToScreenCoordinate(1781.490f, 1132.778f, 0.1f, false, false);
+                              break;
+							  
+							  case "1790.000, 1136.000, 0.6":
+						      worldCoord1 = Hud.Window.WorldToScreenCoordinate(1757.392f, 1162.921f, 0.1f, false, false); 
+						      worldCoord2 = Hud.Window.WorldToScreenCoordinate(1746.697f, 1147.660f, 0.1f, false, false);
+                              break;
+							  
+							  case "1743.640, 1147.708, 0.1":
+						      worldCoord1 = Hud.Window.WorldToScreenCoordinate(1765.807f, 1113.081f, 0.1f, false, false); 
+						      worldCoord2 = Hud.Window.WorldToScreenCoordinate(1751.051f, 1099.607f, 0.1f, false, false);
+                              break;
+							  
+							  case "1740.000, 1089.001, 0.8":
+						      worldCoord1 = Hud.Window.WorldToScreenCoordinate(1716.325f, 1123.497f, 0.1f, false, false); 
+						      worldCoord2 = Hud.Window.WorldToScreenCoordinate(1705.235f, 1110.743f, 0.1f, false, false);
+                              break;
+							  
+							  case "1694.553, 1107.469, 0.0":
+						      worldCoord1 = Hud.Window.WorldToScreenCoordinate(1704.706f, 1063.489f, 0.1f, false, false); 
+						      worldCoord2 = Hud.Window.WorldToScreenCoordinate(1689.579f, 1060.016f, 0.1f, false, false);
+                              break;
+							  
                               default:
-                              DemonicForgeDecorator.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized  + " " + actor.FloorCoordinate.ToString() );
+                              DemonicForgeDecorator.Paint(layer, actor, actor.FloorCoordinate, "!!! Not repertoriated !!! " + actor.FloorCoordinate.ToString() );
 							  break;
                             }					
 											 
