@@ -19,10 +19,10 @@ namespace Turbo.Plugins.Resu
         {
             Enabled = true;
             coordinates = new Dictionary<int, Dictionary<int, IWorldCoordinate>>();
-			SeePlayersInTown = false;
+            SeePlayersInTown = false;
         }
-		
-				  
+        
+                  
         public override void Load(IController hud)
         {
             base.Load(hud);
@@ -82,71 +82,71 @@ namespace Turbo.Plugins.Resu
                 if (player == null) continue; 
                 if (player.IsInTown && !SeePlayersInTown) continue;
                 if (SeePlayersInTown && player.IsMe) continue;
-				string battleTag = player.BattleTagAbovePortrait;
+                string battleTag = player.BattleTagAbovePortrait;
                 if (battleTag == null) continue;
                 TagDecorator.TextFunc = () => battleTag.ToString();
                 var currentAct = Hud.Game.Me.SnoArea.Act;
                 var playerIndex = player.Index;
-				var HeroTexture = Hud.Texture.GetTexture(890155253);
-				var ScreenWidth = Hud.Window.Size.Width; 
+                var HeroTexture = Hud.Texture.GetTexture(890155253);
+                var ScreenWidth = Hud.Window.Size.Width; 
                 var ScreenHeight = Hud.Window.Size.Height;
-				
+                
 
                 if (!coordinates.ContainsKey(currentAct)) return;
                 if (!coordinates[currentAct].ContainsKey(playerIndex)) return;
-				
-				
-				if (player.HeroClassDefinition.HeroClass.ToString() == "Barbarian")
-				   {
-					 if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(3921484788); // male/female can't be determined, let's keep it for later...
- 					 else HeroTexture = Hud.Texture.GetTexture(1030273087);	
-				   }
-				else if (player.HeroClassDefinition.HeroClass.ToString() == "Crusader")
-				   {
-					if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(3742271755);
-					else HeroTexture = Hud.Texture.GetTexture(3435775766);	
-				   } 
-				else if (player.HeroClassDefinition.HeroClass.ToString() == "DemonHunter")
-				   {
-					if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(3785199803);
-					else HeroTexture = Hud.Texture.GetTexture(2939779782);	
-				   } 
-				else if (player.HeroClassDefinition.HeroClass.ToString() == "Monk")
-				   {
-					if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(2227317895);
-					else HeroTexture = Hud.Texture.GetTexture(2918463890);	
-				   } 
-				else if (player.HeroClassDefinition.HeroClass.ToString() == "Necromancer")
-				   {
-					if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(3285997023); 
-					else HeroTexture = Hud.Texture.GetTexture(473831658);	
-				   }
-				else if (player.HeroClassDefinition.HeroClass.ToString() == "WitchDoctor")
-				   {
-					if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(3925954876);
-					else HeroTexture = Hud.Texture.GetTexture(1603231623);	
-				   }
-				else if (player.HeroClassDefinition.HeroClass.ToString() == "Wizard")
-				   {
-					if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(44435619);
-					else HeroTexture = Hud.Texture.GetTexture(876580014);	
-				   }
-				
+                
+                
+                if (player.HeroClassDefinition.HeroClass.ToString() == "Barbarian")
+                   {
+                     if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(3921484788); // male/female can't be determined, let's keep it for later...
+                     else HeroTexture = Hud.Texture.GetTexture(1030273087); 
+                   }
+                else if (player.HeroClassDefinition.HeroClass.ToString() == "Crusader")
+                   {
+                    if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(3742271755);
+                    else HeroTexture = Hud.Texture.GetTexture(3435775766);  
+                   } 
+                else if (player.HeroClassDefinition.HeroClass.ToString() == "DemonHunter")
+                   {
+                    if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(3785199803);
+                    else HeroTexture = Hud.Texture.GetTexture(2939779782);  
+                   } 
+                else if (player.HeroClassDefinition.HeroClass.ToString() == "Monk")
+                   {
+                    if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(2227317895);
+                    else HeroTexture = Hud.Texture.GetTexture(2918463890);  
+                   } 
+                else if (player.HeroClassDefinition.HeroClass.ToString() == "Necromancer")
+                   {
+                    if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(3285997023); 
+                    else HeroTexture = Hud.Texture.GetTexture(473831658);   
+                   }
+                else if (player.HeroClassDefinition.HeroClass.ToString() == "WitchDoctor")
+                   {
+                    if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(3925954876);
+                    else HeroTexture = Hud.Texture.GetTexture(1603231623);  
+                   }
+                else if (player.HeroClassDefinition.HeroClass.ToString() == "Wizard")
+                   {
+                    if (player.HeroClassDefinition.MaleActorSno != 0) HeroTexture = Hud.Texture.GetTexture(44435619);
+                    else HeroTexture = Hud.Texture.GetTexture(876580014);   
+                   }
+                
 
                 var BattleTagTexture = Hud.Texture.GetTexture(3098562643);
-				var TownTexture = Hud.Texture.GetTexture(3153923970);
-				var ToScreenPos = coordinates[currentAct][playerIndex].ToScreenCoordinate();
+                var TownTexture = Hud.Texture.GetTexture(3153923970);
+                var ToScreenPos = coordinates[currentAct][playerIndex].ToScreenCoordinate();
 
                 BattleTagTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/32.653)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/10), (float)(ScreenHeight/28), 0.7843f); 
-				HeroTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/28.769)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/56), (float)(ScreenHeight/31), 0.7843f);
+                HeroTexture.Draw((float)(ToScreenPos.X-(ScreenWidth/28.769)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenWidth/56), (float)(ScreenHeight/31), 0.7843f);
                 TagDecorator.Paint((float)(ToScreenPos.X - (ScreenWidth / 41)), (float)(ToScreenPos.Y - (ScreenHeight / 100)), (float)(ScreenWidth / 11.5), (float)(ScreenHeight / 45), HorizontalAlign.Center);
                 if (player.IsInTown && SeePlayersInTown) 
-				   {
-					   TownTexture.Draw((float)(ToScreenPos.X+(ScreenWidth/20)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenHeight/27), (float)(ScreenHeight/26), 0.7843f);
-			       }
-				   
-				
-				
+                   {
+                       TownTexture.Draw((float)(ToScreenPos.X+(ScreenWidth/20)), (float)(ToScreenPos.Y-(ScreenHeight/52.941)), (float)(ScreenHeight/27), (float)(ScreenHeight/26), 0.7843f);
+                   }
+                   
+                
+                
             }
         }
     }

@@ -14,10 +14,10 @@ namespace Turbo.Plugins.Resu
         public bool ElitesnBossOnly { get; set; }
         public bool BossOnly { get; set; }
         public int propSquare { get; set; }
-		public bool cooldown { get; set; }
+        public bool cooldown { get; set; }
         public int monsterCount { get; set; }
-		public int offsetX { get; set; }
-		public int offsetY { get; set; }
+        public int offsetX { get; set; }
+        public int offsetY { get; set; }
         public TopLabelDecorator StrickenStackDecorator { get; set; }
         public TopLabelDecorator StrickenPercentDecorator { get; set; }
         public Dictionary<uint,Tuple<double,int>> MonsterStatus { get; set; }  // AcdId, Health, Stacks
@@ -28,8 +28,8 @@ namespace Turbo.Plugins.Resu
             Enabled = true;
             ElitesnBossOnly = false;
             BossOnly = false;
-			offsetX = 0;
-			offsetY = 0;
+            offsetX = 0;
+            offsetY = 0;
             MonsterStatus = new Dictionary<uint,Tuple<double,int>>();
         }
 
@@ -38,7 +38,7 @@ namespace Turbo.Plugins.Resu
             base.Load(hud);
             StrickenRank = 0;
             propSquare = (int)(Hud.Window.Size.Width/53.333);
-			cooldown = false;
+            cooldown = false;
             monsterCount = 0;
                         
             StrickenStackDecorator = new TopLabelDecorator(Hud)
@@ -50,7 +50,7 @@ namespace Turbo.Plugins.Resu
             {
               TextFont = Hud.Render.CreateFont("tahoma", 6, 255, 255, 255, 255, false, false, 250, 0, 0, 0, true),
             };
-		
+        
         }
         
         
@@ -89,7 +89,7 @@ namespace Turbo.Plugins.Resu
           
            float gemMaths = 0.8f + (0.01f*(float)StrickenRank);
            var Texture = Hud.Texture.GetItemTexture(Hud.Sno.SnoItems.Unique_Gem_018_x1);
-           var monsters = Hud.Game.Monsters;
+           var monsters = Hud.Game.Monsters.OrderBy(i => i.NormalizedXyDistanceToMe); //
            foreach (var monster in monsters)
                    {
                      if (ElitesnBossOnly && !monster.IsElite) continue;
@@ -111,7 +111,7 @@ namespace Turbo.Plugins.Resu
                                      int Stacks = (int)(prevStacks + 1); 
                                      Tuple<double,int> updateValues = new Tuple<double,int>(monster.CurHealth, Stacks);
                                      MonsterStatus[monster.AcdId] = updateValues;
-                                     monsterCount++; 								  
+                                     monsterCount++;                                  
                                      cooldown = true;
                                    }
                                     
@@ -125,36 +125,36 @@ namespace Turbo.Plugins.Resu
                                                Tuple<double,int> updateValues = new Tuple<double,int>(monster.CurHealth, Stacks);
                                                MonsterStatus[monster.AcdId] = updateValues;
                                              }
-                                        }	
+                                        }   
                                     
 
                                 if (prevStacks > 0)
                                    {
                                      int bossPerc = 0;
-									 if (monster.SnoMonster.Priority == MonsterPriority.boss) {bossPerc = 25;}
+                                     if (monster.SnoMonster.Priority == MonsterPriority.boss) {bossPerc = 25;}
                                      else {bossPerc = 0;}
                                      float StrickenDamagePercent = (float)(bossPerc + (prevStacks * gemMaths));
                                      string percentDamageBonus = "+" + StrickenDamagePercent.ToString("0.00") + "%"; 
                                      Texture.Draw(monsterScreenCoordinate.X + offsetX, monsterScreenCoordinate.Y + offsetY, propSquare, propSquare);
                                      StrickenStackDecorator.TextFunc = () => prevStacks.ToString();
                                      StrickenPercentDecorator.TextFunc = () => percentDamageBonus;
-									 StrickenStackDecorator.Paint(monsterScreenCoordinate.X + offsetX, monsterScreenCoordinate.Y + offsetY, propSquare, propSquare, HorizontalAlign.Center);
+                                     StrickenStackDecorator.Paint(monsterScreenCoordinate.X + offsetX, monsterScreenCoordinate.Y + offsetY, propSquare, propSquare, HorizontalAlign.Center);
                                      StrickenPercentDecorator.Paint(monsterScreenCoordinate.X + offsetX, (float)(monsterScreenCoordinate.Y + offsetY +(propSquare/2.5)), propSquare, propSquare, HorizontalAlign.Right);
                                      if (cooldown)
                                         { 
                                           StrickenPercentDecorator.TextFunc = () => "\u231B";
                                           StrickenPercentDecorator.Paint((float)(monsterScreenCoordinate.X + offsetX +(propSquare/2)),monsterScreenCoordinate.Y + offsetY, propSquare, propSquare, HorizontalAlign.Center);
                                         } 
-				
+                
                                    }
                               }
                           else 
                               { 
                                 Tuple<double,int> valuesIn = new Tuple<double,int>(monster.CurHealth, (int)(0));
                                 MonsterStatus.Add(monster.AcdId, valuesIn);
-                              }	
+                              } 
                            
-                        }						   
+                        }                          
                     else
                         {
                           MonsterStatus.Remove(monster.AcdId);

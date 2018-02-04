@@ -14,8 +14,8 @@ namespace Turbo.Plugins.Resu
         public WorldDecoratorCollection SlainFarmerDecorator { get; set; }
         public WorldDecoratorCollection ancientRankDecorator { get; set; }
         public WorldDecoratorCollection ancientRankSetDecorator { get; set; }
-		public WorldDecoratorCollection HoradricCacheDecorator { get; set; }
-		public bool ShowAncientRank { get; set; }
+        public WorldDecoratorCollection HoradricCacheDecorator { get; set; }
+        public bool ShowAncientRank { get; set; }
         public bool SlainFarmers { get; set; }
         public bool DeathsBreath { get; set; }
         public bool VeiledCrystal { get; set; }
@@ -30,11 +30,11 @@ namespace Turbo.Plugins.Resu
         public bool RamaladnisGift { get; set; }
         public bool Potion { get; set; }
         public bool InfernalMachine { get; set; }
-		public bool Bounty { get; set; }
-		public bool HellFire { get; set; }
-		public bool LegendaryGems { get; set; }
-		public bool HoradricCaches { get; set; }
-		private bool init_mapping;
+        public bool Bounty { get; set; }
+        public bool HellFire { get; set; }
+        public bool LegendaryGems { get; set; }
+        public bool HoradricCaches { get; set; }
+        private bool init_mapping;
  
         public WorldDecoratorCollection GreaterRiftKeystoneDecorator
         {
@@ -46,11 +46,11 @@ namespace Turbo.Plugins.Resu
         {
             Enabled = true;
         }
-		
-		private void init() 
-		{
-			 
-			SnoMapping = new Dictionary<uint, WorldDecoratorCollection>();
+        
+        private void init() 
+        {
+             
+            SnoMapping = new Dictionary<uint, WorldDecoratorCollection>();
             var blackBrush = Hud.Render.CreateBrush(160, 0, 0, 0, 1);
             var whiteBrush = Hud.Render.CreateBrush(160, 255, 255, 255, 1);
             var purpleBrush = Hud.Render.CreateBrush(160, 146, 32, 175, 1);
@@ -59,7 +59,7 @@ namespace Turbo.Plugins.Resu
             var BlueGreenBrush = Hud.Render.CreateBrush(160, 14, 215, 195, 1);
             var grayBrush = Hud.Render.CreateBrush(160, 55, 61, 53, 1);
             var orangeBrush = Hud.Render.CreateBrush(160, 255, 232, 113, 1);
-			var RoyalBlueBrush = Hud.Render.CreateBrush(160, 65, 105, 255, 1);
+            var RoyalBlueBrush = Hud.Render.CreateBrush(160, 65, 105, 255, 1);
             var blackFont = Hud.Render.CreateFont("tahoma", 7, 255, 0, 0, 0, true, false, false);
             var whiteFont = Hud.Render.CreateFont("tahoma", 7, 255, 255, 255, 255, true, false, false);
             var purpleFont = Hud.Render.CreateFont("tahoma", 7, 255, 146, 32, 175, true, false, false);
@@ -68,8 +68,8 @@ namespace Turbo.Plugins.Resu
             var mudFont = Hud.Render.CreateFont("tahoma", 7, 255, 146, 29, 0, true, false, false);
             var BlueGreenFont = Hud.Render.CreateFont("tahoma", 7, 255, 14, 215, 195, true, false, false);
             var grayFont = Hud.Render.CreateFont("tahoma", 7, 255, 55, 61, 53, true, false, false);
-			var RoyalBlueFont = Hud.Render.CreateFont("tahoma", 7, 255, 65, 105, 255, true, false, false);
-			
+            var RoyalBlueFont = Hud.Render.CreateFont("tahoma", 7, 255, 65, 105, 255, true, false, false);
+            
             //Death Breath => already handled by ItemsPlugin but needed
             if (DeathsBreath) { AddDecorator(2087837753, Hud.Render.CreateBrush(160, 89, 178, 153, 0), whiteBrush, orangeFont); } 
             //VeiledCrystal
@@ -138,57 +138,57 @@ namespace Turbo.Plugins.Resu
                 AddDecorator(2622355732, Hud.Render.CreateBrush(120, 0, 0, 0, 0), whiteBrush, whiteFont);
                 AddDecorator(1458185494, Hud.Render.CreateBrush(120, 0, 0, 0, 0), whiteBrush, whiteFont);
             }
-			
-			//Bounty crafts
+            
+            //Bounty crafts
             if (Bounty)
             {
                 AddDecorator(1948629088, Hud.Render.CreateBrush(120, 146, 32, 175,0), orangeBrush, orangeFont);
                 AddDecorator(1948629089, Hud.Render.CreateBrush(120, 146, 32, 175,0), orangeBrush, orangeFont);
                 AddDecorator(1948629090, Hud.Render.CreateBrush(120, 146, 32, 175,0), orangeBrush, orangeFont);
                 AddDecorator(1948629091, Hud.Render.CreateBrush(120, 146, 32, 175,0), orangeBrush, orangeFont);
-				AddDecorator(1948629092, Hud.Render.CreateBrush(120, 146, 32, 175,0), orangeBrush, orangeFont);
+                AddDecorator(1948629092, Hud.Render.CreateBrush(120, 146, 32, 175,0), orangeBrush, orangeFont);
             }
-			
-			//HellFire crafts
+            
+            //HellFire crafts
             if (HellFire)
             {
                 AddDecorator(1102953247, Hud.Render.CreateBrush(160, 234, 47, 0, 0), orangeBrush, orangeFont);
                 AddDecorator(2029265596, Hud.Render.CreateBrush(160, 234, 47, 0, 0), orangeBrush, orangeFont);
                 AddDecorator(2670343450, Hud.Render.CreateBrush(160, 234, 47, 0, 0), orangeBrush, orangeFont);
                 AddDecorator(3336787100, Hud.Render.CreateBrush(160, 234, 47, 0, 0), orangeBrush, orangeFont);
-			}
-			
-			//Legendary Gems
+            }
+            
+            //Legendary Gems
             if (LegendaryGems)
             {
                 AddDecorator(3248511367, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
                 AddDecorator(3248547304, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
                 AddDecorator(3248583241, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
                 AddDecorator(3248619178, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
-				AddDecorator(3248655115, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
+                AddDecorator(3248655115, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
                 AddDecorator(3248691052, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
                 AddDecorator(3248726989, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
                 AddDecorator(3248762926, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
-				AddDecorator(3248798863, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
-                AddDecorator(3249661351, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);				
+                AddDecorator(3248798863, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
+                AddDecorator(3249661351, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);             
                 AddDecorator(3249697288, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
                 AddDecorator(3249733225, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
-				AddDecorator(3249769162, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
+                AddDecorator(3249769162, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
                 AddDecorator(3249805099, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
                 AddDecorator(3249841036, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
                 AddDecorator(3249876973, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
-				AddDecorator(3249912910, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
+                AddDecorator(3249912910, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
                 AddDecorator(3249948847, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
                 AddDecorator(3249984784, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
                 AddDecorator(3250847272, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
-				AddDecorator(3250883209, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
+                AddDecorator(3250883209, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
                 AddDecorator(3250919146, Hud.Render.CreateBrush(120, 255, 255, 255, 0), RoyalBlueBrush, RoyalBlueFont);
-               			
-			}
-			
-			init_mapping = true; 
+                        
+            }
+            
+            init_mapping = true; 
         } 
-		
+        
  
         public override void Load(IController hud)
         {
@@ -216,7 +216,7 @@ namespace Turbo.Plugins.Resu
  
             //Slain farmers (actors)
             SlainFarmerDecorator = new WorldDecoratorCollection(
-			new MapLabelDecorator(Hud)
+            new MapLabelDecorator(Hud)
             {
                 LabelFont = Hud.Render.CreateFont("tahoma", 5, 255, 146, 29, 0, true, false, true),
             },
@@ -227,8 +227,8 @@ namespace Turbo.Plugins.Resu
                 TextFont = Hud.Render.CreateFont("tahoma", 7, 255, 146, 29, 0, true, false, false)
             }
             );
-			
-			//Horadric Cache
+            
+            //Horadric Cache
             HoradricCacheDecorator = new WorldDecoratorCollection(
              new MapTextureDecorator(Hud)
                 {
@@ -239,15 +239,15 @@ namespace Turbo.Plugins.Resu
                         RadiusMinimumMultiplier = 0.8f,
                     }
                 },
-			new GroundLabelDecorator(Hud)
+            new GroundLabelDecorator(Hud)
             {
                 BackgroundBrush = Hud.Render.CreateBrush(100, 0, 0, 0, 0),
                 BorderBrush = Hud.Render.CreateBrush(160, 255, 255, 255, 1),
                 TextFont = Hud.Render.CreateFont("tahoma", 7, 160, 255, 255, 255, true, false, false)
             }
             );
-			
-			
+            
+            
             //Ancient rank
             ancientRankDecorator = new WorldDecoratorCollection(
             new MapLabelDecorator(Hud)
@@ -305,25 +305,25 @@ namespace Turbo.Plugins.Resu
         public void OnLootGenerated(IItem item, bool gambled)
         {
           if (!Hud.Game.IsIngameSoundEnabled) return;
-		  if (item.AncientRank < 1) {}
-		  else
-		  {
-		    var soundPlayer = item.AncientRank == 1 ? Hud.Sound.LoadSoundPlayer("Ancient-Drop-By-Resu.wav") : Hud.Sound.LoadSoundPlayer("Primal-Drop-By-Resu.wav");
-		    
-			ThreadPool.QueueUserWorkItem(state =>
+          if (item.AncientRank < 1) {}
+          else
+          {
+            var soundPlayer = item.AncientRank == 1 ? Hud.Sound.LoadSoundPlayer("Ancient-Drop-By-Resu.wav") : Hud.Sound.LoadSoundPlayer("Primal-Drop-By-Resu.wav");
+            
+            ThreadPool.QueueUserWorkItem(state =>
               {
                 soundPlayer.PlaySync();
                });
 
-		  }
-     	}
-		
+          }
+        }
+        
         public void PaintWorld(WorldLayer layer)
         {
-			if(!init_mapping) { init(); } 
-			if (Hud.Render.UiHidden) return;
-            	
-			
+            if(!init_mapping) { init(); } 
+            if (Hud.Render.UiHidden) return;
+                
+            
             var itemGroups = Hud.Game.Items.Where(item => item.Location == ItemLocation.Floor).GroupBy(item => item.SnoItem.Sno);
  
             foreach (var items in itemGroups)
@@ -332,7 +332,7 @@ namespace Turbo.Plugins.Resu
                 var firstItem = orderedItems.FirstOrDefault();
  
                 if (firstItem == null) continue;
-				
+                
  
                 if (SnoMapping.ContainsKey(items.Key))
                 {
@@ -351,15 +351,15 @@ namespace Turbo.Plugins.Resu
                 if (!firstItem.IsLegendary) continue;
                 foreach (var item in items)
                 {
-					 var inKanaiCube = Hud.Game.Me.IsCubed(item.SnoItem);
+                     var inKanaiCube = Hud.Game.Me.IsCubed(item.SnoItem);
                      var canKanaiCube = !inKanaiCube && item.SnoItem.CanKanaiCube;
 
                     if (canKanaiCube)
-					   {
+                       {
                         var cubeTexture = Hud.Texture.KanaiCubeTexture;
                         float mapX, mapY, radius;
-						Hud.Render.GetMinimapCoordinates(item.FloorCoordinate.X, item.FloorCoordinate.Y, out mapX, out mapY);
-						var RadiusTransformator = new StandardPingRadiusTransformator(Hud, 500)
+                        Hud.Render.GetMinimapCoordinates(item.FloorCoordinate.X, item.FloorCoordinate.Y, out mapX, out mapY);
+                        var RadiusTransformator = new StandardPingRadiusTransformator(Hud, 500)
                         {
                         RadiusMinimumMultiplier = 0.8f,
                         };
@@ -368,14 +368,14 @@ namespace Turbo.Plugins.Resu
                             {
                               radius = RadiusTransformator.TransformRadius(radius);
                             }
-						var width = cubeTexture.Width * radius;
+                        var width = cubeTexture.Width * radius;
                         var height = cubeTexture.Height * radius;
                         cubeTexture.Draw(mapX - width / 2, mapY - height / 2, width, height);
-						} 
-					
+                        } 
+                    
                     if (item.AncientRank < 1 || !ShowAncientRank) continue;
                     var ancientRankText = item.AncientRank == 1 ? "Ancient   ->                     <-   Ancient" : "Primal   ->                     <-   Primal";
-					
+                    
                     if (item.SetSno != uint.MaxValue)
                     {
                         ancientRankSetDecorator.Paint(layer, item, item.FloorCoordinate, ancientRankText); // set color
@@ -396,18 +396,18 @@ namespace Turbo.Plugins.Resu
                     SlainFarmerDecorator.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
                 }
             }
-			
-			/// Horadric Cache
+            
+            /// Horadric Cache
             if (HoradricCaches)
             {
-			var HoradricCache = Hud.Game.Items.Where(item => item.Location == ItemLocation.Floor && item.SnoItem.MainGroupCode == "horadriccache");
-			foreach (var cache in HoradricCache)
+            var HoradricCache = Hud.Game.Items.Where(item => item.Location == ItemLocation.Floor && item.SnoItem.MainGroupCode == "horadriccache");
+            foreach (var cache in HoradricCache)
                 {
                     HoradricCacheDecorator.Paint(layer, cache, cache.FloorCoordinate, cache.SnoItem.NameLocalized);
                 }
-			
-			
-			}
+            
+            
+            }
         }
     }
 }

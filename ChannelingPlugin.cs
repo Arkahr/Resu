@@ -12,23 +12,23 @@ namespace Turbo.Plugins.Resu
     public class ChannelingPlugin : BasePlugin, IInGameTopPainter
     {
         
-		public int ResourceMax { get; set; }
+        public int ResourceMax { get; set; }
         public int ResourceMin { get; set; }
-		public bool isOn { get; set; }
+        public bool isOn { get; set; }
         public bool HighNotification { get; set; }
         public bool LowNotification { get; set; }
-        		
+                
         public ChannelingPlugin()
         {
             Enabled = true;
-			ResourceMax = 100;
-			ResourceMin = 15;
-			isOn = false;
-			HighNotification = true;
-			LowNotification = true;
+            ResourceMax = 100;
+            ResourceMin = 15;
+            isOn = false;
+            HighNotification = true;
+            LowNotification = true;
         }
-		
-		public override void Load(IController hud)
+        
+        public override void Load(IController hud)
         {
             base.Load(hud);
         }
@@ -36,12 +36,12 @@ namespace Turbo.Plugins.Resu
         public void PaintTopInGame(ClipState clipState)
         {
             var hedPlugin = Hud.GetPlugin<HotEnablerDisablerPlugin>();
-			bool GoOn = hedPlugin.CanIRun(Hud.Game.Me,this.GetType().Name); 
-			if (!GoOn) return;
-			
-			float resource = 0f;
-			
-			switch (Hud.Game.Me.HeroClassDefinition.HeroClass)
+            bool GoOn = hedPlugin.CanIRun(Hud.Game.Me,this.GetType().Name); 
+            if (!GoOn) return;
+            
+            float resource = 0f;
+            
+            switch (Hud.Game.Me.HeroClassDefinition.HeroClass)
             {
                 case HeroClass.Barbarian:
                     resource = Hud.Game.Me.Stats.ResourcePctFury;
@@ -65,41 +65,41 @@ namespace Turbo.Plugins.Resu
                 case HeroClass.Wizard:
                     resource = Hud.Game.Me.Stats.ResourcePctArcane;
                     break;
-            }				
-			
-		    if (resource >= ResourceMax && isOn == true)
-		       {
-				 if	(Hud.Game.Me.IsDead || Hud.Game.IsInTown){ isOn = false; }
-				 else if (HighNotification)
-				         {	 
-		                   var highSound = Hud.Sound.LoadSoundPlayer("Resource-Full-By-Resu.wav");
-		    
-			               ThreadPool.QueueUserWorkItem(state =>
+            }               
+            
+            if (resource >= ResourceMax && isOn == true)
+               {
+                 if (Hud.Game.Me.IsDead || Hud.Game.IsInTown){ isOn = false; }
+                 else if (HighNotification)
+                         {   
+                           var highSound = Hud.Sound.LoadSoundPlayer("Resource-Full-By-Resu.wav");
+            
+                           ThreadPool.QueueUserWorkItem(state =>
                            {
                              highSound.PlaySync();
-                           });	
-						
-		                   isOn = false;	
-						 }
-		       }
+                           });  
+                        
+                           isOn = false;    
+                         }
+               }
             else if (resource <= ResourceMin && isOn == false)
-		            {
-                      if	(Hud.Game.Me.IsDead || Hud.Game.IsInTown){ isOn = true; }
+                    {
+                      if    (Hud.Game.Me.IsDead || Hud.Game.IsInTown){ isOn = true; }
                       else if (LowNotification)
-				              {	 
-		                        var lowSound = Hud.Sound.LoadSoundPlayer("Resource-Low-By-Resu.wav");
-		    
-			                    ThreadPool.QueueUserWorkItem(state =>
+                              {  
+                                var lowSound = Hud.Sound.LoadSoundPlayer("Resource-Low-By-Resu.wav");
+            
+                                ThreadPool.QueueUserWorkItem(state =>
                                 {
                                   lowSound.PlaySync();
-                                });	
-						
-		                        isOn = true;	
-						      } 
-	
+                                }); 
+                        
+                                isOn = true;    
+                              } 
+    
                     }
-			
-            		
+            
+                    
 
         }
     }
