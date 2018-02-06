@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Danger Plugin for TurboHUD Version 02/02/2018 08:46
+// Danger Plugin for TurboHUD Version 06/02/2018 12:08
 // Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds many new features
 
 using System.Linq;
@@ -104,8 +104,6 @@ namespace Turbo.Plugins.Resu
                 }
                 );
                 
-                
-                
                 BloodSpringsDecoratorMedium = new WorldDecoratorCollection(
                 new MapShapeDecorator(Hud)
                 {
@@ -126,12 +124,10 @@ namespace Turbo.Plugins.Resu
                 new GroundLabelDecorator(Hud)
                 {
                     BackgroundBrush = Hud.Render.CreateBrush(160, 0, 0, 0, 0),
-                    TextFont = Hud.Render.CreateFont("tahoma", 9, 255, 79, 170, 245, true, false, false),                    
+                    TextFont = Hud.Render.CreateFont("tahoma", 9, 255, 79, 170, 245, true, false, false),
                 }
                 );
-                
-                
-                
+
                 BloodSpringsDecoratorBig = new WorldDecoratorCollection(
                 new MapShapeDecorator(Hud)
                 {
@@ -152,7 +148,7 @@ namespace Turbo.Plugins.Resu
                 new GroundLabelDecorator(Hud)
                 {
                     BackgroundBrush = Hud.Render.CreateBrush(160, 0, 0, 0, 0),
-                    TextFont = Hud.Render.CreateFont("tahoma", 9, 255, 79, 170, 245, true, false, false),                    
+                    TextFont = Hud.Render.CreateFont("tahoma", 9, 255, 79, 170, 245, true, false, false),
                 }
                 );
 
@@ -169,15 +165,10 @@ namespace Turbo.Plugins.Resu
                 {
                     LabelFont = Hud.Render.CreateFont("tahoma", 6, 255, 255, 255, 255, true, false, false),
                 },
-                /* new GroundCircleDecorator(Hud)
-                {
-                    Brush = Hud.Render.CreateBrush(100, 255, 255, 220, 5, SharpDX.Direct2D1.DashStyle.Dash),
-                    Radius = 45,
-                }, */
                 new GroundLabelDecorator(Hud)
                 {
                     BackgroundBrush = Hud.Render.CreateBrush(160, 255, 0, 0, 0),
-                    TextFont = Hud.Render.CreateFont("tahoma", 9, 255, 255, 255, 220, true, false, false),                    
+                    TextFont = Hud.Render.CreateFont("tahoma", 9, 255, 255, 255, 220, true, false, false),
                 }
                 );
                             
@@ -201,7 +192,7 @@ namespace Turbo.Plugins.Resu
                 new GroundLabelDecorator(Hud)
                 {
                     BackgroundBrush = Hud.Render.CreateBrush(160, 0, 0, 0, 0),
-                    TextFont = Hud.Render.CreateFont("tahoma", 9, 255, 79, 170, 245, true, false, false),                    
+                    TextFont = Hud.Render.CreateFont("tahoma", 9, 255, 79, 170, 245, true, false, false),
                 }
                 );
                 
@@ -236,7 +227,6 @@ namespace Turbo.Plugins.Resu
                 {
                     BackgroundBrush = Hud.Render.CreateBrush(0, 0, 0, 0, 0),
                     TextFont = Hud.Render.CreateFont("tahoma", 20, 128, 255, 60, 255, true, false, false),
-                    
                     OffsetX = 200f,                    
                 }
                 
@@ -246,7 +236,7 @@ namespace Turbo.Plugins.Resu
                 new GroundLabelDecorator(Hud)
                 {
                     BackgroundBrush = Hud.Render.CreateBrush(0, 0, 0, 0, 0),
-                    TextFont = Hud.Render.CreateFont("tahoma", 20, 255, 255, 255, 255, true, true, true),                    
+                    TextFont = Hud.Render.CreateFont("tahoma", 20, 255, 255, 255, 255, true, true, true),
                 }
                 );
                 
@@ -254,7 +244,7 @@ namespace Turbo.Plugins.Resu
                 new GroundLabelDecorator(Hud)
                 {
                     BackgroundBrush = Hud.Render.CreateBrush(0, 0, 0, 0, 0),
-                    TextFont = Hud.Render.CreateFont("tahoma", 20, 255, 0, 255, 0, true, false, false),                    
+                    TextFont = Hud.Render.CreateFont("tahoma", 20, 255, 0, 255, 0, true, false, false),
                 }
                 );
                 
@@ -904,22 +894,57 @@ namespace Turbo.Plugins.Resu
                               worldCoord2 = Hud.Window.WorldToScreenCoordinate(2315.177f, 746.222f, 0.1f, false, false);
                               break;
                               
+                              case "1250.000, 1284.000, -20.0":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1248.383f, 1238.843f, -19.8f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1234.601f, 1238.144f, -19.8f, false, false);
+                              break;
+                              
+                              case "1106.000, 1292.000, -9.7":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1139.747f, 1302.398f, -9.9f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1134.796f, 1313.575f, -9.9f, false, false);
+                              break;
+                              
+                              case "738.034, 1993.000, 0.0":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(692.410f, 1992.857f, 0.2f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(694.415f, 1979.533f, 0.2f, false, false);
+                              break;
+                              
+                              case "751.000, 2063.000, -10.0":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(785.622f, 2064.573f, -9.9f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(784.747f, 2051.893f, -9.9f, false, false);
+                              break;
+                              
+                              case "1500.785, 1267.248, 0.8":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1498.978f, 1221.712f, 0.1f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1483.300f, 1220.289f, 0.1f, false, false);
+                              break;
+                              
+                              case "1253.001, 1145.999, 0.0":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1286.419f, 1130.511f, 0.1f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1274.154f, 1117.183f, 0.1f, false, false);
+                              break;
+                              
+                              case "835.000, 897.500, -60.0":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(800.756f, 863.261f, -59.2f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(811.196f, 856.925f, -59.2f, false, false);
+                              break;
+                              
+                              case "927.500, 680.000, -69.2":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(881.944f, 674.190f, -69.0f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(881.895f, 687.170f, -69.0f, false, false);
+                              break;
+                              
                               default:
-                              DemonicForgeDecorator.Paint(layer, actor, actor.FloorCoordinate, "!!! Not repertoriated !!! " + actor.FloorCoordinate.ToString() );
+                              DemonicForgeDecorator.Paint(layer, actor, actor.FloorCoordinate, "!!! Not repertoriated !!! " + actor.FloorCoordinate);
                               break;
                             }
                      
-                     brush.DrawLine(ActorPos.X, ActorPos.Y, worldCoord1.X, worldCoord1.Y); 
+                     brush.DrawLine(ActorPos.X, ActorPos.Y, worldCoord1.X, worldCoord1.Y);
                      brush.DrawLine(ActorPos.X, ActorPos.Y, worldCoord2.X, worldCoord2.Y);
                      brush.DrawLine(worldCoord1.X, worldCoord1.Y, worldCoord2.X, worldCoord2.Y);
                      DemonicForgeDecorator.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
-
+                    
                    }
-                    
-                    
-                    
-                
-                
                    
                 if (actor.SnoActor.Sno == 322194 && ShockTower) ShockTowerDecorator.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
                 if (actor.SnoActor.Sno == 332922 && BloodSprings) BloodSpringsDecoratorMedium.Paint(layer, actor, actor.FloorCoordinate, actor.SnoActor.NameLocalized);
