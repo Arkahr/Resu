@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Danger Plugin for TurboHUD Version 06/02/2018 12:08
+// Danger Plugin for TurboHUD Version 09/02/2018 21:05
 // Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds many new features
 
 using System.Linq;
@@ -47,7 +47,7 @@ namespace Turbo.Plugins.Resu
         public bool MoleMutantProjectile { get; set; }
         public bool IcePorcupineProjectile { get; set; }
         
-        public static HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868, 93837, 5212, 159369, 118596, 4104, 4105, 4106, 4803, 343539, 164829, 312942, 337030, 353256, 349564, 117921, 117906, 150825, 468082, 430430};  
+        public static HashSet<uint> dangerIds = new HashSet<uint>() { 174900, 185391, 332922, 332923, 332924, 322194, 84608, 341512, 108869, 3865, 219702, 221225, 340319, 95868, 93837, 5212, 159369, 118596, 4104, 4105, 4106, 4803, 343539, 164827, 312942, 337030, 353256, 349564, 117921, 117906, 150825, 468082, 430430};
         
         public DangerPlugin()
         {
@@ -74,6 +74,8 @@ namespace Turbo.Plugins.Resu
             bloodGolemProjectile = true;
             MoleMutantProjectile = true;
             IcePorcupineProjectile = true;
+            // to test : bloodclan spearman projectile 158698
+            // succubus bloodstar search : not 164829
         }
         
         public override void Load(IController hud)
@@ -934,6 +936,61 @@ namespace Turbo.Plugins.Resu
                               worldCoord2 = Hud.Window.WorldToScreenCoordinate(881.895f, 687.170f, -69.0f, false, false);
                               break;
                               
+                              case "1607.000, 1744.000, 10.0":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1605.623f, 1783.320f, 10.1f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1588.742f, 1776.022f, 10.1f, false, false);
+                              break;
+                              
+                              case "1833.000, 1270.000, 0.2":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1860.265f, 1238.670f, 0.1f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1845.802f, 1226.004f, 0.1f, false, false);
+                              break;
+                              
+                              case "1818.000, 1167.000, 0.2":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1816.096f, 1119.558f, 0.1f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1797.291f, 1116.181f, 0.1f, false, false);
+                              break;
+                              
+                              case "877.500, 865.000, -39.1":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(859.190f, 843.511f, -39.4f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(852.344f, 851.775f, -39.4f, false, false);
+                              break;
+                              
+                              case "827.500, 875.000, -40.0":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(846.080f, 895.617f, -39.9f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(833.047f, 903.756f, -39.9f, false, false);
+                              break;
+                              
+                              case "1324.945, 1170.731, 0.1":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1351.955f, 1200.774f, 0.1f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1357.874f, 1190.310f, 0.1f, false, false);
+                              break;
+                              
+                              case "885.000, 812.500, -39.4":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(912.895f, 819.495f, -39.0f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(906.972f, 830.953f, -39.0f, false, false);
+                              break;
+                              
+                              case "747.500, 885.000, -10.0":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(765.168f, 931.680f, -9.0f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(748.516f, 933.296f, -9.0f, false, false);
+                              break;
+                              
+                              case "902.500, 782.500, -39.3":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(927.406f, 794.035f, -39.1f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(929.039f, 784.236f, -38.8f, false, false);
+                              break;
+                              
+                              case "830.000, 595.000, -60.0":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(859.446f, 561.527f, -59.9f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(846.472f, 550.931f, -59.9f, false, false);
+                              break;
+                              
+                              case "762.500, 927.500, -59.7":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(757.220f, 880.017f, -59.3f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(740.785f, 883.564f, -59.3f, false, false);
+                              break;
+                              
                               default:
                               DemonicForgeDecorator.Paint(layer, actor, actor.FloorCoordinate, "!!! Not repertoriated !!! " + actor.FloorCoordinate);
                               break;
@@ -972,7 +1029,7 @@ namespace Turbo.Plugins.Resu
                    {
                      if (actor.SnoActor.Sno == 118596 || actor.SnoActor.Sno == 117921 || actor.SnoActor.Sno == 117906 || actor.SnoActor.Sno == 150825 || actor.SnoActor.Sno == 468082) DemonMineDecorator.Paint(layer, actor, actor.FloorCoordinate, null);
                    }
-                if (actor.SnoActor.Sno == 343539 && actor.NormalizedXyDistanceToMe <= 10 && Orbiter || actor.SnoActor.Sno == 164829 && actor.NormalizedXyDistanceToMe <= 12 && BloodStar) OrbiterDecorator.Paint(layer, actor, actor.FloorCoordinate, null);                
+                if (actor.SnoActor.Sno == 343539 && actor.NormalizedXyDistanceToMe <= 10 && Orbiter || actor.SnoActor.Sno == 164827 && actor.NormalizedXyDistanceToMe <= 12 && BloodStar) OrbiterDecorator.Paint(layer, actor, actor.FloorCoordinate, null);                
     
             }
         
