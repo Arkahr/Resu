@@ -42,7 +42,7 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
 Note : [HotEnablerDisablerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HotEnablerDisablerPlugin.cs) is now MANDATORY to use this plugin.
 - Circles around Blood springs on the floor and on the minimap (Paths of the Drowned & Blood Marsh area)(previously BloodSpringsPlugin).
 - Circles around Shock Towers on the floor and on the minimap (from DM's ShockTowerPlugin).
-- Circles around Demon Forges on the floor and on the minimap (from DM's DemonForgePlugin).
+- Triangles around Demon Forges flames on the floor and indicator on the minimap (heavily modified DM's DemonForgePlugin).
 - Circles around Arcane enchanted.
 - Circles around Demon Mines.
 - Circles under Orbiters within 10 yards.
@@ -50,7 +50,7 @@ Note : [HotEnablerDisablerPlugin.cs](https://minhaskamal.github.io/DownGit/#/hom
 - Crosses on the ground for poison enchanted.
 - SandWasp's Projectile indicator. 
 
-![alt text](READMEpics/Bloodsprings.png)
+![alt text](READMEpics/Bloodsprings.png) ![alt text](READMEpics/demonic.png)
 
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
 ```C#
