@@ -85,7 +85,7 @@ namespace Turbo.Plugins.Resu
                 BloodSpringsDecoratorSmall = new WorldDecoratorCollection(
                 new MapShapeDecorator(Hud)
                 {
-                    Brush = Hud.Render.CreateBrush(255, 82, 35, 42, 0),
+                    Brush = Hud.Render.CreateBrush(180, 82, 35, 42, 0),
                     Radius = 7.0f,
                     ShapePainter = new CircleShapePainter(Hud),
                    
@@ -109,7 +109,7 @@ namespace Turbo.Plugins.Resu
                 BloodSpringsDecoratorMedium = new WorldDecoratorCollection(
                 new MapShapeDecorator(Hud)
                 {
-                    Brush = Hud.Render.CreateBrush(255, 82, 35, 42, 0),
+                    Brush = Hud.Render.CreateBrush(180, 82, 35, 42, 0),
                     Radius = 14.0f,
                     ShapePainter = new CircleShapePainter(Hud),
                    
@@ -133,7 +133,7 @@ namespace Turbo.Plugins.Resu
                 BloodSpringsDecoratorBig = new WorldDecoratorCollection(
                 new MapShapeDecorator(Hud)
                 {
-                    Brush = Hud.Render.CreateBrush(255, 82, 35, 42, 0),
+                    Brush = Hud.Render.CreateBrush(180, 82, 35, 42, 0),
                     Radius = 20.0f,
                     ShapePainter = new CircleShapePainter(Hud),
                    
@@ -989,6 +989,21 @@ namespace Turbo.Plugins.Resu
                               case "762.500, 927.500, -59.7":
                               worldCoord1 = Hud.Window.WorldToScreenCoordinate(757.220f, 880.017f, -59.3f, false, false); 
                               worldCoord2 = Hud.Window.WorldToScreenCoordinate(740.785f, 883.564f, -59.3f, false, false);
+                              break;
+                              
+                              case "1695.000, 914.000, 0.0":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1663.675f, 945.355f, 0.1f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1653.017f, 926.270f, 0.1f, false, false);
+                              break;
+                              
+                              case "1518.000, 705.000, 0.4":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1517.723f, 743.360f, 0.6f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1499.606f, 741.004f, 0.6f, false, false);
+                              break;
+                              
+                              case "1512.000, 750.000, 0.7":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1509.630f, 698.601f, 0.1f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1497.233f, 705.774f, 0.1f, false, false);
                               break;
                               
                               default:
