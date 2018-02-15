@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Danger Plugin for TurboHUD Version 09/02/2018 21:05
+// Danger Plugin for TurboHUD Version 15/02/2018 12:17
 // Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds many new features
 
 using System.Linq;
@@ -1006,8 +1006,31 @@ namespace Turbo.Plugins.Resu
                               worldCoord2 = Hud.Window.WorldToScreenCoordinate(1497.233f, 705.774f, 0.1f, false, false);
                               break;
                               
+                              case "665.000, 787.500, 10.7":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(628.334f, 761.527f, 10.8f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(637.583f, 752.272f, 10.8f, false, false);
+                              break;
+                              
+                              case "790.000, 920.000, -19.8":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(763.759f, 879.785f, -19.8f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(779.832f, 874.955f, -19.8f, false, false);
+                              break;
+                              
+                              case "722.500, 765.000, -29.8":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(719.631f, 800.759f, -29.9f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(733.783f, 801.930f, -29.9f, false, false);
+                              break;
+                              
                               default:
                               DemonicForgeDecorator.Paint(layer, actor, actor.FloorCoordinate, "!!! Not repertoriated !!! " + actor.FloorCoordinate);
+                              var cursorScreen = Hud.Window.CreateScreenCoordinate(Hud.Window.CursorX, Hud.Window.CursorY);
+                              var World = cursorScreen.ToWorldCoordinate();
+                              string worldstring = World.ToString();
+                              int visibleX = Hud.Window.CursorX;
+                              int visibleY = Hud.Window.CursorY;
+                              var TextFont = Hud.Render.CreateFont("tahoma", 12, 255, 255, 255, 0, true, false, true);
+                              var layout = TextFont.GetTextLayout(worldstring);
+                              TextFont.DrawText(layout, visibleX, visibleY-50);
                               break;
                             }
                      
