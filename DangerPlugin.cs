@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Danger Plugin for TurboHUD Version 15/02/2018 12:17
+// Danger Plugin for TurboHUD Version 15/02/2018 13:17
 // Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds many new features
 
 using System.Linq;
@@ -1019,6 +1019,16 @@ namespace Turbo.Plugins.Resu
                               case "722.500, 765.000, -29.8":
                               worldCoord1 = Hud.Window.WorldToScreenCoordinate(719.631f, 800.759f, -29.9f, false, false); 
                               worldCoord2 = Hud.Window.WorldToScreenCoordinate(733.783f, 801.930f, -29.9f, false, false);
+                              break;
+                              
+                              case "1718.000, 601.000, 0.0":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1700.923f, 633.282f, 0.1f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1715.711f, 637.723f, 0.1f, false, false);
+                              break;
+                              
+                              case "1532.000, 558.000, 0.0":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1531.762f, 599.938f, 0.1f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1516.049f, 594.653f, 0.1f, false, false);
                               break;
                               
                               default:
