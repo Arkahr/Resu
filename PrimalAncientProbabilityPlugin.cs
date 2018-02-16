@@ -1,10 +1,11 @@
 // https://github.com/User5981/Resu
-// Primal Ancient Probability Plugin for TurboHUD Version 29/01/2018 18:00
+// Primal Ancient Probability Plugin for TurboHUD Version 16/02/2018 11:27
 
 using System;
 using System.Globalization;
 using Turbo.Plugins.Default;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Turbo.Plugins.Resu
 {
@@ -18,7 +19,8 @@ namespace Turbo.Plugins.Resu
         public double ancientMarker{ get; set; }
         public double primalMarker{ get; set; }
         public double legendaryCount{ get; set; }
-                
+        public HashSet<string> legendaries = new HashSet<string>() {"0"};
+        
         public PrimalAncientProbabilityPlugin()
         {
             Enabled = true;
@@ -36,10 +38,21 @@ namespace Turbo.Plugins.Resu
         
          public void OnLootGenerated(IItem item, bool gambled)
         {
-          if (item.IsLegendary && Hud.Game.Me.CurrentLevelNormal == 70) legendaryCount++;
-          if (item.AncientRank == 1 || Hud.Game.Me.CurrentLevelNormal < 70) ancientMarker = legendaryCount;
-          if (item.AncientRank == 2 || Hud.Game.Me.HighestSoloRiftLevel < 70) primalMarker = legendaryCount;
+          string itemID = item.SnoItem.Sno.ToString() + item.Perfection.ToString();
+          if (item.IsLegendary && Hud.Game.Me.CurrentLevelNormal == 70 && !legendaries.Contains(itemID)) legendaryCount++;
+          if (item.AncientRank == 1 && !legendaries.Contains(itemID) || Hud.Game.Me.CurrentLevelNormal < 70) ancientMarker = legendaryCount;
+          if (item.AncientRank == 2 && !legendaries.Contains(itemID) || Hud.Game.Me.HighestSoloRiftLevel < 70) primalMarker = legendaryCount;
+          if (item.IsLegendary && Hud.Game.Me.CurrentLevelNormal == 70 && !legendaries.Contains(itemID)) legendaries.Add(itemID);
         } 
+        
+        public void OnNewArea(bool newGame, ISnoArea area)
+        {
+            if (newGame)
+            {
+                legendaries.Clear();
+                legendaries.Add("0");
+            }
+        }
         
         public void PaintTopInGame(ClipState clipState)
         {
