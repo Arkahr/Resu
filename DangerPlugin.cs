@@ -1031,6 +1031,11 @@ namespace Turbo.Plugins.Resu
                               worldCoord2 = Hud.Window.WorldToScreenCoordinate(1516.049f, 594.653f, 0.1f, false, false);
                               break;
                               
+                              case "1730.000, 1284.000, -20.0":
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1729.562f, 1233.752f, -19.8f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1713.666f, 1236.566f, -19.8f, false, false);
+                              break;
+                              
                               default:
                               DemonicForgeDecorator.Paint(layer, actor, actor.FloorCoordinate, "!!! Not repertoriated !!! " + actor.FloorCoordinate);
                               var cursorScreen = Hud.Window.CreateScreenCoordinate(Hud.Window.CursorX, Hud.Window.CursorY);
