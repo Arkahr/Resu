@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Primal Ancient Probability Plugin for TurboHUD Version 16/02/2018 11:27
+// Primal Ancient Probability Plugin for TurboHUD Version 20/02/2018 23:09
 
 using System;
 using System.Globalization;
@@ -19,6 +19,9 @@ namespace Turbo.Plugins.Resu
         public double ancientMarker{ get; set; }
         public double primalMarker{ get; set; }
         public double legendaryCount{ get; set; }
+        public double prevInventoryLegendaryCount { get; set; }
+        public double prevInventoryAncientCount { get; set; }
+        public double prevInventoryPrimalCount { get; set; }
         public HashSet<string> legendaries = new HashSet<string>() {"0"};
         
         public PrimalAncientProbabilityPlugin()
@@ -34,6 +37,10 @@ namespace Turbo.Plugins.Resu
             ancientMarker = 0;
             primalMarker = 0;
             legendaryCount = 0;
+            prevInventoryLegendaryCount = 0;
+            prevInventoryAncientCount = 0;
+            prevInventoryPrimalCount = 0;
+            
         }
         
          public void OnLootGenerated(IItem item, bool gambled)
@@ -75,6 +82,8 @@ namespace Turbo.Plugins.Resu
               
             };
             
+            
+           
             double probaAncient = 0;
             double probaPrimal = 0;
             double powAncient = legendaryCount-ancientMarker;
@@ -102,6 +111,27 @@ namespace Turbo.Plugins.Resu
             {
             primalDecorator.Paint(uiRect.Left + (uiRect.Width/10f), uiRect.Bottom - (uiRect.Height/5.7f), 50f, 50f, HorizontalAlign.Left);
             }
+            
+            bool KanaiRecipe = Hud.Render.GetUiElement("Root.NormalLayer.Kanais_Recipes_main").Visible;
+            double InventoryLegendaryCount = 0;
+            double InventoryAncientCount = 0;
+            double InventoryPrimalCount = 0;
+            
+            foreach (var item in Hud.Inventory.ItemsInInventory)
+                    {
+                     if (item.IsLegendary) InventoryLegendaryCount++;
+                     if (item.AncientRank == 1) InventoryAncientCount++;
+                     if (item.AncientRank == 2) InventoryPrimalCount++;
+                    }
+            
+            if (KanaiRecipe)
+               {
+                if (InventoryLegendaryCount > prevInventoryLegendaryCount && Hud.Game.Me.CurrentLevelNormal == 70) legendaryCount++;
+                if (InventoryAncientCount > prevInventoryAncientCount || Hud.Game.Me.CurrentLevelNormal < 70) ancientMarker = legendaryCount;
+                if (InventoryPrimalCount > prevInventoryPrimalCount || Hud.Game.Me.HighestSoloRiftLevel < 70) primalMarker = legendaryCount;
+               }
+            else prevInventoryLegendaryCount = InventoryLegendaryCount; prevInventoryAncientCount = InventoryAncientCount; prevInventoryPrimalCount = InventoryPrimalCount;
+           
 
         }
     }
