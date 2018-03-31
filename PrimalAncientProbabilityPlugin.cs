@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Primal Ancient Probability Plugin for TurboHUD Version 20/02/2018 23:09
+// Primal Ancient Probability Plugin for TurboHUD Version 31/03/2018 21:38
 
 using System;
 using System.Globalization;
@@ -126,9 +126,9 @@ namespace Turbo.Plugins.Resu
             
             if (KanaiRecipe)
                {
-                if (InventoryLegendaryCount > prevInventoryLegendaryCount && Hud.Game.Me.CurrentLevelNormal == 70) legendaryCount++;
-                if (InventoryAncientCount > prevInventoryAncientCount || Hud.Game.Me.CurrentLevelNormal < 70) ancientMarker = legendaryCount;
-                if (InventoryPrimalCount > prevInventoryPrimalCount || Hud.Game.Me.HighestSoloRiftLevel < 70) primalMarker = legendaryCount;
+                if (InventoryLegendaryCount > prevInventoryLegendaryCount && Hud.Game.Me.CurrentLevelNormal == 70) legendaryCount++; prevInventoryLegendaryCount = InventoryLegendaryCount;
+                if (InventoryAncientCount > prevInventoryAncientCount || Hud.Game.Me.CurrentLevelNormal < 70) ancientMarker = legendaryCount; prevInventoryAncientCount = InventoryAncientCount;
+                if (InventoryPrimalCount > prevInventoryPrimalCount || Hud.Game.Me.HighestSoloRiftLevel < 70) primalMarker = legendaryCount; prevInventoryPrimalCount = InventoryPrimalCount;
                }
             else prevInventoryLegendaryCount = InventoryLegendaryCount; prevInventoryAncientCount = InventoryAncientCount; prevInventoryPrimalCount = InventoryPrimalCount;
            
