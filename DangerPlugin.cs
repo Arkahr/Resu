@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Danger Plugin for TurboHUD Version 27/03/2018 13:02
+// Danger Plugin for TurboHUD Version 31/03/2018 21:31
 // Note : This plugin merges BM's DemonForgePlugin, ShockTowerPlugin, my BloodSpringsPlugin and adds many new features
 
 using System.Linq;
@@ -1099,6 +1099,46 @@ namespace Turbo.Plugins.Resu
                               case "682.000, 1038.000, 0.6":
                               worldCoord1 = Hud.Window.WorldToScreenCoordinate(668.557f, 1068.441f, 0.1f, false, false); 
                               worldCoord2 = Hud.Window.WorldToScreenCoordinate(686.036f, 1072.790f, 0.1f, false, false);
+                              break;
+                              
+                              case "1695.000, 1038.000, 0.6": 
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1666.130f, 1070.112f, 0.1f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1673.467f, 1051.452f, 0.1f, false, false); 
+                              break; 
+
+                              case "1822.500, 1160.000, 0.0": 
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1848.118f, 1193.514f, 0.1f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1852.573f, 1187.104f, 0.1f, false, false); 
+                              break; 
+
+                              case "717.500, 650.000, 0.8": 
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(678.290f, 666.247f, 0.2f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(679.381f, 649.375f, 0.5f, false, false); 
+                              break; 
+
+                              case "1554.000, 1271.000, 0.0": 
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1585.932f, 1289.330f, 0.1f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1580.782f, 1296.168f, 0.1f, false, false); 
+                              break; 
+
+                              case "1698.034, 1513.000, 0.0": 
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1663.058f, 1504.468f, 0.1f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1661.347f, 1515.322f, 0.1f, false, false); 
+                              break; 
+
+                              case "1063.000, 1135.000, 0.6": 
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1105.451f, 1140.433f, 1.4f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1106.510f, 1130.367f, -0.9f, false, false); 
+                              break; 
+
+                              case "1980.785, 787.248, 0.8": 
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1984.896f, 741.813f, 0.8f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1972.306f, 746.412f, 0.1f, false, false); 
+                              break; 
+
+                              case "1738.000, 1525.000, -9.1": 
+                              worldCoord1 = Hud.Window.WorldToScreenCoordinate(1742.726f, 1568.543f, -9.9f, false, false); 
+                              worldCoord2 = Hud.Window.WorldToScreenCoordinate(1728.978f, 1560.071f, -9.6f, false, false); 
                               break;
                               
                               default:
