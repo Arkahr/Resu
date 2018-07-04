@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Primal Ancient Probability Plugin for TurboHUD Version 31/03/2018 21:38
+// Primal Ancient Probability Plugin for TurboHUD Version 04/07/2018 11:24
 
 using System;
 using System.Globalization;
@@ -119,9 +119,11 @@ namespace Turbo.Plugins.Resu
             
             foreach (var item in Hud.Inventory.ItemsInInventory)
                     {
-                     if (item.IsLegendary) InventoryLegendaryCount++;
-                     if (item.AncientRank == 1) InventoryAncientCount++;
-                     if (item.AncientRank == 2) InventoryPrimalCount++;
+                     string itemID = item.SnoItem.Sno.ToString() + item.Perfection.ToString();
+                     if (item.IsLegendary && !legendaries.Contains(itemID)) InventoryLegendaryCount++;
+                     if (item.AncientRank == 1 && !legendaries.Contains(itemID)) InventoryAncientCount++;
+                     if (item.AncientRank == 2 && !legendaries.Contains(itemID)) InventoryPrimalCount++;
+                     if (item.IsLegendary && Hud.Game.Me.CurrentLevelNormal == 70 && !legendaries.Contains(itemID)) legendaries.Add(itemID);
                     }
             
             if (KanaiRecipe)
