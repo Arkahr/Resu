@@ -4,7 +4,10 @@ Turbo.Plugins.Resu
 + LEFT click to download zip-> unzip -> Save As -> plugins/Resu/
 
 ```
-
+#### [AriadnesThreadPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/AriadnesThreadPlugin.cs) 
+- Two players in the same area : Draws a thread between you and the other player on the minimap. 
+- Three players in the same area : Draws a triangle formed by you and the two other players on the minimap.
+- Four players in the same area : Draws a triangle formed by the three other players on the minimap.
 
 #### [BattleTagAboveBannerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/BattleTagAboveBannerPlugin.cs) - Adds other players' battletags above banners when they aren't in town. ![alt text](READMEpics/Banner.png)
 Customization (paste this in the Customization part of User/PluginEnablerOrDisablerPlugin.cs) :
