@@ -145,7 +145,7 @@ namespace Turbo.Plugins.Resu
                   if (Unit == null || !Unit.Active) {Unity = "";} else {Unity = " [Unity]";}
                   var MyUnit = Hud.Game.Me.Powers.GetBuff(318769);
                   
-                                
+                  
                   if (player.CurrentLevelNormal == 70)
                    {
                       
