@@ -169,6 +169,8 @@ Customization (paste this in the Customization part of User/PluginEnablerOrDisab
             });  
 // End of Settings for Custom Life Warning Plugin
 ```
+#### [GroupGRLevelAdviserPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/GroupGRLevelAdviserPlugin.cs) - Displays an advised group GRift level when rift dialogue is open. ![alt text](READMEpics/gr.png)
+
 #### [HuntersVengeancePlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HuntersVengeancePlugin.cs) - Shows 1 circle around your player when you have Zei's stone of vengeance equipped and are fighting, it also displays the percentage of damage increased by the legendary gem under each monster (calculated from gem level and distance from your player), the circle and a visor appears on the minimap to help you to aim at distant monsters.
 Note : [HotEnablerDisablerPlugin.cs](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/User5981/Resu/blob/master/HotEnablerDisablerPlugin.cs) is now MANDATORY to use this plugin.
 
