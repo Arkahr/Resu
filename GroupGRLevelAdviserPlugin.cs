@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Group GR Level Adviser Plugin for TurboHUD version 07/07/2018 21:08
+// Group GR Level Adviser Plugin for TurboHUD version 08/07/2018 06:56
 using Turbo.Plugins.Default;
 using System;
 using System.Collections.Generic;
@@ -43,7 +43,7 @@ namespace Turbo.Plugins.Resu
                    maxGRlevel +=  player.HighestSoloRiftLevel;
                   }
            
-            int GRAverage = Convert.ToInt32(Convert.ToDouble(maxGRlevel / Hud.Game.NumberOfPlayersInGame + (2 * (Hud.Game.NumberOfPlayersInGame - 1))));
+            int GRAverage = Convert.ToInt32(Convert.ToDouble(maxGRlevel / Hud.Game.NumberOfPlayersInGame + (((1 + Math.Sqrt(5)) / 2) * (Hud.Game.NumberOfPlayersInGame - 1))));
             GRLevelText = GRAverage.ToString();
             var uiRect = Hud.Render.GetUiElement("Root.NormalLayer.rift_dialog_mainPage").Rectangle;
             GRLevelDecorator.Paint(uiRect.Left, uiRect.Top, uiRect.Width, uiRect.Height, HorizontalAlign.Right);
