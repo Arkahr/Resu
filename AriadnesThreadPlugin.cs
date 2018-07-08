@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Ariadne's Thread plugin for TurboHUD version 05/07/2018 15:35
+// Ariadne's Thread plugin for TurboHUD version 08/07/2018 13:15
 using Turbo.Plugins.Default;
 using System;
 using System.Collections.Generic;
@@ -52,6 +52,8 @@ namespace Turbo.Plugins.Resu
         
          public void PaintWorld(WorldLayer layer)
         {
+         if (Hud.Game.IsInTown || Hud.Game.NumberOfPlayersInGame == 1 ) return;
+         
          int StrengthBuff = StrengthBuff1 + StrengthBuff2 + StrengthBuff3;
          if (StrengthBuff != 0 && !Hud.Game.Me.IsDead)
           {
@@ -59,8 +61,6 @@ namespace Turbo.Plugins.Resu
            var uiRect = Hud.Render.GetUiElement("Root.NormalLayer.minimap_dialog_backgroundScreen.minimap_dialog_pve.BoostWrapper.BoostsDifficultyStackPanel.clock").Rectangle;
            StrengthBuffDecorator.Paint(uiRect.Left - uiRect.Width * 1.14f, uiRect.Top + uiRect.Height * 1f, uiRect.Width, uiRect.Height, HorizontalAlign.Right);
           }
-        
-         if (Hud.Game.IsInTown) return;
          
          var players = Hud.Game.Players.Where(player => !player.IsMe);
          
@@ -79,7 +79,7 @@ namespace Turbo.Plugins.Resu
            }
            
           if (player.PortraitIndex == 2) 
-           { if (Hud.Game.Me.SnoArea.Sno == player.SnoArea.Sno)
+           { if (Hud.Game.Me.SnoArea.Sno == player.SnoArea.Sno && Hud.Game.NumberOfPlayersInGame >= 3)
               {
                Other2 = player.FloorCoordinate; AreaOther2 = player.SnoArea.Sno;
                if (player.NormalizedXyDistanceToMe <= 187 && !player.IsDead) StrengthBuff2 = 10; else StrengthBuff2 = 0;
@@ -91,7 +91,7 @@ namespace Turbo.Plugins.Resu
            }
            
           if (player.PortraitIndex == 3) 
-           { if (Hud.Game.Me.SnoArea.Sno == player.SnoArea.Sno)
+           { if (Hud.Game.Me.SnoArea.Sno == player.SnoArea.Sno && Hud.Game.NumberOfPlayersInGame == 4)
               {
                Other3 = player.FloorCoordinate; AreaOther3 = player.SnoArea.Sno;
                if (player.NormalizedXyDistanceToMe <= 187 && !player.IsDead) StrengthBuff3 = 10; else StrengthBuff3 = 0;
@@ -112,8 +112,11 @@ namespace Turbo.Plugins.Resu
          Hud.Render.GetMinimapCoordinates(Other3.X, Other3.Y, out Other3OnMapX, out Other3OnMapY);
 
          WhiteBrush.DrawLine(Other1OnMapX, Other1OnMapY, Other2OnMapX, Other2OnMapY);
-         WhiteBrush.DrawLine(Other1OnMapX, Other1OnMapY, Other3OnMapX, Other3OnMapY);
-         WhiteBrush.DrawLine(Other3OnMapX, Other3OnMapY, Other2OnMapX, Other2OnMapY);
+         if (Hud.Game.NumberOfPlayersInGame >= 3)
+          {
+           WhiteBrush.DrawLine(Other1OnMapX, Other1OnMapY, Other3OnMapX, Other3OnMapY);
+           WhiteBrush.DrawLine(Other3OnMapX, Other3OnMapY, Other2OnMapX, Other2OnMapY);
+          }
         }
     }
 
