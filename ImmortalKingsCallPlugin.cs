@@ -47,11 +47,11 @@ namespace Turbo.Plugins.Resu
                   
                        if (WrathOfTheBerserker == null || !WrathOfTheBerserker.Active || CallOfTheAncients == null || !CallOfTheAncients.Active)
                        {
-                                                   
+                        
                        }    
                        else
                        {
-                            ImmortalKingsCall = "+1500% " + WrathOfTheBerserker.TimeLeftSeconds + "s"; //(int)WrathOfTheBerserker.TimeLeft()
+                            ImmortalKingsCall = "+1500% " + (int)WrathOfTheBerserker.TimeLeftSeconds[0] + "s"; 
                             
                             if (Hud.Game.NumberOfPlayersInGame == 1) 
                               {
