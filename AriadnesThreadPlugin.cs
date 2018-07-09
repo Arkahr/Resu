@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Ariadne's Thread plugin for TurboHUD version 08/07/2018 13:15
+// Ariadne's Thread plugin for TurboHUD version 09/07/2018 12:19
 using Turbo.Plugins.Default;
 using System;
 using System.Collections.Generic;
@@ -32,9 +32,9 @@ namespace Turbo.Plugins.Resu
         public override void Load(IController hud)
         {
          base.Load(hud);
-         Other1 = Hud.Window.CreateWorldCoordinate(0, 0, 0);
-         Other2 = Hud.Window.CreateWorldCoordinate(0, 0, 0);
-         Other3 = Hud.Window.CreateWorldCoordinate(0, 0, 0);
+         Other1 = Hud.Game.Me.FloorCoordinate;
+         Other2 = Hud.Game.Me.FloorCoordinate;
+         Other3 = Hud.Game.Me.FloorCoordinate;
          StrengthBuff1 = 0;
          StrengthBuff2 = 0;
          StrengthBuff3 = 0;
@@ -70,7 +70,7 @@ namespace Turbo.Plugins.Resu
            { if (Hud.Game.Me.SnoArea.Sno == player.SnoArea.Sno)
               {
                Other1 = player.FloorCoordinate; AreaOther1 = player.SnoArea.Sno;
-               if (player.NormalizedXyDistanceToMe <= 187 && !player.IsDead) StrengthBuff1 = 10; else StrengthBuff1 = 0;
+               if (player.NormalizedXyDistanceToMe <= 186.5 && !player.IsDead) StrengthBuff1 = 10; else StrengthBuff1 = 0;
               }
               else
               {
@@ -79,10 +79,10 @@ namespace Turbo.Plugins.Resu
            }
            
           if (player.PortraitIndex == 2) 
-           { if (Hud.Game.Me.SnoArea.Sno == player.SnoArea.Sno && Hud.Game.NumberOfPlayersInGame >= 3)
+           { if (Hud.Game.Me.SnoArea.Sno == player.SnoArea.Sno)
               {
                Other2 = player.FloorCoordinate; AreaOther2 = player.SnoArea.Sno;
-               if (player.NormalizedXyDistanceToMe <= 187 && !player.IsDead) StrengthBuff2 = 10; else StrengthBuff2 = 0;
+               if (player.NormalizedXyDistanceToMe <= 186.5 && !player.IsDead) StrengthBuff2 = 10; else StrengthBuff2 = 0;
               }
               else
               {
@@ -91,10 +91,10 @@ namespace Turbo.Plugins.Resu
            }
            
           if (player.PortraitIndex == 3) 
-           { if (Hud.Game.Me.SnoArea.Sno == player.SnoArea.Sno && Hud.Game.NumberOfPlayersInGame == 4)
+           { if (Hud.Game.Me.SnoArea.Sno == player.SnoArea.Sno)
               {
                Other3 = player.FloorCoordinate; AreaOther3 = player.SnoArea.Sno;
-               if (player.NormalizedXyDistanceToMe <= 187 && !player.IsDead) StrengthBuff3 = 10; else StrengthBuff3 = 0;
+               if (player.NormalizedXyDistanceToMe <= 186.5 && !player.IsDead) StrengthBuff3 = 10; else StrengthBuff3 = 0;
               }
               else
               {
