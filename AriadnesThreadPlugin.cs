@@ -1,5 +1,5 @@
 // https://github.com/User5981/Resu
-// Ariadne's Thread plugin for TurboHUD version 09/07/2018 18:55
+// Ariadne's Thread plugin for TurboHUD version 11/07/2018 03:13
 using Turbo.Plugins.Default;
 using System;
 using System.Collections.Generic;
@@ -67,7 +67,7 @@ namespace Turbo.Plugins.Resu
          foreach (var player in players)
          {
           if (player.PortraitIndex == 1)
-           { if (Hud.Game.Me.SnoArea.Sno == player.SnoArea.Sno && player.CoordinateKnown && !player.IsInTown)
+           { if (Hud.Game.Me.SnoArea.Sno == player.SnoArea.Sno && player.CoordinateKnown && !player.IsInTown && Hud.Game.NumberOfPlayersInGame > 1)
               {
                Other1 = player.FloorCoordinate; AreaOther1 = player.SnoArea.Sno;
                if (player.NormalizedXyDistanceToMe <= 186.5 && !player.IsDead) StrengthBuff1 = 10; else StrengthBuff1 = 0;
@@ -79,7 +79,7 @@ namespace Turbo.Plugins.Resu
            }
            
           if (player.PortraitIndex == 2)
-           { if (Hud.Game.Me.SnoArea.Sno == player.SnoArea.Sno && player.CoordinateKnown && !player.IsInTown)
+           { if (Hud.Game.Me.SnoArea.Sno == player.SnoArea.Sno && player.CoordinateKnown && !player.IsInTown && Hud.Game.NumberOfPlayersInGame > 2)
               {
                Other2 = player.FloorCoordinate; AreaOther2 = player.SnoArea.Sno;
                if (player.NormalizedXyDistanceToMe <= 186.5 && !player.IsDead) StrengthBuff2 = 10; else StrengthBuff2 = 0;
@@ -91,7 +91,7 @@ namespace Turbo.Plugins.Resu
            }
            
           if (player.PortraitIndex == 3)
-           { if (Hud.Game.Me.SnoArea.Sno == player.SnoArea.Sno && player.CoordinateKnown && !player.IsInTown)
+           { if (Hud.Game.Me.SnoArea.Sno == player.SnoArea.Sno && player.CoordinateKnown && !player.IsInTown && Hud.Game.NumberOfPlayersInGame > 3)
               {
                Other3 = player.FloorCoordinate; AreaOther3 = player.SnoArea.Sno;
                if (player.NormalizedXyDistanceToMe <= 186.5 && !player.IsDead) StrengthBuff3 = 10; else StrengthBuff3 = 0;
